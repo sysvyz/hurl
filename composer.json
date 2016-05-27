@@ -1,9 +1,10 @@
 {
   "name": "sysvyz/hurl",
-  "description": "PHP7 language wrapper ",
+  "description": "PHP7 language wrapper",
   "type": "library",
   "keywords": [
-    "lw","language wrapper"
+    "lw",
+    "language wrapper"
   ],
   "homepage": "https://github.com/sysvyz/brunt",
   "license": "MIT",
