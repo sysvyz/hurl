@@ -23,3 +23,24 @@ var_dump($chain('a.b'));
 
 $map = $explode->map($fromHex)->implode('.');
 var_dump($map('a.b'));
+
+
+
+
+
+$sort = Node::ARRAY()->sort(function ($a,$b){
+    return $a-$b;
+});
+var_dump($sort([2,5,3,4,1]));
+//array(5) {
+//  [0]=>
+//  int(1)
+//  [1]=>
+//  int(2)
+//  [2]=>
+//  int(3)
+//  [3]=>
+//  int(4)
+//  [4]=>
+//  int(5)
+//}

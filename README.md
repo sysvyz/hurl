@@ -60,7 +60,7 @@ var_dump($chain('a.b'));
 
 
 ### Map
-One of the common transformation is ``array_map``. Node provides a convenient way of performing those operations.
+One of the most common transformation is ``array_map``. Node provides a convenient way of performing those operations.
 Since the ``callback`` function of ``array_map`` is nothing else than a transformation, it's obvious to use Nodes as callbacks.
 
 
@@ -70,5 +70,31 @@ Since the ``callback`` function of ``array_map`` is nothing else than a transfor
 $map = $explode->map($fromHex)->implode('.');
 var_dump($map('a.b'));
 //string(5) "10.11"
+
+```
+
+
+
+### Sort
+
+```php
+
+
+$sort = Node::ARRAY()->sort(function ($a,$b){
+    return $a-$b;
+});
+var_dump($sort([2,5,3,4,1]));
+//array(5) {
+//  [0]=>
+//  int(1)
+//  [1]=>
+//  int(2)
+//  [2]=>
+//  int(3)
+//  [3]=>
+//  int(4)
+//  [4]=>
+//  int(5)
+//}
 
 ```
