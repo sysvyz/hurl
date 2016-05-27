@@ -3,7 +3,7 @@
   "description": "PHP7 language wrapper ",
   "type": "library",
   "keywords": [
-    "lr"
+    "lw","language wrapper"
   ],
   "homepage": "https://github.com/sysvyz/brunt",
   "license": "MIT",
