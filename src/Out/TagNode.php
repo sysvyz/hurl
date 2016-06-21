@@ -3,7 +3,7 @@
 namespace Hurl\Out;
 
 
-use Hurl\AbstractNode;
+use Hurl\Node\AbstractNode;
 
 class TagNode
 {
@@ -11,7 +11,7 @@ class TagNode
 
     public static function tag()
     {
-        return new class($name, $attributes) extends AbstractNode
+        return new class() extends AbstractNode
         {
             
             private function renderTag($tag){

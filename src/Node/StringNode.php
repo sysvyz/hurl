@@ -6,7 +6,7 @@
  * Time: 04:09
  */
 
-namespace Hurl;
+namespace Hurl\Node;
 
 
 class StringNode
@@ -20,10 +20,9 @@ class StringNode
     {
         return new class() extends AbstractNode
         {
-            public function __invoke($data)
+            public function __invoke(...$data)
             {
-                return trim($data);
-
+                return trim($data[0]);
             }
         };
     }
@@ -35,9 +34,9 @@ class StringNode
     {
         return new class() extends AbstractNode
         {
-            public function __invoke($data)
+            public function __invoke(...$data)
             {
-                return ltrim($data);
+                return ltrim($data[0]);
 
             }
         };
@@ -50,9 +49,9 @@ class StringNode
     {
         return new class() extends AbstractNode
         {
-            public function __invoke($data)
+            public function __invoke(...$data)
             {
-                return rtrim($data);
+                return rtrim($data[0]);
 
             }
         };

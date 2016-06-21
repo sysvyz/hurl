@@ -6,37 +6,11 @@
  * Time: 04:09
  */
 
-namespace Hurl;
+namespace Hurl\Node;
 
-
-use Hurl\Out\TagNode;
 
 class Node
 {
-
-    /**
-     * @return ArrayNode
-     */
-    public static function ARRAY()
-    {
-        return new ArrayNode();
-    }
-
-    /**
-     * @return TagNode
-     */
-    public static function TAG()
-    {
-        return new TagNode();
-    }
-
-    /**
-     * @return StringNode
-     */
-    public static function STRING()
-    {
-        return new StringNode();
-    }
 
     public static function lcfirst()
     {
@@ -92,6 +66,10 @@ class Node
     public static function each(callable $do)
     {
         return ArrayNode::each($do);
+    }
+    public static function filter(callable $filter = null)
+    {
+        return ArrayNode::filter($filter);
     }
 
     public static function map(callable $mapping = null)
@@ -168,12 +146,6 @@ class Node
         };
     }
 
-    public static function sum()
-    {
-        return self::fold(function ($a, $b) {
-            return $a + $b;
-        });
-    }
 
     public static function fold(callable $callable, $init = null)
     {

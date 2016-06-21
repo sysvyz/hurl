@@ -1,5 +1,5 @@
 <?php
-namespace Hurl;
+namespace Hurl\Node;
 /**
  * Created by PhpStorm.
  * User: mb

@@ -9,9 +9,10 @@
 namespace HurlTest;
 
 
-use Hurl\ArrayNode;
-use Hurl\Node;
-use Hurl\NodeContainer;
+use Hurl\Node\ArrayNode;
+use Hurl\Node\StringNode;
+use Hurl\Node\Node;
+use Hurl\Node\NodeContainer;
 use Hurl\Out\Tag;
 use Hurl\Out\TagNode;
 
@@ -95,7 +96,7 @@ class NodeContainerTest extends \PHPUnit_Framework_TestCase
 
         $chain =
             Node::explode('-')
-                ->map(Node::String()->ucfirst()->substring(0, 2))
+                ->map(StringNode::ucfirst()->substring(0, 2))
                 ->implode('');
 
         $this->assertEquals('AbAcAc', $chain($data));
@@ -133,7 +134,7 @@ class NodeContainerTest extends \PHPUnit_Framework_TestCase
     {
         $data = ["aaa", "bbbb"];
 
-        $li = Node::Tag()->element('li', ['class' => 'le']);
+        $li = TagNode::element('li', ['class' => 'le']);
         $ul = TagNode::element('ul', ['class' => 'fl']);
         $call = Node::map($li)
             ->implode('')
@@ -165,11 +166,11 @@ class NodeContainerTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function testMerge()
+    public function testRecursiveMerge()
     {
         $data = [1, [3, [5], 2, 5, [4, [7, 8], [4]]]];
         $data2 = [4, [8, 6], 3];
-        $merge = ArrayNode::merge()->sort(function ($a, $b) {
+        $merge = ArrayNode::recursiveMerge()->sort(function ($a, $b) {
             return $a - $b;
         });
 

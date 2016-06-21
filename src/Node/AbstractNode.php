@@ -1,5 +1,7 @@
 <?php
-namespace Hurl;
+namespace Hurl\Node;
+use Hurl\Node\Math\MathNode;
+
 /**
  * Created by PhpStorm.
  * User: mb
@@ -169,7 +171,20 @@ abstract class AbstractNode implements NodeInterface
      */
     public function sum()
     {
-        return $this->call(Node::sum());
+        return $this->call(MathNode::sum());
+    }
+    /**
+     * @return AbstractNode
+     */
+    public function filter(callable $callable = null)
+    {
+        return $this->call(ArrayNode::filter($callable));
+    } /**
+     * @return AbstractNode
+     */
+    public function merge()
+    {
+        return $this->call(ArrayNode::merge());
     }
 
 }

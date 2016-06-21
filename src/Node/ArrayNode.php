@@ -6,7 +6,7 @@
  * Time: 17:40
  */
 
-namespace Hurl;
+namespace Hurl\Node;
 
 
 class ArrayNode
@@ -29,6 +29,21 @@ class ArrayNode
             public function __invoke(...$data)
             {
                 return array_map($this->mapping, ...$data);
+            }
+        };
+    }
+    /**
+     * @param callable $mapping
+     * @return AbstractNode
+     */
+    public static function length()
+    {
+        return new class() extends AbstractNode
+        {
+  
+            public function __invoke(...$data)
+            {
+                return count($data[0]);
             }
         };
     }
@@ -98,6 +113,50 @@ class ArrayNode
                 return $data[0];
             }
         };
+    }
+
+    /**
+     * @param callable $callable
+     * @return AbstractNode
+     */
+    public static function filter(callable $callable = null)
+    {
+        return new class($callable) extends AbstractNode
+        {
+            /**
+             * @var callable
+             */
+            private $callable;
+
+
+            /**
+             *  constructor.
+             * @param $callable
+             */
+            public function __construct(callable $callable = null)
+            {
+                $this->callable = $callable;
+            }
+
+            public function __invoke(...$data)
+            {
+//var_dump($this->callable);die;
+
+                if ($this->callable) {
+                    return array_filter($data[0], $this->callable);
+                }
+                return array_filter($data[0]);
+            }
+        };
+    }
+
+    /**
+     * @param $delimiter
+     * @return AbstractNode
+     */
+    public static function forEach (callable $do)
+    {
+        return self::each($do);
     }
 
     /**
@@ -173,6 +232,35 @@ class ArrayNode
      * @return AbstractNode
      */
     public static function merge()
+    {
+        return new class() extends AbstractNode
+        {
+            public function __invoke(...$data)
+            {
+                return array_merge(...$data);
+            }
+        };
+    }
+
+    /**
+     * @return AbstractNode
+     */
+    public static function values()
+    {
+        return new class() extends AbstractNode
+        {
+            public function __invoke(...$data)
+            {
+                return array_merge(...$data);
+            }
+        };
+    }
+
+
+    /**
+     * @return AbstractNode
+     */
+    public static function recursiveMerge()
     {
         return new class() extends AbstractNode
         {
