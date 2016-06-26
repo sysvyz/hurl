@@ -10,8 +10,10 @@ namespace Hurl\Node;
 
 
 use Hurl\Node\Abstracts\AbstractArrayNode;
+use Hurl\Node\Abstracts\AbstractComparatorNode;
 use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\Abstracts\AbstractStringNode;
+use Hurl\Node\Container\ComparatorContainerTrait;
 
 class ArrayNode
 {
@@ -92,9 +94,9 @@ class ArrayNode
 	 * @param callable $callable
 	 * @return AbstractArrayNode
 	 */
-	public static function sort(callable $callable)
+	public static function sort(callable ...$callable)
 	{
-		return new class($callable) extends AbstractArrayNode
+		return new class(...$callable) extends AbstractArrayNode
 		{
 			/**
 			 * @var callable
@@ -106,9 +108,24 @@ class ArrayNode
 			 *  constructor.
 			 * @param $callable
 			 */
-			public function __construct(callable $callable)
+			public function __construct(callable ...$callables)
 			{
+
+				$callable = $callables[0];
+
+
+				if (count($callables) > 1) {
+					for ($int = 1; $int < count($callables); $int++) {
+						$callable = new class($callable, $callables[$int]) extends AbstractComparatorNode
+						{
+							use ComparatorContainerTrait;
+						};
+					}
+
+
+				}
 				$this->callable = $callable;
+
 			}
 
 			public function __invoke(...$data)

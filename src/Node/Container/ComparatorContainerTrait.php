@@ -9,7 +9,7 @@ use Hurl\Node\ComparatorInterface;
  * Date: 27.05.16
  * Time: 03:30
  */
-trait ComparatorContainerNode
+trait ComparatorContainerTrait
 {
 	/**
 	 * @var ComparatorInterface

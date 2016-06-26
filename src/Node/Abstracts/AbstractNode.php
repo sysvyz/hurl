@@ -2,7 +2,7 @@
 namespace Hurl\Node\Abstracts;
 
 use Hurl\Node\ArrayNode;
-use Hurl\Node\Container\ContainerNode;
+use Hurl\Node\Container\ContainerTrait;
 use Hurl\Node\Node;
 use Hurl\Node\NodeInterface;
 
@@ -24,7 +24,7 @@ abstract class AbstractNode implements NodeInterface
 	{
 		return new class($this,$do) extends AbstractNode
 		{
-			use ContainerNode;
+			use ContainerTrait;
 		};
 	}
 

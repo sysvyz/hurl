@@ -8,7 +8,7 @@ use Hurl\Node\Abstracts\AbstractNode;
  * Date: 27.05.16
  * Time: 03:30
  */
-trait ContainerNode
+trait ContainerTrait
 {
 	/**
 	 * @var callable

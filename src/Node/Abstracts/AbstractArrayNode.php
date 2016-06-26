@@ -10,7 +10,7 @@ namespace Hurl\Node\Abstracts;
 
 
 use Hurl\Node\ArrayNode;
-use Hurl\Node\Container\ContainerNode;
+use Hurl\Node\Container\ContainerTrait;
 use Hurl\Node\Math\MathNode;
 
 abstract class AbstractArrayNode extends AbstractNode
@@ -25,7 +25,7 @@ abstract class AbstractArrayNode extends AbstractNode
 	{
 		return new class($this,$do) extends AbstractArrayNode
 		{
-			use ContainerNode;
+			use ContainerTrait;
 		};
 	}
 
@@ -51,9 +51,9 @@ abstract class AbstractArrayNode extends AbstractNode
 	 * @param callable $callable
 	 * @return AbstractArrayNode
 	 */
-	public function sort(callable $callable)
+	public function sort(callable ...$callable)
 	{
-		return $this->call(ArrayNode::sort($callable));
+		return $this->call(ArrayNode::sort(...$callable));
 	}
 
 	/**

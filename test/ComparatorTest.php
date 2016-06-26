@@ -193,5 +193,40 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 			, $node($data));
 	}
 
+	public function testSortMultipleInvertMap_Map_Implode()
+	{
+		$mapval = function ($obj) {
+			return $obj->val;
+		};
+		$mapf = function ($obj) {
+			return $obj->f;
+		};
+
+		$a = new \stdClass();
+		$a->val = 1;
+		$a->f = 2;
+		$b = new \stdClass();
+		$b->val = 2;
+		$b->f = 1;
+		$c = new \stdClass();
+		$c->val = 3;
+		$c->f = 1;
+		$d = new \stdClass();
+		$d->val = 4;
+		$d->f = 2;
+		$data = [$c, $b, $a, $d];
+		$node =
+			ArrayNode::values()->sort(
+				ComparatorNode::numeric()->invert()->map($mapf),
+				ComparatorNode::numeric()->invert()->map($mapval)
+			)
+				->map($mapval)
+				->implode('');
+
+		$this->assertEquals(
+			'4132'
+			, $node($data));
+	}
+
 
 }
