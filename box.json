@@ -1,0 +1,13 @@
+{
+  "files": [
+    "/vendor/autoload.php",
+    "/scripts/ls.php"
+  ],
+  "directories": [
+    "src",
+    "vendor/composer"
+  ],
+  "main": "bin/_ls/main",
+  "output": "dist/ls.phar",
+  "stub": true
+}

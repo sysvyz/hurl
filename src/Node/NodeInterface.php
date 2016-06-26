@@ -9,8 +9,8 @@ namespace Hurl\Node;
 interface NodeInterface
 {
 
-    public function __invoke(... $args);
+	public function __invoke(... $args);
 
-    public function call(callable $then);
+	public function call(callable $then);
 
 }

@@ -13,99 +13,106 @@ use Hurl\Node\ArrayNode;
 
 class Tag
 {
-    protected $name;
-    protected $attributes = [];
-    protected $content = [];
+	protected $name;
+	protected $attributes = [];
+	protected $content = [];
 
-    /**
-     * Tag constructor.
-     * @param $name
-     * @param array $attributes
-     * @param array $content
-     */
-    public function __construct(string $name, array $attributes= [], array $content= [])
-    {
-        $this->name = $name;
-        $this->attributes = $attributes;
-        $this->content = $content;
-    }
-    public static function init($name, array $attributes = [], array $content= [])
-    {
-        return new self($name, $attributes,$content);
-    }
+	/**
+	 * Tag constructor.
+	 * @param $name
+	 * @param array $attributes
+	 * @param array $content
+	 */
+	public function __construct(string $name, array $attributes = [], array $content = [])
+	{
+		$this->name = $name;
+		$this->attributes = $attributes;
+		$this->content = $content;
+	}
 
-    function __toString()
-    {
-        $mapimplode= ArrayNode::recursiveMerge()->map(function ($e){
+	public static function init($name, array $attributes = [], array $content = [])
+	{
+		return new self($name, $attributes, $content);
+	}
 
-            return $e.'';
-        })->implode('');
+	function __toString()
+	{
+		$mapimplode = ArrayNode::recursiveMerge()->map(function ($e) {
 
-        $elem = TagNode::element($this->name,$this->attributes);
+			return $e . '';
+		})->implode('');
 
-        return ''.$elem($mapimplode($this->content));
-    }
+		$elem = TagNode::element($this->name, $this->attributes);
 
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
+		return '' . $elem($mapimplode($this->content));
+	}
 
-    /**
-     * @return array
-     */
-    public function getAttributes()
-    {
-        return $this->attributes;
-    }
+	/**
+	 * @return mixed
+	 * @codeCoverageIgnore
+	 */
+	public function getName()
+	{
+		return $this->name;
+	}
 
-    /**
-     * @return array
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
+	/**
+	 * @return array
+	 * @codeCoverageIgnore
+	 */
+	public function getAttributes()
+	{
+		return $this->attributes;
+	}
 
-    /**
-     * @param mixed $name
-     * @return Tag
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
+	/**
+	 * @return array
+	 * @codeCoverageIgnore
+	 */
+	public function getContent()
+	{
+		return $this->content;
+	}
 
-    /**
-     * @param array $attributes
-     * @return Tag
-     */
-    public function setAttributes($attributes)
-    {
-        $this->attributes = $attributes;
-        return $this;
-    }
+	/**
+	 * @param mixed $name
+	 * @return Tag
+	 * @codeCoverageIgnore
+	 */
+	public function setName($name)
+	{
+		$this->name = $name;
+		return $this;
+	}
 
-    /**
-     * @param array $content
-     * @return Tag
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-        return $this;
-    }
+	/**
+	 * @param array $attributes
+	 * @return Tag
+	 * @codeCoverageIgnore
+	 */
+	public function setAttributes($attributes)
+	{
+		$this->attributes = $attributes;
+		return $this;
+	}
+
+	/**
+	 * @param array $content
+	 * @return Tag
+	 * @codeCoverageIgnore
+	 */
+	public function setContent($content)
+	{
+		$this->content = $content;
+		return $this;
+	}
 
 
-    public function inner(... $content)
-    {
+	public function inner(... $content)
+	{
 
-        $this->content = $content;
-        return $this;
-    }
+		$this->content = $content;
+		return $this;
+	}
 
 }

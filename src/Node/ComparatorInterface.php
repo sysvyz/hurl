@@ -11,10 +11,10 @@ namespace Hurl\Node;
 
 interface ComparatorInterface
 {
-    /**
-     * @param $a
-     * @param $b
-     * @return int
-     */
-    public static function compare($a, $b);
+	/**
+	 * @param $a
+	 * @param $b
+	 * @return int
+	 */
+	public static function compare($a, $b);
 }
