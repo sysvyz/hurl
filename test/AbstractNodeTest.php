@@ -71,8 +71,8 @@ class AbstractNodeTest extends PHPUnit_Framework_TestCase
 ';
 		ob_start();
 		$array = $debug($data);
+		$result = ob_get_clean();
 
-		$result = ob_get_flush();
 		$this->assertEquals($expected, $result);
 		$this->assertEquals($array, [4, 78, 2, 7, 4, 34, 43, 34]);
 	}

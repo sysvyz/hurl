@@ -26,7 +26,7 @@ abstract class ComparatorNode
 			 * @param $b
 			 * @return int
 			 */
-			public static function compare($a, $b)
+			public function compare($a, $b)
 			{
 				return $a - $b;
 			}
@@ -46,7 +46,7 @@ abstract class ComparatorNode
 			 * @param $b
 			 * @return int
 			 */
-			public static function compare($a, $b)
+			public function compare($a, $b)
 			{
 				return strcmp($a, $b);
 			}
@@ -61,7 +61,7 @@ abstract class ComparatorNode
 	{
 		return new class() extends AbstractComparatorNode
 		{
-			public static function compare($a, $b)
+			public function compare($a, $b)
 			{
 
 				return strlen($a) - strlen($b);

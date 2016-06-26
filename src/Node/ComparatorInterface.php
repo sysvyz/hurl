@@ -16,5 +16,5 @@ interface ComparatorInterface
 	 * @param $b
 	 * @return int
 	 */
-	public static function compare($a, $b);
+	public function compare($a, $b);
 }

@@ -10,8 +10,8 @@ namespace Hurl\Node\Abstracts;
 
 
 use Hurl\Node\ArrayNode;
+use Hurl\Node\Container\ContainerNode;
 use Hurl\Node\Math\MathNode;
-use Hurl\Node\NodeContainer;
 
 abstract class AbstractArrayNode extends AbstractNode
 {
@@ -25,7 +25,7 @@ abstract class AbstractArrayNode extends AbstractNode
 	{
 		return new class($this,$do) extends AbstractArrayNode
 		{
-			use NodeContainer;
+			use ContainerNode;
 		};
 	}
 
