@@ -47,5 +47,21 @@ trait ComparatorContainerTrait
 		return $this->after->compare($a, $b);
 	}
 
+	/**
+	 * @return callable
+	 */
+	public function getBefore()
+	{
+		return $this->before;
+	}
+
+	/**
+	 * @return callable
+	 */
+	public function getAfter()
+	{
+		return $this->after;
+	}
+
 
 }

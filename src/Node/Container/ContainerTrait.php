@@ -8,6 +8,8 @@ use Hurl\Node\Abstracts\AbstractNode;
  * Date: 27.05.16
  * Time: 03:30
  */
+
+
 trait ContainerTrait
 {
 	/**
@@ -38,6 +40,22 @@ trait ContainerTrait
 
 
 		return $after($before(...$args));
+	}
+
+	/**
+	 * @return callable
+	 */
+	public function getBefore()
+	{
+		return $this->before;
+	}
+
+	/**
+	 * @return callable
+	 */
+	public function getAfter()
+	{
+		return $this->after;
 	}
 	
 

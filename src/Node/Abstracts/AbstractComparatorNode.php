@@ -11,6 +11,7 @@ namespace Hurl\Node\Abstracts;
 
 use Hurl\Node\ComparatorInterface;
 use Hurl\Node\Container\ComparatorContainerTrait;
+use Hurl\Node\Container\ContainerTraitInterface;
 
 abstract class AbstractComparatorNode extends AbstractNode implements ComparatorInterface
 {
@@ -27,7 +28,7 @@ abstract class AbstractComparatorNode extends AbstractNode implements Comparator
 	 */
 	public function call(callable $do)
 	{
-		return new class($this, $do) extends AbstractComparatorNode
+		return new class($this, $do) extends AbstractComparatorNode implements ContainerTraitInterface
 		{
 			use ComparatorContainerTrait;
 

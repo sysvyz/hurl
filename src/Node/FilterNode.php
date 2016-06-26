@@ -11,6 +11,23 @@ namespace Hurl\Node;
 
 use Hurl\Node\Abstracts\AbstractFilterNode;
 use Hurl\Node\Abstracts\AbstractNode;
+use Type\AbstractAndFilter;
+use Type\AbstractGreaterOrEqualFilter;
+use Type\AbstractGreaterThanFilter;
+use Type\AbstractIsArrayFilter;
+use Type\AbstractIsEmptyFilter;
+use Type\AbstractIsEqualFilter;
+use Type\AbstractIsEvenFilter;
+use Type\AbstractIsIntegerFilter;
+use Type\AbstractIsNotEqualFilter;
+use Type\AbstractIsNumericFilter;
+use Type\AbstractIsOddFilter;
+use Type\AbstractIsStringFilter;
+use Type\AbstractLessOrEqualFilter;
+use Type\AbstractLessThanFilter;
+use Type\AbstractOrFilter;
+require 'Type/filter.php';
+
 
 class FilterNode
 {
@@ -19,7 +36,7 @@ class FilterNode
 	 */
 	public static function isEmpty()
 	{
-		return new class() extends AbstractFilterNode
+		return new class() extends AbstractIsEmptyFilter
 		{
 			public function __invoke(...$data)
 			{
@@ -40,11 +57,11 @@ class FilterNode
 	}
 
 	/**
-	 * @return AbstractFilterNode
+	 * @return AbstractIsNumericFilter
 	 */
 	public static function isNumeric()
 	{
-		return new class() extends AbstractFilterNode
+		return new class() extends AbstractIsNumericFilter
 		{
 			public function __invoke(...$data)
 			{
@@ -54,11 +71,11 @@ class FilterNode
 	}
 
 	/**
-	 * @return AbstractNode
+	 * @return AbstractIsIntegerFilter
 	 */
 	public static function isInt()
 	{
-		return new class() extends AbstractFilterNode
+		return new class() extends AbstractIsIntegerFilter
 		{
 			public function __invoke(...$data)
 			{
@@ -68,11 +85,11 @@ class FilterNode
 	}
 
 	/**
-	 * @return AbstractFilterNode
+	 * @return AbstractIsStringFilter
 	 */
 	public static function isString()
 	{
-		return new class() extends AbstractFilterNode
+		return new class() extends AbstractIsStringFilter
 		{
 			public function __invoke(...$data)
 			{
@@ -82,11 +99,11 @@ class FilterNode
 	}
 
 	/**
-	 * @return AbstractFilterNode
+	 * @return AbstractIsArrayFilter
 	 */
 	public static function isArray()
 	{
-		return new class() extends AbstractFilterNode
+		return new class() extends AbstractIsArrayFilter
 		{
 			public function __invoke(...$data)
 			{
@@ -97,11 +114,11 @@ class FilterNode
 
 
 	/**
-	 * @return AbstractFilterNode
+	 * @return AbstractAndFilter
 	 */
 	public static function and (...$filters)
 	{
-		return new class(...$filters) extends AbstractFilterNode
+		return new class(...$filters) extends AbstractAndFilter
 		{
 			/**
 			 * @var callable[]
@@ -132,11 +149,11 @@ class FilterNode
 	}
 
 	/**
-	 * @return AbstractFilterNode
+	 * @return AbstractOrFilter
 	 */
 	public static function or (...$filters)
 	{
-		return new class(...$filters) extends AbstractFilterNode
+		return new class(...$filters) extends AbstractOrFilter
 		{
 			/**
 			 * @var callable[]
@@ -166,11 +183,11 @@ class FilterNode
 	}
 
 	/**
-	 * @return AbstractFilterNode
+	 * @return AbstractIsEvenFilter
 	 */
 	public static function isEven()
 	{
-		return new class() extends AbstractFilterNode
+		return new class() extends AbstractIsEvenFilter
 		{
 			public function __invoke(...$data)
 			{
@@ -183,11 +200,11 @@ class FilterNode
 	}
 
 	/**
-	 * @return AbstractFilterNode
+	 * @return AbstractIsOddFilter
 	 */
 	public static function isOdd()
 	{
-		return new class() extends AbstractFilterNode
+		return new class() extends AbstractIsOddFilter
 		{
 			public function __invoke(...$data)
 			{
@@ -199,23 +216,12 @@ class FilterNode
 		};
 	}
 	/**
-	 * @return AbstractFilterNode
+	 * @return AbstractGreaterThanFilter
 	 */
 	public static function isGreaterThan($value)
 	{
-		return new class($value) extends AbstractFilterNode
+		return new class($value) extends AbstractGreaterThanFilter
 		{
-			private $value;
-
-			/**
-			 *  constructor.
-			 * @param $value
-			 */
-			public function __construct($value)
-			{
-				$this->value = $value;
-			}
-
 
 			public function __invoke(...$data)
 			{
@@ -225,23 +231,13 @@ class FilterNode
 		};
 	}
 	/**
-	 * @return AbstractFilterNode
+	 * @return AbstractLessThanFilter
 	 */
 	public static function isLessThan($value)
 	{
-		return new class($value) extends AbstractFilterNode
+		return new class($value) extends AbstractLessThanFilter
 		{
-			private $value;
-
-			/**
-			 *  constructor.
-			 * @param $value
-			 */
-			public function __construct($value)
-			{
-				$this->value = $value;
-			}
-
+		
 
 			public function __invoke(...$data)
 			{
@@ -251,22 +247,12 @@ class FilterNode
 		};
 	}
 	/**
-	 * @return AbstractFilterNode
+	 * @return AbstractGreaterOrEqualFilter
 	 */
 	public static function isGreaterOrEqual($value)
 	{
-		return new class($value) extends AbstractFilterNode
+		return new class($value) extends AbstractGreaterOrEqualFilter
 		{
-			private $value;
-
-			/**
-			 *  constructor.
-			 * @param $value
-			 */
-			public function __construct($value)
-			{
-				$this->value = $value;
-			}
 
 
 			public function __invoke(...$data)
@@ -277,28 +263,48 @@ class FilterNode
 		};
 	}
 	/**
-	 * @return AbstractFilterNode
+	 * @return AbstractLessOrEqualFilter
 	 */
 	public static function isLessOrEqual($value)
 	{
-		return new class($value) extends AbstractFilterNode
+		return new class($value) extends AbstractLessOrEqualFilter
 		{
-			private $value;
 
-			/**
-			 *  constructor.
-			 * @param $value
-			 */
-			public function __construct($value)
-			{
-				$this->value = $value;
-			}
 
 
 			public function __invoke(...$data)
 			{
 
 				return is_numeric($data[0])&& $data[0] <= $this->value;
+			}
+		};
+	}
+	/**
+	 * @return AbstractIsEqualFilter
+	 */
+	public static function isEqual($value)
+	{
+		return new class($value) extends AbstractIsEqualFilter
+		{
+
+			public function __invoke(...$data)
+			{
+				return $data[0] == $this->value;
+			}
+		};
+	}
+	/**
+	 * @return AbstractIsNotEqualFilter
+	 */
+	public static function isNotEqual($value)
+	{
+		return new class($value) extends AbstractIsNotEqualFilter
+		{
+
+			public function __invoke(...$data)
+			{
+
+				return $data[0] != $this->value;
 			}
 		};
 	}
