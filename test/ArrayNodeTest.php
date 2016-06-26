@@ -1,6 +1,11 @@
 <?php
+use Hurl\Node\Abstracts\AbstractArrayNode;
+use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\ArrayNode;
 use Hurl\Node\StringNode;
+use Type\AbstractArrayEach;
+use Type\AbstractArrayMap;
+use Type\AbstractArraySort;
 
 /**
  * Created by PhpStorm.
@@ -17,6 +22,9 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 			ArrayNode::map(function ($val) {
 				return ucfirst($val);
 			});
+		$this->assertInstanceOf(AbstractArrayMap::class,$before);
+		$this->assertInstanceOf(AbstractArrayNode::class,$before);
+		$this->assertInstanceOf(AbstractNode::class,$before);
 		$this->assertEquals($before(['a.b'])[0], 'A.b');
 	}
 
@@ -25,15 +33,33 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 		$before = ArrayNode::map(function ($a, $b) {
 			return [$a => $b];
 		});
+		$this->assertInstanceOf(AbstractArrayMap::class,$before);
+		$this->assertInstanceOf(AbstractArrayNode::class,$before);
+		$this->assertInstanceOf(AbstractNode::class,$before);
 		$arr = ($before(['a', 'b'], ['c', 'd']));
 		$this->assertEquals($arr[0]['a'], 'c');
 		$this->assertEquals($arr[1]['b'], 'd');
 	}
+	public function testMap3()
+	{
+		$before =
+			ArrayNode::values()->map(function ($val) {
+				return ucfirst($val);
+			});
+		$this->assertInstanceOf(AbstractArrayMap::class,$before);
+		$this->assertInstanceOf(AbstractArrayNode::class,$before);
+		$this->assertInstanceOf(AbstractNode::class,$before);
+		$this->assertEquals($before(['a.b'])[0], 'A.b');
+	}
+
 
 	public function testMapNode()
 	{
 		$before =
 			ArrayNode::map(StringNode::ucfirst());
+		$this->assertInstanceOf(AbstractArrayMap::class,$before);
+		$this->assertInstanceOf(AbstractArrayNode::class,$before);
+		$this->assertInstanceOf(AbstractNode::class,$before);
 		$this->assertEquals($before(['a.b'])[0], 'A.b');
 	}
 
@@ -44,6 +70,9 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 		$sort = ArrayNode::values()->sort(function ($a, $b) {
 			return $a - $b;
 		});
+		$this->assertInstanceOf(AbstractArraySort::class,$sort);
+		$this->assertInstanceOf(AbstractArrayNode::class,$sort);
+		$this->assertInstanceOf(AbstractNode::class,$sort);
 
 		$this->assertEquals($sort($data), [2, 4, 4, 7, 34, 34, 43, 78]);
 	}
@@ -53,11 +82,14 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 	{
 		$data = [1, [3, [5], 2, 5, [4, [7, 8], [4]]]];
 		$data2 = [4, [8, 6], 3];
-		$merge = ArrayNode::recursiveMerge()->sort(function ($a, $b) {
+		$mergeSort = ArrayNode::recursiveMerge()->sort(function ($a, $b) { // :D
 			return $a - $b;
 		});
 
-		$this->assertEquals($merge($data, $data2), [1, 2, 3, 3, 4, 4, 4, 5, 5, 6, 7, 8, 8]);
+		$this->assertInstanceOf(AbstractArraySort::class,$mergeSort);
+		$this->assertInstanceOf(AbstractArrayNode::class,$mergeSort);
+		$this->assertInstanceOf(AbstractNode::class,$mergeSort);
+		$this->assertEquals($mergeSort($data, $data2), [1, 2, 3, 3, 4, 4, 4, 5, 5, 6, 7, 8, 8]);
 	}
 
 
@@ -69,6 +101,9 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 			$stack[] = $a;
 			$this->assertEquals($count++, $a);
 		});
+		$this->assertInstanceOf(AbstractArrayEach::class,$push);
+		$this->assertInstanceOf(AbstractArrayNode::class,$push);
+		$this->assertInstanceOf(AbstractNode::class,$push);
 		$push([1, 2, 3, 4, 5, 6, 7]);
 		$this->assertEquals($stack, [1, 2, 3, 4, 5, 6, 7]);
 		$this->assertEquals($count, 8);

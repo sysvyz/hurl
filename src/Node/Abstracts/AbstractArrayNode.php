@@ -12,6 +12,10 @@ namespace Hurl\Node\Abstracts;
 use Hurl\Node\ArrayNode;
 use Hurl\Node\Container\ContainerTrait;
 use Hurl\Node\Math\MathNode;
+use Type\AbstractArrayEach;
+use Type\AbstractArrayMap;
+use Type\AbstractArrayMerge;
+use Type\AbstractArraySort;
 
 abstract class AbstractArrayNode extends AbstractNode
 {
@@ -23,7 +27,7 @@ abstract class AbstractArrayNode extends AbstractNode
 	 */
 	public function call(callable $do)
 	{
-		return new class($this,$do) extends AbstractArrayNode
+		return new class($this, $do) extends AbstractArrayNode
 		{
 			use ContainerTrait;
 		};
@@ -31,29 +35,51 @@ abstract class AbstractArrayNode extends AbstractNode
 
 	/**
 	 * @param callable $do
-	 * @return AbstractArrayNode
+	 * @return AbstractArrayEach
 	 */
 	public function each(callable $do)
 	{
-		return $this->call(ArrayNode::each($do));
+		return new class($this, ArrayNode::each($do)) extends AbstractArrayEach
+		{
+			use ContainerTrait;
+		};
 	}
 
 	/**
 	 * @param callable $callable
-	 * @return AbstractArrayNode
+	 * @return AbstractArrayMap
 	 */
 	public function map(callable $callable)
 	{
-		return $this->call(ArrayNode::map($callable));
+		return new class($this, ArrayNode::map($callable)) extends AbstractArrayMap
+		{
+			use ContainerTrait;
+		};
+
 	}
 
 	/**
-	 * @param callable $callable
-	 * @return AbstractArrayNode
+	 * @param \callable[] ...$callable
+	 * @return AbstractArraySort
 	 */
 	public function sort(callable ...$callable)
 	{
-		return $this->call(ArrayNode::sort(...$callable));
+		return new class($this, ArrayNode::sort(...$callable)) extends AbstractArraySort
+		{
+			use ContainerTrait;
+		};
+	}
+
+	/**
+	 * @param \callable[] ...$callable
+	 * @return AbstractArraySort
+	 */
+	public function merge()
+	{
+		return new class($this, ArrayNode::merge()) extends AbstractArrayMerge
+		{
+			use ContainerTrait;
+		};
 	}
 
 	/**
@@ -61,7 +87,18 @@ abstract class AbstractArrayNode extends AbstractNode
 	 */
 	public function sum()
 	{
-		return $this->call(MathNode::sum());
+		return new class($this, MathNode::sum()) extends AbstractNode
+		{
+			use ContainerTrait;
+		};
+	}
+
+	public function values()
+	{
+		return new class($this, ArrayNode::values()) extends AbstractArrayNode
+		{
+			use ContainerTrait;
+		};
 	}
 
 }

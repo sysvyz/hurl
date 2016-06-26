@@ -7,23 +7,30 @@
  */
 
 namespace Hurl\Node;
-
+include "Type/array.php";
 
 use Hurl\Node\Abstracts\AbstractArrayNode;
 use Hurl\Node\Abstracts\AbstractComparatorNode;
 use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\Abstracts\AbstractStringNode;
 use Hurl\Node\Container\ComparatorContainerTrait;
+use Type\AbstractArrayEach;
+use Type\AbstractArrayFilter;
+use Type\AbstractArrayFold;
+use Type\AbstractArrayMap;
+use Type\AbstractArrayMerge;
+use Type\AbstractArraySort;
+use Type\AbstractArrayValues;
 
 class ArrayNode
 {
 	/**
 	 * @param callable $mapping
-	 * @return AbstractArrayNode
+	 * @return AbstractArrayMap
 	 */
 	public static function map(callable $mapping = null)
 	{
-		return new class($mapping) extends AbstractArrayNode
+		return new class($mapping) extends AbstractArrayMap
 		{
 			private $mapping;
 
@@ -40,7 +47,6 @@ class ArrayNode
 	}
 
 	/**
-	 * @param callable $mapping
 	 * @return AbstractNode
 	 */
 	public static function length()
@@ -57,11 +63,11 @@ class ArrayNode
 
 	/**
 	 * @param callable $callable
-	 * @return AbstractNode
+	 * @return AbstractArrayFold
 	 */
 	public static function fold(callable $callable, $init = null)
 	{
-		return new class($callable, $init) extends AbstractNode
+		return new class($callable, $init) extends AbstractArrayFold
 		{
 			/**
 			 * @var callable
@@ -92,11 +98,11 @@ class ArrayNode
 
 	/**
 	 * @param callable $callable
-	 * @return AbstractArrayNode
+	 * @return AbstractArraySort
 	 */
 	public static function sort(callable ...$callable)
 	{
-		return new class(...$callable) extends AbstractArrayNode
+		return new class(...$callable) extends AbstractArraySort
 		{
 			/**
 			 * @var callable
@@ -139,11 +145,11 @@ class ArrayNode
 
 	/**
 	 * @param callable $callable
-	 * @return AbstractArrayNode
+	 * @return AbstractArrayFilter
 	 */
 	public static function filter(callable $callable = null)
 	{
-		return new class($callable) extends AbstractArrayNode
+		return new class($callable) extends AbstractArrayFilter
 		{
 			/**
 			 * @var callable
@@ -174,20 +180,11 @@ class ArrayNode
 
 	/**
 	 * @param $do
-	 * @return AbstractArrayNode
-	 */
-	public static function forEach (callable $do)
-	{
-		return self::each($do);
-	}
-
-	/**
-	 * @param $do
-	 * @return AbstractArrayNode
+	 * @return AbstractArrayEach
 	 */
 	public static function each(callable $do)
 	{
-		return new class($do) extends AbstractArrayNode
+		return new class($do) extends AbstractArrayEach
 		{
 			private $do;
 
@@ -237,11 +234,11 @@ class ArrayNode
 	}
 
 	/**
-	 * @return AbstractArrayNode
+	 * @return AbstractArrayMerge
 	 */
 	public static function merge()
 	{
-		return new class() extends AbstractArrayNode
+		return new class() extends AbstractArrayMerge
 		{
 			public function __invoke(...$data)
 			{
@@ -251,11 +248,11 @@ class ArrayNode
 	}
 
 	/**
-	 * @return AbstractArrayNode
+	 * @return AbstractArrayValues
 	 */
 	public static function values()
 	{
-		return new class() extends AbstractArrayNode
+		return new class() extends AbstractArrayValues
 		{
 			public function __invoke(...$data)
 			{

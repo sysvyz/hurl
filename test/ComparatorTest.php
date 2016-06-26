@@ -227,6 +227,6 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 			'4132'
 			, $node($data));
 	}
-
+	
 
 }
