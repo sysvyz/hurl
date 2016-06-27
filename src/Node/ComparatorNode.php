@@ -7,8 +7,13 @@
  */
 
 namespace Hurl\Node;
+include "Type/comparator.php";
 
 
+use AbstractAlphaNumericComparatorNode;
+use AbstractBooleanComparatorNode;
+use AbstractNumericComparatorNode;
+use AbstractStringLengthComparatorNode;
 use Hurl\Node\Abstracts\AbstractComparatorNode;
 
 abstract class ComparatorNode
@@ -18,39 +23,18 @@ abstract class ComparatorNode
 	 */
 	public static function numeric()
 	{
-		return new class() extends AbstractComparatorNode
+		return new class() extends AbstractNumericComparatorNode
 		{
-
-			/**
-			 * @param $a
-			 * @param $b
-			 * @return int
-			 */
-			public function compare($a, $b)
-			{
-				return $a - $b;
-			}
 		};
 	}
 
 	/**
-	 * @return AbstractComparatorNode
+	 * @return AbstractAlphaNumericComparatorNode
 	 */
 	public static function alphaNumeric()
 	{
-		return new class() extends AbstractComparatorNode
+		return new class() extends AbstractAlphaNumericComparatorNode
 		{
-
-			/**
-			 * @param $a
-			 * @param $b
-			 * @return int
-			 */
-			public function compare($a, $b)
-			{
-				return strcmp($a, $b);
-			}
-
 		};
 	}
 
@@ -59,13 +43,18 @@ abstract class ComparatorNode
 	 */
 	public static function stringLength()
 	{
-		return new class() extends AbstractComparatorNode
+		return new class() extends AbstractStringLengthComparatorNode
 		{
-			public function compare($a, $b)
-			{
+		};
+	}
 
-				return strlen($a) - strlen($b);
-			}
+	/**
+	 * @return AbstractComparatorNode
+	 */
+	public static function boolean()
+	{
+		return new class() extends AbstractBooleanComparatorNode
+		{
 		};
 	}
 

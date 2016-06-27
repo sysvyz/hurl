@@ -9,7 +9,6 @@
 namespace Hurl\Node\Math;
 
 
-
 use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\ArrayNode;
 use Hurl\Node\ComparatorNode;

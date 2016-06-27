@@ -6,15 +6,17 @@
  * Time: 23:49
  */
 
-namespace Hurl\Node\Container;
+namespace Hurl\Node\Interfaces;
 
 
 /**
  * Interface ContainerTraitInterface
  * @package Hurl\Node\Container
  */
-interface ContainerTraitInterface{
+interface ContainerTraitInterface
+{
 
 	public function getBefore();
+
 	public function getAfter();
 }

@@ -9,9 +9,9 @@
 namespace Hurl\Node\Abstracts;
 
 
-use Hurl\Node\Container\ContainerTrait;
-use Hurl\Node\Container\ContainerTraitInterface;
-use Type\AbstractNegatedFilter;
+use Hurl\Node\Interfaces\ContainerTraitInterface;
+use Hurl\Node\Traits\ContainerTrait;
+use Type\NegatedFilter;
 
 abstract class AbstractFilterNode extends AbstractNode
 {
@@ -23,7 +23,7 @@ abstract class AbstractFilterNode extends AbstractNode
 	 */
 	public function call(callable $do)
 	{
-		return new class($this,$do) extends AbstractFilterNode implements ContainerTraitInterface
+		return new class($this, $do) extends AbstractFilterNode implements ContainerTraitInterface
 		{
 			use ContainerTrait;
 		};
@@ -31,12 +31,14 @@ abstract class AbstractFilterNode extends AbstractNode
 
 	/**
 	 * @param callable $callable
-	 * @return AbstractNegatedFilter|ContainerTraitInterface
+	 * @return NegatedFilter|ContainerTraitInterface
 	 */
 	public function not()
 	{
-		$do = function ($e){return !$e;};
-		return new class($this,$do) extends AbstractNegatedFilter implements ContainerTraitInterface
+		$do = function ($e) {
+			return !$e;
+		};
+		return new class($this, $do) extends NegatedFilter implements ContainerTraitInterface
 		{
 			use ContainerTrait;
 

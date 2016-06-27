@@ -39,17 +39,14 @@ class GenericObject implements \ArrayAccess, \IteratorAggregate
 {
 	public function equals($other)
 	{
-		if(!($other instanceof GenericObject)){
+		if (!($other instanceof GenericObject)) {
 			return false;
 		}
-		foreach ($this as $key => $value){
-			if(!isset($other['$key'])){
+		foreach ($this as $key => $value) {
+			if (!isset($other['$key'])) {
 				return false;
 			}
-
-
 		}
-
 	}
 
 	/**

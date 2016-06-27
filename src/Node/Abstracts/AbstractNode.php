@@ -2,10 +2,10 @@
 namespace Hurl\Node\Abstracts;
 
 use Hurl\Node\ArrayNode;
-use Hurl\Node\Container\ContainerTrait;
-use Hurl\Node\Container\ContainerTraitInterface;
+use Hurl\Node\Interfaces\ContainerTraitInterface;
+use Hurl\Node\Interfaces\NodeInterface;
 use Hurl\Node\Node;
-use Hurl\Node\NodeInterface;
+use Hurl\Node\Traits\ContainerTrait;
 
 /**
  * Created by PhpStorm.
@@ -23,7 +23,7 @@ abstract class AbstractNode implements NodeInterface
 	 */
 	public function call(callable $do)
 	{
-		return new class($this,$do) extends AbstractNode implements ContainerTraitInterface
+		return new class($this, $do) extends AbstractNode implements ContainerTraitInterface
 		{
 			use ContainerTrait;
 		};

@@ -9,8 +9,8 @@
 namespace Hurl\Node;
 
 
-use Hurl\Node\Abstracts\AbstractStringNode;
 use Hurl\Node\Abstracts\AbstractArrayNode;
+use Hurl\Node\Abstracts\AbstractStringNode;
 
 class StringNode
 {

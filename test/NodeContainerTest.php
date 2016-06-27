@@ -10,9 +10,9 @@ namespace HurlTest;
 
 
 use Hurl\Node\ArrayNode;
-use Hurl\Node\Container\ContainerTrait;
-use Hurl\Node\StringNode;
 use Hurl\Node\Node;
+use Hurl\Node\StringNode;
+use Hurl\Node\Traits\ContainerTrait;
 use Hurl\Out\Tag;
 use Hurl\Out\TagNode;
 
@@ -28,7 +28,10 @@ class ContainerNodeTest extends \PHPUnit_Framework_TestCase
 			return implode('-', $args);
 		};
 
-		$container = new class($before, $after){ use ContainerTrait;}  ;
+		$container = new class($before, $after)
+		{
+			use ContainerTrait;
+		};
 		$this->assertEquals($container('a.b'), 'a-b');
 
 	}

@@ -57,7 +57,7 @@ class AbstractNodeTest extends PHPUnit_Framework_TestCase
 		$debug = ArrayNode::values()->debug();
 
 
-		$expected ='Array
+		$expected = 'Array
 (
     [0] => 4
     [1] => 78

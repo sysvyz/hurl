@@ -1,7 +1,8 @@
 <?php
-namespace Hurl\Node\Container;
+namespace Hurl\Node\Traits;
 
-use Hurl\Node\ComparatorInterface;
+use Hurl\Node\Interfaces\ComparatorInterface;
+
 
 /**
  * Created by PhpStorm.

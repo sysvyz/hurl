@@ -13,7 +13,8 @@ use Hurl\Node\Abstracts\AbstractArrayNode;
 use Hurl\Node\Abstracts\AbstractComparatorNode;
 use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\Abstracts\AbstractStringNode;
-use Hurl\Node\Container\ComparatorContainerTrait;
+use Hurl\Node\Interfaces\CollectionNodeInterface;
+use Hurl\Node\Traits\ComparatorContainerTrait;
 use Type\AbstractArrayEach;
 use Type\AbstractArrayFilter;
 use Type\AbstractArrayFold;
@@ -204,7 +205,7 @@ class ArrayNode
 
 	/**
 	 * @param $delimiter
-	 * @return AbstractArrayNode
+	 * @return CollectionNodeInterface
 	 */
 	public static function explode($delimiter)
 	{
@@ -263,7 +264,7 @@ class ArrayNode
 
 
 	/**
-	 * @return AbstractArrayNode
+	 * @return CollectionNodeInterface
 	 */
 	public static function recursiveMerge()
 	{

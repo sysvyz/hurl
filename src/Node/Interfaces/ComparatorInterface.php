@@ -6,7 +6,7 @@
  * Time: 23:13
  */
 
-namespace Hurl\Node;
+namespace Hurl\Node\Interfaces;
 
 
 interface ComparatorInterface

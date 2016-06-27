@@ -10,17 +10,17 @@ namespace Hurl\Node\Abstracts;
 
 
 use Hurl\Node\ArrayNode;
-use Hurl\Node\Container\ContainerTrait;
-use Hurl\Node\Container\ContainerTraitInterface;
+use Hurl\Node\Interfaces\CollectionNodeInterface;
+use Hurl\Node\Interfaces\ContainerTraitInterface;
 use Hurl\Node\Math\MathNode;
+use Hurl\Node\Traits\ContainerTrait;
 use Type\AbstractArrayEach;
 use Type\AbstractArrayMap;
 use Type\AbstractArrayMerge;
 use Type\AbstractArraySort;
 
-abstract class AbstractArrayNode extends AbstractNode
+abstract class AbstractArrayNode extends AbstractNode implements CollectionNodeInterface
 {
-
 
 	/**
 	 * @param callable $do
@@ -72,7 +72,6 @@ abstract class AbstractArrayNode extends AbstractNode
 	}
 
 	/**
-	 * @param \callable[] ...$callable
 	 * @return AbstractArraySort
 	 */
 	public function merge()
@@ -94,6 +93,9 @@ abstract class AbstractArrayNode extends AbstractNode
 		};
 	}
 
+	/**
+	 * @return AbstractArraySort
+	 */
 	public function values()
 	{
 		return new class($this, ArrayNode::values()) extends AbstractArrayNode implements ContainerTraitInterface

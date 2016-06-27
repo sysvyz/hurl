@@ -1,6 +1,5 @@
 <?php
-namespace Hurl\Node\Container;
-use Hurl\Node\Abstracts\AbstractNode;
+namespace Hurl\Node\Traits;
 
 /**
  * Created by PhpStorm.
@@ -58,6 +57,6 @@ trait ContainerTrait
 	{
 		return $this->after;
 	}
-	
+
 
 }

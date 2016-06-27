@@ -3,57 +3,14 @@
 namespace Type;
 
 use Hurl\Node\Abstracts\AbstractFilterNode;
+use Hurl\Node\Abstracts\Filter\AbstractComparatorFilter;
+use Hurl\Node\Interfaces\ComparatorFilterTraitInterface;
+use Hurl\Node\Interfaces\FilterTraitInterface;
+use Hurl\Node\Traits\ComparatorFilterTrait;
+use Hurl\Node\Traits\FilterTrait;
 
-interface ComparatorFilterTraitInterface
-{
-	public function compare($that, $other);
-}
 
-trait ComparatorFilterTrait
-{
-	protected $value;
-
-	abstract public function compare($that, $other);
-
-	public function __invoke(...$data)
-	{
-		return $this->compare($this->value, $data[0]);
-	}
-}
-
-interface FilterTraitInterface
-{
-	public function apply($value);
-}
-
-trait FilterTrait
-{
-	protected $value;
-
-	abstract public function apply($value);
-
-	public function __invoke(...$data)
-	{
-		return $this->apply($data[0]);
-	}
-}
-
-abstract class AbstractComparatorFilter extends AbstractFilterNode
-{
-	protected $value;
-
-	/**
-	 *  constructor.
-	 * @param $value
-	 */
-	public function __construct($value)
-	{
-		$this->value = $value;
-	}
-
-}
-
-abstract class AbstractGreaterOrEqualFilter extends AbstractComparatorFilter
+abstract class GreaterOrEqualFilter extends AbstractComparatorFilter
 {
 	public function compare($that, $other)
 	{
@@ -62,7 +19,7 @@ abstract class AbstractGreaterOrEqualFilter extends AbstractComparatorFilter
 
 	public function not()
 	{
-		return new class($this->value) extends AbstractLessThanFilter implements ComparatorFilterTraitInterface
+		return new class($this->value) extends LessThanFilter implements ComparatorFilterTraitInterface
 		{
 			use ComparatorFilterTrait;
 
@@ -70,7 +27,7 @@ abstract class AbstractGreaterOrEqualFilter extends AbstractComparatorFilter
 	}
 }
 
-abstract class AbstractGreaterThanFilter extends AbstractComparatorFilter
+abstract class GreaterThanFilter extends AbstractComparatorFilter
 {
 	public function compare($that, $other)
 	{
@@ -79,7 +36,7 @@ abstract class AbstractGreaterThanFilter extends AbstractComparatorFilter
 
 	public function not()
 	{
-		return new class($this->value) extends AbstractLessOrEqualFilter implements ComparatorFilterTraitInterface
+		return new class($this->value) extends LessOrEqualFilter implements ComparatorFilterTraitInterface
 		{
 			use ComparatorFilterTrait;
 
@@ -87,7 +44,7 @@ abstract class AbstractGreaterThanFilter extends AbstractComparatorFilter
 	}
 }
 
-abstract class AbstractLessOrEqualFilter extends AbstractComparatorFilter
+abstract class LessOrEqualFilter extends AbstractComparatorFilter
 {
 	public function compare($that, $other)
 	{
@@ -96,7 +53,7 @@ abstract class AbstractLessOrEqualFilter extends AbstractComparatorFilter
 
 	public function not()
 	{
-		return new class($this->value) extends AbstractGreaterThanFilter implements ComparatorFilterTraitInterface
+		return new class($this->value) extends GreaterThanFilter implements ComparatorFilterTraitInterface
 		{
 			use ComparatorFilterTrait;
 
@@ -104,7 +61,7 @@ abstract class AbstractLessOrEqualFilter extends AbstractComparatorFilter
 	}
 }
 
-abstract class AbstractLessThanFilter extends AbstractComparatorFilter
+abstract class LessThanFilter extends AbstractComparatorFilter
 {
 	public function compare($that, $other)
 	{
@@ -113,7 +70,7 @@ abstract class AbstractLessThanFilter extends AbstractComparatorFilter
 
 	public function not()
 	{
-		return new class($this->value) extends AbstractGreaterOrEqualFilter implements ComparatorFilterTraitInterface
+		return new class($this->value) extends GreaterOrEqualFilter implements ComparatorFilterTraitInterface
 		{
 			use ComparatorFilterTrait;
 
@@ -121,7 +78,7 @@ abstract class AbstractLessThanFilter extends AbstractComparatorFilter
 	}
 }
 
-abstract class AbstractIsEqualFilter extends AbstractComparatorFilter
+abstract class IsEqualFilter extends AbstractComparatorFilter
 {
 	public function compare($that, $other)
 	{
@@ -130,7 +87,7 @@ abstract class AbstractIsEqualFilter extends AbstractComparatorFilter
 
 	public function not()
 	{
-		return new class($this->value) extends AbstractIsNotEqualFilter implements ComparatorFilterTraitInterface
+		return new class($this->value) extends IsNotEqualFilter implements ComparatorFilterTraitInterface
 		{
 			use ComparatorFilterTrait;
 
@@ -138,7 +95,7 @@ abstract class AbstractIsEqualFilter extends AbstractComparatorFilter
 	}
 }
 
-abstract class AbstractIsNotEqualFilter extends AbstractComparatorFilter
+abstract class IsNotEqualFilter extends AbstractComparatorFilter
 {
 	public function compare($that, $other)
 	{
@@ -147,7 +104,7 @@ abstract class AbstractIsNotEqualFilter extends AbstractComparatorFilter
 
 	public function not()
 	{
-		return new class($this->value) extends AbstractIsEqualFilter implements ComparatorFilterTraitInterface
+		return new class($this->value) extends IsEqualFilter implements ComparatorFilterTraitInterface
 		{
 			use ComparatorFilterTrait;
 
@@ -155,7 +112,7 @@ abstract class AbstractIsNotEqualFilter extends AbstractComparatorFilter
 	}
 }
 
-abstract class AbstractIsStringFilter extends AbstractFilterNode
+abstract class IsStringFilter extends AbstractFilterNode
 {
 	public function apply($value)
 	{
@@ -163,7 +120,7 @@ abstract class AbstractIsStringFilter extends AbstractFilterNode
 	}
 }
 
-abstract class AbstractIsNumericFilter extends AbstractFilterNode
+abstract class IsNumericFilter extends AbstractFilterNode
 {
 	public function apply($value)
 	{
@@ -171,7 +128,7 @@ abstract class AbstractIsNumericFilter extends AbstractFilterNode
 	}
 }
 
-abstract class AbstractIsIntegerFilter extends AbstractFilterNode
+abstract class IsIntegerFilter extends AbstractFilterNode
 {
 	public function apply($value)
 	{
@@ -179,7 +136,7 @@ abstract class AbstractIsIntegerFilter extends AbstractFilterNode
 	}
 }
 
-abstract class AbstractIsArrayFilter extends AbstractFilterNode
+abstract class IsArrayFilter extends AbstractFilterNode
 {
 	public function apply($value)
 	{
@@ -187,7 +144,7 @@ abstract class AbstractIsArrayFilter extends AbstractFilterNode
 	}
 }
 
-abstract class AbstractIsEmptyFilter extends AbstractFilterNode
+abstract class IsEmptyFilter extends AbstractFilterNode
 {
 
 	public function apply($value)
@@ -199,14 +156,14 @@ abstract class AbstractIsEmptyFilter extends AbstractFilterNode
 		if (is_array($value)) {
 			return empty($value);
 		}
-		if (is_null($value)) {
-			return true;
-		}
+//		if (is_null($value)) { //TODO WHAT TODO?
+//			return true;
+//		}
 		return false;
 	}
 }
 
-abstract class AbstractIsEvenFilter extends AbstractFilterNode
+abstract class IsEvenFilter extends AbstractFilterNode
 {
 	public function apply($value)
 	{
@@ -215,7 +172,7 @@ abstract class AbstractIsEvenFilter extends AbstractFilterNode
 
 	public function not()
 	{
-		return new class() extends AbstractIsOddFilter implements FilterTraitInterface
+		return new class() extends IsOddFilter implements FilterTraitInterface
 		{
 			use FilterTrait;
 
@@ -223,7 +180,7 @@ abstract class AbstractIsEvenFilter extends AbstractFilterNode
 	}
 }
 
-abstract class AbstractIsOddFilter extends AbstractFilterNode
+abstract class IsOddFilter extends AbstractFilterNode
 {
 	public function apply($value)
 	{
@@ -232,7 +189,7 @@ abstract class AbstractIsOddFilter extends AbstractFilterNode
 
 	public function not()
 	{
-		return new class() extends AbstractIsEvenFilter implements FilterTraitInterface
+		return new class() extends IsEvenFilter implements FilterTraitInterface
 		{
 			use FilterTrait;
 
@@ -241,18 +198,18 @@ abstract class AbstractIsOddFilter extends AbstractFilterNode
 }
 
 
-abstract class AbstractLogicFilterNode extends AbstractFilterNode
+abstract class LogicFilterNode extends AbstractFilterNode
 {
 }
 
-abstract class AbstractNegatedFilter extends AbstractLogicFilterNode
+abstract class NegatedFilter extends LogicFilterNode
 {
 }
 
-abstract class AbstractAndFilter extends AbstractLogicFilterNode
+abstract class AndFilter extends LogicFilterNode
 {
 }
 
-abstract class AbstractOrFilter extends AbstractLogicFilterNode
+abstract class OrFilter extends LogicFilterNode
 {
 }

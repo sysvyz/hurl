@@ -1,5 +1,6 @@
 <?php
-namespace Hurl\Node;
+namespace Hurl\Node\Interfaces;
+
 /**
  * Created by PhpStorm.
  * User: mb
@@ -11,6 +12,10 @@ interface NodeInterface
 
 	public function __invoke(... $args);
 
+	/**
+	 * @param callable $then
+	 * @return NodeInterface
+	 */
 	public function call(callable $then);
 
 }

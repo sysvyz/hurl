@@ -9,6 +9,7 @@
 namespace HurlTest;
 
 
+use Hurl\Node\Abstracts\AbstractComparatorNode;
 use Hurl\Node\ArrayNode;
 use Hurl\Node\ComparatorNode;
 
@@ -227,6 +228,35 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 			'4132'
 			, $node($data));
 	}
-	
+
+	public function testBoolean()
+	{
+		$data = [true, false, true, false, true, false, true];
+
+		$cmpNode = ComparatorNode::boolean();
+		$node = ArrayNode::values()->sort(
+			$cmpNode
+		);
+
+		$this->assertEquals(
+			[false, false, false, true, true, true, true,]
+			, $node($data));
+		$this->assertInstanceOf(\AbstractBooleanComparatorNode::class, $cmpNode);
+	}
+
+	public function testBooleanInv()
+	{
+
+		$cmpNode = ComparatorNode::boolean()->invert();
+		$data = [true, false, true, false, true, false, true];
+		$node = ArrayNode::values()->sort(
+			$cmpNode
+		);
+
+		$this->assertEquals(
+			[true, true, true, true, false, false, false,]
+			, $node($data));
+		$this->assertInstanceOf(AbstractComparatorNode::class, $cmpNode);
+	}
 
 }

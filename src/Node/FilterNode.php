@@ -9,26 +9,25 @@
 namespace Hurl\Node;
 
 
-use Hurl\Node\Abstracts\AbstractFilterNode;
-use Type\AbstractAndFilter;
-use Type\AbstractGreaterOrEqualFilter;
-use Type\AbstractGreaterThanFilter;
-use Type\AbstractIsArrayFilter;
-use Type\AbstractIsEmptyFilter;
-use Type\AbstractIsEqualFilter;
-use Type\AbstractIsEvenFilter;
-use Type\AbstractIsIntegerFilter;
-use Type\AbstractIsNotEqualFilter;
-use Type\AbstractIsNumericFilter;
-use Type\AbstractIsOddFilter;
-use Type\AbstractIsStringFilter;
-use Type\AbstractLessOrEqualFilter;
-use Type\AbstractLessThanFilter;
-use Type\AbstractOrFilter;
-use Type\ComparatorFilterTrait;
-use Type\ComparatorFilterTraitInterface;
-use Type\FilterTrait;
-use Type\FilterTraitInterface;
+use Hurl\Node\Interfaces\ComparatorFilterTraitInterface;
+use Hurl\Node\Interfaces\FilterTraitInterface;
+use Hurl\Node\Traits\ComparatorFilterTrait;
+use Hurl\Node\Traits\FilterTrait;
+use Type\AndFilter;
+use Type\GreaterOrEqualFilter;
+use Type\GreaterThanFilter;
+use Type\IsArrayFilter;
+use Type\IsEmptyFilter;
+use Type\IsEqualFilter;
+use Type\IsEvenFilter;
+use Type\IsIntegerFilter;
+use Type\IsNotEqualFilter;
+use Type\IsNumericFilter;
+use Type\IsOddFilter;
+use Type\IsStringFilter;
+use Type\LessOrEqualFilter;
+use Type\LessThanFilter;
+use Type\OrFilter;
 
 require 'Type/filter.php';
 
@@ -36,66 +35,66 @@ require 'Type/filter.php';
 class FilterNode
 {
 	/**
-	 * @return AbstractFilterNode
+	 * @return IsEmptyFilter
 	 */
 	public static function isEmpty()
 	{
-		return new class() extends AbstractIsEmptyFilter implements FilterTraitInterface
+		return new class() extends IsEmptyFilter implements FilterTraitInterface
 		{
 			use FilterTrait;
 		};
 	}
 
 	/**
-	 * @return AbstractIsNumericFilter
+	 * @return IsNumericFilter
 	 */
 	public static function isNumeric()
 	{
-		return new class() extends AbstractIsNumericFilter implements FilterTraitInterface
+		return new class() extends IsNumericFilter implements FilterTraitInterface
 		{
 			use FilterTrait;
 		};
 	}
 
 	/**
-	 * @return AbstractIsIntegerFilter
+	 * @return IsIntegerFilter
 	 */
 	public static function isInt()
 	{
-		return new class() extends AbstractIsIntegerFilter implements FilterTraitInterface
+		return new class() extends IsIntegerFilter implements FilterTraitInterface
 		{
 			use FilterTrait;
 		};
 	}
 
 	/**
-	 * @return AbstractIsStringFilter
+	 * @return IsStringFilter
 	 */
 	public static function isString()
 	{
-		return new class() extends AbstractIsStringFilter implements FilterTraitInterface
+		return new class() extends IsStringFilter implements FilterTraitInterface
 		{
 			use FilterTrait;
 		};
 	}
 
 	/**
-	 * @return AbstractIsArrayFilter
+	 * @return IsArrayFilter
 	 */
 	public static function isArray()
 	{
-		return new class() extends AbstractIsArrayFilter implements FilterTraitInterface
+		return new class() extends IsArrayFilter implements FilterTraitInterface
 		{
 			use FilterTrait;
 		};
 	}
 
 	/**
-	 * @return AbstractAndFilter
+	 * @return AndFilter
 	 */
 	public static function and (...$filters)
 	{
-		return new class(...$filters) extends AbstractAndFilter
+		return new class(...$filters) extends AndFilter
 		{
 			/**
 			 * @var callable[]
@@ -125,11 +124,11 @@ class FilterNode
 	}
 
 	/**
-	 * @return AbstractOrFilter
+	 * @return OrFilter
 	 */
 	public static function or (...$filters)
 	{
-		return new class(...$filters) extends AbstractOrFilter
+		return new class(...$filters) extends OrFilter
 		{
 			/**
 			 * @var callable[]
@@ -159,88 +158,88 @@ class FilterNode
 	}
 
 	/**
-	 * @return AbstractIsEvenFilter
+	 * @return IsEvenFilter
 	 */
 	public static function isEven()
 	{
-		return new class() extends AbstractIsEvenFilter implements FilterTraitInterface
+		return new class() extends IsEvenFilter implements FilterTraitInterface
 		{
 			use FilterTrait;
 		};
 	}
 
 	/**
-	 * @return AbstractIsOddFilter
+	 * @return IsOddFilter
 	 */
 	public static function isOdd()
 	{
-		return new class() extends AbstractIsOddFilter implements FilterTraitInterface
+		return new class() extends IsOddFilter implements FilterTraitInterface
 		{
 			use FilterTrait;
 		};
 	}
 
 	/**
-	 * @return AbstractGreaterThanFilter
+	 * @return GreaterThanFilter
 	 */
 	public static function isGreaterThan($value)
 	{
-		return new class($value) extends AbstractGreaterThanFilter implements ComparatorFilterTraitInterface
+		return new class($value) extends GreaterThanFilter implements ComparatorFilterTraitInterface
 		{
 			use ComparatorFilterTrait;
 		};
 	}
 
 	/**
-	 * @return AbstractLessThanFilter
+	 * @return LessThanFilter
 	 */
 	public static function isLessThan($value)
 	{
-		return new class($value) extends AbstractLessThanFilter implements ComparatorFilterTraitInterface
+		return new class($value) extends LessThanFilter implements ComparatorFilterTraitInterface
 		{
 			use ComparatorFilterTrait;
 		};
 	}
 
 	/**
-	 * @return AbstractGreaterOrEqualFilter
+	 * @return GreaterOrEqualFilter
 	 */
 	public static function isGreaterOrEqual($value)
 	{
-		return new class($value) extends AbstractGreaterOrEqualFilter implements ComparatorFilterTraitInterface
+		return new class($value) extends GreaterOrEqualFilter implements ComparatorFilterTraitInterface
 		{
 			use ComparatorFilterTrait;
 		};
 	}
 
 	/**
-	 * @return AbstractLessOrEqualFilter
+	 * @return LessOrEqualFilter
 	 */
 	public static function isLessOrEqual($value)
 	{
-		return new class($value) extends AbstractLessOrEqualFilter implements ComparatorFilterTraitInterface
+		return new class($value) extends LessOrEqualFilter implements ComparatorFilterTraitInterface
 		{
 			use ComparatorFilterTrait;
 		};
 	}
 
 	/**
-	 * @return AbstractIsEqualFilter
+	 * @return IsEqualFilter
 	 */
 	public static function isEqual($value)
 	{
-		return new class($value) extends AbstractIsEqualFilter implements ComparatorFilterTraitInterface
+		return new class($value) extends IsEqualFilter implements ComparatorFilterTraitInterface
 		{
 			use ComparatorFilterTrait;
 		};
 	}
 
 	/**
-	 * @return AbstractIsNotEqualFilter
+	 * @return IsNotEqualFilter
 	 */
 	public static function isNotEqual($value)
 	{
-		return new class($value) extends AbstractIsNotEqualFilter implements ComparatorFilterTraitInterface
+		return new class($value) extends IsNotEqualFilter implements ComparatorFilterTraitInterface
 		{
 			use ComparatorFilterTrait;
 		};

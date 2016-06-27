@@ -9,9 +9,9 @@
 namespace Hurl\Node\Abstracts;
 
 
-use Hurl\Node\ComparatorInterface;
-use Hurl\Node\Container\ComparatorContainerTrait;
-use Hurl\Node\Container\ContainerTraitInterface;
+use Hurl\Node\Interfaces\ComparatorInterface;
+use Hurl\Node\Interfaces\ContainerTraitInterface;
+use Hurl\Node\Traits\ComparatorContainerTrait;
 
 abstract class AbstractComparatorNode extends AbstractNode implements ComparatorInterface
 {
@@ -78,7 +78,7 @@ abstract class AbstractComparatorNode extends AbstractNode implements Comparator
 	{
 
 
-		return new class($this,$map) extends AbstractComparatorNode
+		return new class($this, $map) extends AbstractComparatorNode
 		{
 			private $inner;
 			/**
@@ -91,7 +91,7 @@ abstract class AbstractComparatorNode extends AbstractNode implements Comparator
 			 * @param ComparatorInterface $inner
 			 * @param callable $map
 			 */
-			public function __construct(ComparatorInterface $inner,callable $map)
+			public function __construct(ComparatorInterface $inner, callable $map)
 			{
 				$this->inner = $inner;
 				$this->map = $map;
