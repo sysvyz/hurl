@@ -350,6 +350,18 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * @depends testIsOdd
+	 * @param AbstractIsOddFilter $isOdd
+	 * @return AbstractIsOddFilter
+	 */
+	public function testIsOdd_Not_IsEven_Not(AbstractIsOddFilter $isOdd){
+		$even = $isOdd->not();
+		$this->assertInstanceOf(AbstractIsEvenFilter::class,$even);
+		$odd = $even->not();
+		$this->assertInstanceOf(AbstractIsOddFilter::class,$odd);
+		return $isOdd;
+	}
+	/**
 	 * @depends testIsArray
 	 * @depends testIsEmpty
 	 * @param $isArray

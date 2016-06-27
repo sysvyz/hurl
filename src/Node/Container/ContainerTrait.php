@@ -52,6 +52,7 @@ trait ContainerTrait
 
 	/**
 	 * @return callable
+	 * @codeCoverageIgnore
 	 */
 	public function getAfter()
 	{

@@ -3,15 +3,7 @@
 namespace Type;
 
 use Hurl\Node\Abstracts\AbstractFilterNode;
-use Hurl\Node\Container\ContainerTrait;
-use Hurl\Node\Container\ContainerTraitInterface;
 
-/**
- * Created by PhpStorm.
- * User: mb
- * Date: 26.06.16
- * Time: 22:25
- */
 interface ComparatorFilterTraitInterface
 {
 	public function compare($that, $other);
@@ -26,6 +18,23 @@ trait ComparatorFilterTrait
 	public function __invoke(...$data)
 	{
 		return $this->compare($this->value, $data[0]);
+	}
+}
+
+interface FilterTraitInterface
+{
+	public function apply($value);
+}
+
+trait FilterTrait
+{
+	protected $value;
+
+	abstract public function apply($value);
+
+	public function __invoke(...$data)
+	{
+		return $this->apply($data[0]);
 	}
 }
 
@@ -87,7 +96,7 @@ abstract class AbstractLessOrEqualFilter extends AbstractComparatorFilter
 
 	public function not()
 	{
-		return new class($this->value) extends  AbstractGreaterThanFilter implements ComparatorFilterTraitInterface
+		return new class($this->value) extends AbstractGreaterThanFilter implements ComparatorFilterTraitInterface
 		{
 			use ComparatorFilterTrait;
 
@@ -148,30 +157,87 @@ abstract class AbstractIsNotEqualFilter extends AbstractComparatorFilter
 
 abstract class AbstractIsStringFilter extends AbstractFilterNode
 {
+	public function apply($value)
+	{
+		return is_string($value);
+	}
 }
 
 abstract class AbstractIsNumericFilter extends AbstractFilterNode
 {
+	public function apply($value)
+	{
+		return is_numeric($value);
+	}
 }
 
 abstract class AbstractIsIntegerFilter extends AbstractFilterNode
 {
+	public function apply($value)
+	{
+		return is_int($value);
+	}
 }
 
 abstract class AbstractIsArrayFilter extends AbstractFilterNode
 {
+	public function apply($value)
+	{
+		return is_array($value);
+	}
 }
 
 abstract class AbstractIsEmptyFilter extends AbstractFilterNode
 {
+
+	public function apply($value)
+
+	{
+		if (is_string($value)) {
+			return strlen($value) == 0;
+		}
+		if (is_array($value)) {
+			return empty($value);
+		}
+		if (is_null($value)) {
+			return true;
+		}
+		return false;
+	}
 }
 
 abstract class AbstractIsEvenFilter extends AbstractFilterNode
 {
+	public function apply($value)
+	{
+		return is_numeric($value) && $value % 2 == 0;
+	}
+
+	public function not()
+	{
+		return new class() extends AbstractIsOddFilter implements FilterTraitInterface
+		{
+			use FilterTrait;
+
+		};
+	}
 }
 
 abstract class AbstractIsOddFilter extends AbstractFilterNode
 {
+	public function apply($value)
+	{
+		return is_numeric($value) && $value % 2 != 0;
+	}
+
+	public function not()
+	{
+		return new class() extends AbstractIsEvenFilter implements FilterTraitInterface
+		{
+			use FilterTrait;
+
+		};
+	}
 }
 
 

@@ -10,7 +10,6 @@ namespace Hurl\Node;
 
 
 use Hurl\Node\Abstracts\AbstractFilterNode;
-use Hurl\Node\Abstracts\AbstractNode;
 use Type\AbstractAndFilter;
 use Type\AbstractGreaterOrEqualFilter;
 use Type\AbstractGreaterThanFilter;
@@ -26,6 +25,11 @@ use Type\AbstractIsStringFilter;
 use Type\AbstractLessOrEqualFilter;
 use Type\AbstractLessThanFilter;
 use Type\AbstractOrFilter;
+use Type\ComparatorFilterTrait;
+use Type\ComparatorFilterTraitInterface;
+use Type\FilterTrait;
+use Type\FilterTraitInterface;
+
 require 'Type/filter.php';
 
 
@@ -36,23 +40,9 @@ class FilterNode
 	 */
 	public static function isEmpty()
 	{
-		return new class() extends AbstractIsEmptyFilter
+		return new class() extends AbstractIsEmptyFilter implements FilterTraitInterface
 		{
-			public function __invoke(...$data)
-			{
-				$val = $data[0];
-				if(is_string($val)){
-					return strlen($val)==0;
-				}
-				if(is_array($val)){
-					return empty($val);
-				}
-				if(is_null($val)){
-					return true;
-				}
-
-				return false;
-			}
+			use FilterTrait;
 		};
 	}
 
@@ -61,12 +51,9 @@ class FilterNode
 	 */
 	public static function isNumeric()
 	{
-		return new class() extends AbstractIsNumericFilter
+		return new class() extends AbstractIsNumericFilter implements FilterTraitInterface
 		{
-			public function __invoke(...$data)
-			{
-				return is_numeric($data[0]);
-			}
+			use FilterTrait;
 		};
 	}
 
@@ -75,12 +62,9 @@ class FilterNode
 	 */
 	public static function isInt()
 	{
-		return new class() extends AbstractIsIntegerFilter
+		return new class() extends AbstractIsIntegerFilter implements FilterTraitInterface
 		{
-			public function __invoke(...$data)
-			{
-				return is_int($data[0]);
-			}
+			use FilterTrait;
 		};
 	}
 
@@ -89,12 +73,9 @@ class FilterNode
 	 */
 	public static function isString()
 	{
-		return new class() extends AbstractIsStringFilter
+		return new class() extends AbstractIsStringFilter implements FilterTraitInterface
 		{
-			public function __invoke(...$data)
-			{
-				return is_string($data[0]);
-			}
+			use FilterTrait;
 		};
 	}
 
@@ -103,15 +84,11 @@ class FilterNode
 	 */
 	public static function isArray()
 	{
-		return new class() extends AbstractIsArrayFilter
+		return new class() extends AbstractIsArrayFilter implements FilterTraitInterface
 		{
-			public function __invoke(...$data)
-			{
-				return is_array($data[0]);
-			}
+			use FilterTrait;
 		};
 	}
-
 
 	/**
 	 * @return AbstractAndFilter
@@ -133,7 +110,6 @@ class FilterNode
 			{
 				$this->filters = $filters;
 			}
-
 
 			public function __invoke(...$data)
 			{
@@ -187,15 +163,9 @@ class FilterNode
 	 */
 	public static function isEven()
 	{
-		return new class() extends AbstractIsEvenFilter
+		return new class() extends AbstractIsEvenFilter implements FilterTraitInterface
 		{
-			public function __invoke(...$data)
-			{
-
-
-				return is_numeric($data[0])&& $data[0] % 2 == 0;
-
-			}
+			use FilterTrait;
 		};
 	}
 
@@ -204,108 +174,75 @@ class FilterNode
 	 */
 	public static function isOdd()
 	{
-		return new class() extends AbstractIsOddFilter
+		return new class() extends AbstractIsOddFilter implements FilterTraitInterface
 		{
-			public function __invoke(...$data)
-			{
-
-
-				return is_numeric($data[0])&& $data[0] % 2 != 0;
-
-			}
+			use FilterTrait;
 		};
 	}
+
 	/**
 	 * @return AbstractGreaterThanFilter
 	 */
 	public static function isGreaterThan($value)
 	{
-		return new class($value) extends AbstractGreaterThanFilter
+		return new class($value) extends AbstractGreaterThanFilter implements ComparatorFilterTraitInterface
 		{
-
-			public function __invoke(...$data)
-			{
-
-				return is_numeric($data[0])&& $data[0] > $this->value;
-			}
+			use ComparatorFilterTrait;
 		};
 	}
+
 	/**
 	 * @return AbstractLessThanFilter
 	 */
 	public static function isLessThan($value)
 	{
-		return new class($value) extends AbstractLessThanFilter
+		return new class($value) extends AbstractLessThanFilter implements ComparatorFilterTraitInterface
 		{
-		
-
-			public function __invoke(...$data)
-			{
-
-				return is_numeric($data[0])&& $data[0] < $this->value;
-			}
+			use ComparatorFilterTrait;
 		};
 	}
+
 	/**
 	 * @return AbstractGreaterOrEqualFilter
 	 */
 	public static function isGreaterOrEqual($value)
 	{
-		return new class($value) extends AbstractGreaterOrEqualFilter
+		return new class($value) extends AbstractGreaterOrEqualFilter implements ComparatorFilterTraitInterface
 		{
-
-
-			public function __invoke(...$data)
-			{
-
-				return is_numeric($data[0])&& $data[0] >= $this->value;
-			}
+			use ComparatorFilterTrait;
 		};
 	}
+
 	/**
 	 * @return AbstractLessOrEqualFilter
 	 */
 	public static function isLessOrEqual($value)
 	{
-		return new class($value) extends AbstractLessOrEqualFilter
+		return new class($value) extends AbstractLessOrEqualFilter implements ComparatorFilterTraitInterface
 		{
-
-
-
-			public function __invoke(...$data)
-			{
-
-				return is_numeric($data[0])&& $data[0] <= $this->value;
-			}
+			use ComparatorFilterTrait;
 		};
 	}
+
 	/**
 	 * @return AbstractIsEqualFilter
 	 */
 	public static function isEqual($value)
 	{
-		return new class($value) extends AbstractIsEqualFilter
+		return new class($value) extends AbstractIsEqualFilter implements ComparatorFilterTraitInterface
 		{
-
-			public function __invoke(...$data)
-			{
-				return $data[0] == $this->value;
-			}
+			use ComparatorFilterTrait;
 		};
 	}
+
 	/**
 	 * @return AbstractIsNotEqualFilter
 	 */
 	public static function isNotEqual($value)
 	{
-		return new class($value) extends AbstractIsNotEqualFilter
+		return new class($value) extends AbstractIsNotEqualFilter implements ComparatorFilterTraitInterface
 		{
-
-			public function __invoke(...$data)
-			{
-
-				return $data[0] != $this->value;
-			}
+			use ComparatorFilterTrait;
 		};
 	}
 

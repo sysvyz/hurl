@@ -49,6 +49,7 @@ trait ComparatorContainerTrait
 
 	/**
 	 * @return callable
+	 * @codeCoverageIgnore
 	 */
 	public function getBefore()
 	{
@@ -57,6 +58,7 @@ trait ComparatorContainerTrait
 
 	/**
 	 * @return callable
+	 * @codeCoverageIgnore
 	 */
 	public function getAfter()
 	{
