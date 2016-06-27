@@ -10,11 +10,10 @@ namespace Hurl\Node;
 include "Type/array.php";
 
 use Hurl\Node\Abstracts\AbstractArrayNode;
-use Hurl\Node\Abstracts\AbstractComparatorNode;
 use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\Abstracts\AbstractStringNode;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
-use Hurl\Node\Traits\ComparatorContainerTrait;
+use Hurl\Node\Traits\ArrayTrait;
 use Type\AbstractArrayEach;
 use Type\AbstractArrayFilter;
 use Type\AbstractArrayFold;
@@ -33,16 +32,9 @@ class ArrayNode
 	{
 		return new class($mapping) extends AbstractArrayMap
 		{
-			private $mapping;
-
-			public function __construct($mapping)
-			{
-				$this->mapping = $mapping;
-			}
-
 			public function __invoke(...$data)
 			{
-				return array_map($this->mapping, ...$data);
+				return $this->apply(...$data);
 			}
 		};
 	}
@@ -54,7 +46,6 @@ class ArrayNode
 	{
 		return new class() extends AbstractNode
 		{
-
 			public function __invoke(...$data)
 			{
 				return count($data[0]);
@@ -70,30 +61,11 @@ class ArrayNode
 	{
 		return new class($callable, $init) extends AbstractArrayFold
 		{
-			/**
-			 * @var callable
-			 */
-			private $callable;
-			/**
-			 * @var
-			 */
-			private $init;
-
-			/**
-			 *  constructor.
-			 * @param $callable
-			 * @param $init
-			 */
-			public function __construct(callable $callable, $init)
-			{
-				$this->callable = $callable;
-				$this->init = $init;
-			}
-
 			public function __invoke(...$data)
 			{
-				return array_reduce($data[0], $this->callable, $this->init);
+				return $this->apply(...$data);
 			}
+
 		};
 	}
 
@@ -105,41 +77,9 @@ class ArrayNode
 	{
 		return new class(...$callable) extends AbstractArraySort
 		{
-			/**
-			 * @var callable
-			 */
-			private $callable;
-
-
-			/**
-			 *  constructor.
-			 * @param $callable
-			 */
-			public function __construct(callable ...$callables)
-			{
-
-				$callable = $callables[0];
-
-
-				if (count($callables) > 1) {
-					for ($int = 1; $int < count($callables); $int++) {
-						$callable = new class($callable, $callables[$int]) extends AbstractComparatorNode
-						{
-							use ComparatorContainerTrait;
-						};
-					}
-
-
-				}
-				$this->callable = $callable;
-
-			}
-
 			public function __invoke(...$data)
 			{
-
-				usort($data[0], $this->callable);
-				return $data[0];
+				return $this->apply(...$data);
 			}
 		};
 	}
@@ -152,30 +92,7 @@ class ArrayNode
 	{
 		return new class($callable) extends AbstractArrayFilter
 		{
-			/**
-			 * @var callable
-			 */
-			private $callable;
-
-
-			/**
-			 *  constructor.
-			 * @param $callable
-			 */
-			public function __construct(callable $callable = null)
-			{
-				$this->callable = $callable;
-			}
-
-			public function __invoke(...$data)
-			{
-//var_dump($this->callable);die;
-
-				if ($this->callable) {
-					return array_filter($data[0], $this->callable);
-				}
-				return array_filter($data[0]);
-			}
+			use ArrayTrait;
 		};
 	}
 
@@ -187,18 +104,7 @@ class ArrayNode
 	{
 		return new class($do) extends AbstractArrayEach
 		{
-			private $do;
-
-			public function __construct($do)
-			{
-				$this->do = $do;
-			}
-
-			public function __invoke(...$data)
-			{
-				array_walk($data[0], $this->do);
-				return $data;
-			}
+			use ArrayTrait;
 		};
 	}
 
@@ -241,10 +147,8 @@ class ArrayNode
 	{
 		return new class() extends AbstractArrayMerge
 		{
-			public function __invoke(...$data)
-			{
-				return array_merge(...$data);
-			}
+			use ArrayTrait;
+
 		};
 	}
 
@@ -255,10 +159,7 @@ class ArrayNode
 	{
 		return new class() extends AbstractArrayValues
 		{
-			public function __invoke(...$data)
-			{
-				return array_merge(...$data);
-			}
+			use ArrayTrait;
 		};
 	}
 

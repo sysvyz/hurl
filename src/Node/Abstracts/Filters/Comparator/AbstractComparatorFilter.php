@@ -6,7 +6,7 @@
  * Time: 05:01
  */
 
-namespace Hurl\Node\Abstracts\Filter;
+namespace Hurl\Node\Abstracts\Filters\Comparator;
 
 
 use Hurl\Node\Abstracts\AbstractFilterNode;

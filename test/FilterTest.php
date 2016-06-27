@@ -1,24 +1,24 @@
 <?php
 use Hurl\Node\Abstracts\AbstractNode;
+use Hurl\Node\Abstracts\Filters\Comparator\GreaterOrEqualFilter;
+use Hurl\Node\Abstracts\Filters\Comparator\GreaterThanFilter;
+use Hurl\Node\Abstracts\Filters\Comparator\IsEqualFilter;
+use Hurl\Node\Abstracts\Filters\Comparator\IsNotEqualFilter;
+use Hurl\Node\Abstracts\Filters\Comparator\LessOrEqualFilter;
+use Hurl\Node\Abstracts\Filters\Comparator\LessThanFilter;
+use Hurl\Node\Abstracts\Filters\IsArrayFilter;
+use Hurl\Node\Abstracts\Filters\IsEmptyFilter;
+use Hurl\Node\Abstracts\Filters\IsStringFilter;
+use Hurl\Node\Abstracts\Filters\Logic\AndFilter;
+use Hurl\Node\Abstracts\Filters\Logic\NegatedFilter;
+use Hurl\Node\Abstracts\Filters\Logic\OrFilter;
+use Hurl\Node\Abstracts\Filters\Number\IsEvenFilter;
+use Hurl\Node\Abstracts\Filters\Number\IsIntegerFilter;
+use Hurl\Node\Abstracts\Filters\Number\IsNumericFilter;
+use Hurl\Node\Abstracts\Filters\Number\IsOddFilter;
 use Hurl\Node\ArrayNode;
 use Hurl\Node\FilterNode;
 use Hurl\Node\Interfaces\FilterInterface;
-use Type\AndFilter;
-use Type\GreaterOrEqualFilter;
-use Type\GreaterThanFilter;
-use Type\IsArrayFilter;
-use Type\IsEmptyFilter;
-use Type\IsEqualFilter;
-use Type\IsEvenFilter;
-use Type\IsIntegerFilter;
-use Type\IsNotEqualFilter;
-use Type\IsNumericFilter;
-use Type\IsOddFilter;
-use Type\IsStringFilter;
-use Type\LessOrEqualFilter;
-use Type\LessThanFilter;
-use Type\NegatedFilter;
-use Type\OrFilter;
 
 /**
  * Created by PhpStorm.

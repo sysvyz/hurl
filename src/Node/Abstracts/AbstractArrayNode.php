@@ -22,6 +22,9 @@ use Type\AbstractArraySort;
 abstract class AbstractArrayNode extends AbstractNode implements CollectionNodeInterface
 {
 
+
+
+
 	/**
 	 * @param callable $do
 	 * @return AbstractNode
@@ -31,6 +34,8 @@ abstract class AbstractArrayNode extends AbstractNode implements CollectionNodeI
 		return new class($this, $do) extends AbstractArrayNode implements ContainerTraitInterface
 		{
 			use ContainerTrait;
+
+
 		};
 	}
 
