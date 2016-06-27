@@ -13,7 +13,7 @@ namespace Hurl\Node\Interfaces;
  * Interface ContainerTraitInterface
  * @package Hurl\Node\Container
  */
-interface ContainerTraitInterface
+interface ContainerTraitInterface extends NodeInterface
 {
 
 	public function getBefore();

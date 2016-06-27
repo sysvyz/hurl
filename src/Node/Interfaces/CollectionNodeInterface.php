@@ -8,9 +8,9 @@
 namespace Hurl\Node\Interfaces;
 
 use Hurl\Node\Abstracts\AbstractNode;
-use Type\AbstractArrayEach;
-use Type\AbstractArrayMap;
-use Type\AbstractArraySort;
+use Hurl\Node\Abstracts\Arrays\AbstractArrayEach;
+use Hurl\Node\Abstracts\Arrays\AbstractArrayMap;
+use Hurl\Node\Abstracts\Arrays\AbstractArraySort;
 
 interface CollectionNodeInterface extends NodeInterface
 {

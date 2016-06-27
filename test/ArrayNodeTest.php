@@ -1,11 +1,11 @@
 <?php
 use Hurl\Node\Abstracts\AbstractArrayNode;
 use Hurl\Node\Abstracts\AbstractNode;
+use Hurl\Node\Abstracts\Arrays\AbstractArrayEach;
+use Hurl\Node\Abstracts\Arrays\AbstractArrayMap;
+use Hurl\Node\Abstracts\Arrays\AbstractArraySort;
 use Hurl\Node\ArrayNode;
 use Hurl\Node\StringNode;
-use Type\AbstractArrayEach;
-use Type\AbstractArrayMap;
-use Type\AbstractArraySort;
 
 /**
  * Created by PhpStorm.

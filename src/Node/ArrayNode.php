@@ -12,15 +12,15 @@ include "Type/array.php";
 use Hurl\Node\Abstracts\AbstractArrayNode;
 use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\Abstracts\AbstractStringNode;
+use Hurl\Node\Abstracts\Arrays\AbstractArrayEach;
+use Hurl\Node\Abstracts\Arrays\AbstractArrayFilter;
+use Hurl\Node\Abstracts\Arrays\AbstractArrayFold;
+use Hurl\Node\Abstracts\Arrays\AbstractArrayMap;
+use Hurl\Node\Abstracts\Arrays\AbstractArrayMerge;
+use Hurl\Node\Abstracts\Arrays\AbstractArraySort;
+use Hurl\Node\Abstracts\Arrays\AbstractArrayValues;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Traits\ArrayTrait;
-use Type\AbstractArrayEach;
-use Type\AbstractArrayFilter;
-use Type\AbstractArrayFold;
-use Type\AbstractArrayMap;
-use Type\AbstractArrayMerge;
-use Type\AbstractArraySort;
-use Type\AbstractArrayValues;
 
 class ArrayNode
 {

@@ -9,15 +9,15 @@
 namespace Hurl\Node\Abstracts;
 
 
+use Hurl\Node\Abstracts\Arrays\AbstractArrayEach;
+use Hurl\Node\Abstracts\Arrays\AbstractArrayMap;
+use Hurl\Node\Abstracts\Arrays\AbstractArrayMerge;
+use Hurl\Node\Abstracts\Arrays\AbstractArraySort;
 use Hurl\Node\ArrayNode;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Interfaces\ContainerTraitInterface;
 use Hurl\Node\Math\MathNode;
 use Hurl\Node\Traits\ContainerTrait;
-use Type\AbstractArrayEach;
-use Type\AbstractArrayMap;
-use Type\AbstractArrayMerge;
-use Type\AbstractArraySort;
 
 abstract class AbstractArrayNode extends AbstractNode implements CollectionNodeInterface
 {
