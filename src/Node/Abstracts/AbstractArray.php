@@ -13,10 +13,13 @@ use Hurl\Node\Abstracts\Arrays\ArrayEach;
 use Hurl\Node\Abstracts\Arrays\ArrayMap;
 use Hurl\Node\Abstracts\Arrays\ArrayMerge;
 use Hurl\Node\Abstracts\Arrays\ArraySort;
+use Hurl\Node\Abstracts\Filters\ContainsFilter;
+use Hurl\Node\Abstracts\Filters\IsEmptyFilter;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Interfaces\ContainerTraitInterface;
 use Hurl\Node\Math\MathNode;
 use Hurl\Node\Statics\_Array;
+use Hurl\Node\Statics\_Filter;
 use Hurl\Node\Traits\ContainerTrait;
 
 abstract class AbstractArray extends AbstractNode implements CollectionNodeInterface
@@ -124,5 +127,29 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
 	public function implode(string $glue)
 	{
 		return $this->call(_Array::implode($glue));
+	}
+	/**
+	 * @return IsEmptyFilter
+	 */
+	public function isEmpty()
+	{
+
+		return new class($this, _Filter::isEmpty()) extends IsEmptyFilter implements ContainerTraitInterface
+		{
+			use ContainerTrait;
+		};
+
+	}
+	/**
+	 * @return ContainsFilter
+	 */
+	public function contains($needle,$strict = null)
+	{
+
+		return new class($this, _Filter::contains($needle,$strict)) extends ContainsFilter implements ContainerTraitInterface
+		{
+			use ContainerTrait;
+		};
+
 	}
 }

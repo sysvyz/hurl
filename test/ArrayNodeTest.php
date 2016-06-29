@@ -5,6 +5,9 @@ use Hurl\Node\Abstracts\Arrays\ArrayEach;
 use Hurl\Node\Abstracts\Arrays\ArrayFilter;
 use Hurl\Node\Abstracts\Arrays\ArrayMap;
 use Hurl\Node\Abstracts\Arrays\ArraySort;
+use Hurl\Node\Abstracts\Filters\ContainsFilter;
+use Hurl\Node\Abstracts\Filters\IsEmptyFilter;
+use Hurl\Node\Abstracts\Filters\Logic\NegatedFilter;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Statics\_Array;
 use Hurl\Node\Statics\_String;
@@ -155,6 +158,77 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 
 		$this->assertArraySubset($filter([null, false, 1, 0.5, '', '0', 'a']), [1, 0.5, 'a']);
 		$this->assertArraySubset([1, 0.5, 'a'], $filter([null, false, 1, 0.5, '', '0', 'a']));
+
+	}
+	public function testIsEmpty()
+	{
+
+		$filter = _Array::values()->isEmpty();
+
+		$this->assertInstanceOf(IsEmptyFilter::class, $filter);
+
+		$d1 = [1];
+		$d2 = [];
+
+		$this->assertFalse($filter($d1));
+		$this->assertTrue($filter($d2));
+
+	}
+
+	public function testNotIsEmpty()
+	{
+
+		$filter = _Array::values()->isEmpty()->not();
+
+		$this->assertInstanceOf(NegatedFilter::class, $filter);
+
+		$d1 = [1];
+		$d2 = [];
+
+		$this->assertFalse($filter($d2));
+		$this->assertTrue($filter($d1));
+
+	}
+
+	public function testContains()
+	{
+
+		$filter = _Array::values()->contains(1);
+
+		$this->assertInstanceOf(ContainsFilter::class, $filter);
+
+		$d1 = [1];
+		$d2 = [];
+		$d3 = [43,23,123,12];
+		$d4 = [43,23,1,123,12];
+
+		$this->assertTrue($filter($d1));
+		$this->assertFalse($filter($d2));
+		$this->assertFalse($filter($d3));
+		$this->assertTrue($filter($d4));
+
+	}
+
+	public function testContainsStrict()
+	{
+
+		$filter = _Array::values()->contains(1,true);
+
+		$this->assertInstanceOf(ContainsFilter::class, $filter);
+
+		$d0 = [1];
+		$d1 = ['1'];
+		$d2 = [];
+		$d3 = [43,23,123,12];
+		$d4 = [43,23,"1",123,12];
+		$d5 = [43,23,1,123,12];
+
+		$this->assertTrue($filter($d0));
+		$this->assertFalse($filter($d1));
+		$this->assertFalse($filter($d2));
+		$this->assertFalse($filter($d3));
+		$this->assertFalse($filter($d4));
+		$this->assertTrue($filter($d5));
 
 	}
 

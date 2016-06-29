@@ -16,6 +16,7 @@ use Hurl\Node\Abstracts\Filters\Comparator\IsEqualFilter;
 use Hurl\Node\Abstracts\Filters\Comparator\IsNotEqualFilter;
 use Hurl\Node\Abstracts\Filters\Comparator\LessOrEqualFilter;
 use Hurl\Node\Abstracts\Filters\Comparator\LessThanFilter;
+use Hurl\Node\Abstracts\Filters\ContainsFilter;
 use Hurl\Node\Abstracts\Filters\IsArrayFilter;
 use Hurl\Node\Abstracts\Filters\IsEmptyFilter;
 use Hurl\Node\Abstracts\Filters\IsStringFilter;
@@ -231,6 +232,14 @@ final class _Filter
 				$f = $this->callable;
 				return $f($args[0], $args[1]);
 			}
+		};
+	}
+
+	public static function contains($needle,$strict = null)
+	{
+		return new class($needle,$strict) extends ContainsFilter
+		{
+			use FilterTrait;
 		};
 	}
 
