@@ -22,8 +22,13 @@ use Hurl\Node\Abstracts\Arrays\ArrayValues;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Traits\ArrayTrait;
 
-abstract class _Array
+final class _Array
 {
+
+	/**
+	 * _Array constructor.
+	 * @codeCoverageIgnore
+	 */
 	private final function __construct()
 	{
 	}

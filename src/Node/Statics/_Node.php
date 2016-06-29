@@ -11,8 +11,12 @@ namespace Hurl\Node\Statics;
 
 use Hurl\Node\Abstracts\AbstractNode;
 
-abstract class _Node
+final class _Node
 {
+	/**
+	 * _Node constructor.
+	 * @codeCoverageIgnore
+	 */
 	private final function __construct()
 	{
 	}

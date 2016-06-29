@@ -32,8 +32,12 @@ use Hurl\Node\Traits\FilterContainerTrait;
 use Hurl\Node\Traits\FilterTrait;
 
 
-abstract class _Filter
+final class _Filter
 {
+	/**
+	 * _Filter constructor.
+	 * @codeCoverageIgnore
+	 */
 	private final function __construct()
 	{
 	}

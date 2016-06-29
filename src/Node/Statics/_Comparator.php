@@ -15,8 +15,12 @@ use Hurl\Node\Abstracts\Comparator\NumericComparator;
 use Hurl\Node\Abstracts\Comparator\StringComparator;
 use Hurl\Node\Abstracts\Comparator\StringLengthComparator;
 
-abstract class _Comparator
+final class _Comparator
 {
+	/**
+	 * _Comparator constructor.
+	 * @codeCoverageIgnore
+	 */
 	private final function __construct()
 	{
 	}

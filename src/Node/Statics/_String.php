@@ -12,9 +12,12 @@ namespace Hurl\Node\Statics;
 use Hurl\Node\Abstracts\AbstractStringNode;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 
-abstract class _String
+final class _String
 {
-
+	/**
+	 * _String constructor.
+	 * @codeCoverageIgnore
+	 */
 	private final function __construct()
 	{
 	}
