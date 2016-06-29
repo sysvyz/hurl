@@ -16,8 +16,8 @@ use Hurl\Node\Abstracts\Filters\Number\IsEvenFilter;
 use Hurl\Node\Abstracts\Filters\Number\IsIntegerFilter;
 use Hurl\Node\Abstracts\Filters\Number\IsNumericFilter;
 use Hurl\Node\Abstracts\Filters\Number\IsOddFilter;
-use Hurl\Node\ArrayNode;
-use Hurl\Node\FilterNode;
+use Hurl\Node\Statics\_Array;
+use Hurl\Node\Statics\_Filter;
 use Hurl\Node\Interfaces\FilterInterface;
 
 /**
@@ -31,7 +31,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testIsNumeric()
 	{
-		$isNumeric = FilterNode::isNumeric();
+		$isNumeric = _Filter::isNumeric();
 		$this->assertTrue($isNumeric(2));
 		$this->assertTrue($isNumeric("2"));
 		$this->assertTrue($isNumeric(2.));
@@ -45,7 +45,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testGreaterThan()
 	{
-		$filter = FilterNode::isGreaterThan(5);
+		$filter = _Filter::isGreaterThan(5);
 		$this->assertInstanceOf(GreaterThanFilter::class, $filter);
 		$this->assertFalse($filter(2));
 		$this->assertFalse($filter(5));
@@ -55,7 +55,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testGreaterThan_Not()
 	{
-		$filter = FilterNode::isGreaterThan(5)->not();
+		$filter = _Filter::isGreaterThan(5)->not();
 		$this->assertInstanceOf(LessOrEqualFilter::class, $filter);
 		$this->assertTrue($filter(2));
 		$this->assertTrue($filter(5));
@@ -65,7 +65,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testGreaterThan_Not_Not()
 	{
-		$filter = FilterNode::isGreaterThan(5)->not()->not();
+		$filter = _Filter::isGreaterThan(5)->not()->not();
 		$this->assertInstanceOf(GreaterThanFilter::class, $filter);
 		$this->assertFalse($filter(2));
 		$this->assertFalse($filter(5));
@@ -78,7 +78,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGreaterOrEqual()
 	{
-		$filter = FilterNode::isGreaterOrEqual(5);
+		$filter = _Filter::isGreaterOrEqual(5);
 		$this->assertInstanceOf(GreaterOrEqualFilter::class, $filter);
 		$this->assertFalse($filter(2));
 		$this->assertTrue($filter(5));
@@ -91,7 +91,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGreaterOrEqual_Not()
 	{
-		$filter = FilterNode::isGreaterOrEqual(5)->not();
+		$filter = _Filter::isGreaterOrEqual(5)->not();
 		$this->assertInstanceOf(LessThanFilter::class, $filter);
 		$this->assertTrue($filter(2));
 		$this->assertFalse($filter(5));
@@ -101,7 +101,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testGreaterOrEqual_Not_Not()
 	{
-		$filter = FilterNode::isGreaterOrEqual(5)->not()->not();
+		$filter = _Filter::isGreaterOrEqual(5)->not()->not();
 		$this->assertInstanceOf(GreaterOrEqualFilter::class, $filter);
 		$this->assertFalse($filter(2));
 		$this->assertTrue($filter(5));
@@ -111,7 +111,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testLessThan()
 	{
-		$filter = FilterNode::isLessThan(5);
+		$filter = _Filter::isLessThan(5);
 		$this->assertInstanceOf(LessThanFilter::class, $filter);
 		$this->assertTrue($filter(2));
 		$this->assertFalse($filter(5));
@@ -121,7 +121,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testLessThan_Not()
 	{
-		$filter = FilterNode::isLessThan(5)->not();
+		$filter = _Filter::isLessThan(5)->not();
 		$this->assertInstanceOf(GreaterOrEqualFilter::class, $filter);
 		$this->assertFalse($filter(2));
 		$this->assertTrue($filter(5));
@@ -131,7 +131,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testLessThan_Not_Not()
 	{
-		$filter = FilterNode::isLessThan(5)->not()->not();
+		$filter = _Filter::isLessThan(5)->not()->not();
 		$this->assertInstanceOf(LessThanFilter::class, $filter);
 		$this->assertTrue($filter(2));
 		$this->assertFalse($filter(5));
@@ -141,7 +141,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testLessOrEqual()
 	{
-		$filter = FilterNode::isLessOrEqual(5);
+		$filter = _Filter::isLessOrEqual(5);
 		$this->assertInstanceOf(LessOrEqualFilter::class, $filter);
 		$this->assertTrue($filter(2));
 		$this->assertTrue($filter(5));
@@ -151,7 +151,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testLessOrEqual_Not()
 	{
-		$filter = FilterNode::isLessOrEqual(5)->not();
+		$filter = _Filter::isLessOrEqual(5)->not();
 		$this->assertInstanceOf(GreaterThanFilter::class, $filter);
 		$this->assertFalse($filter(2));
 		$this->assertFalse($filter(5));
@@ -161,7 +161,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testLessOrEqual_Not_Not()
 	{
-		$filter = FilterNode::isLessOrEqual(5)->not()->not();
+		$filter = _Filter::isLessOrEqual(5)->not()->not();
 		$this->assertInstanceOf(LessOrEqualFilter::class, $filter);
 		$this->assertTrue($filter(2));
 		$this->assertTrue($filter(5));
@@ -171,7 +171,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testIsEqual()
 	{
-		$filter = FilterNode::isEqual(5);
+		$filter = _Filter::isEqual(5);
 		$this->assertInstanceOf(IsEqualFilter::class, $filter);
 		$this->assertFalse($filter(2));
 		$this->assertTrue($filter(5));
@@ -181,7 +181,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testIsEqual_Not()
 	{
-		$filter = FilterNode::isEqual(5)->not();
+		$filter = _Filter::isEqual(5)->not();
 		$this->assertInstanceOf(IsNotEqualFilter::class, $filter);
 		$this->assertTrue($filter(2));
 		$this->assertFalse($filter(5));
@@ -191,7 +191,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testIsEqual_Not_Not()
 	{
-		$filter = FilterNode::isEqual(5)->not()->not();
+		$filter = _Filter::isEqual(5)->not()->not();
 		$this->assertInstanceOf(IsEqualFilter::class, $filter);
 		$this->assertFalse($filter(2));
 		$this->assertTrue($filter(5));
@@ -201,7 +201,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testIsNotEqual()
 	{
-		$filter = FilterNode::isNotEqual(5);
+		$filter = _Filter::isNotEqual(5);
 		$this->assertInstanceOf(IsNotEqualFilter::class, $filter);
 		$this->assertTrue($filter(2));
 		$this->assertFalse($filter(5));
@@ -211,7 +211,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 
 	public function testIsNotEqual_Not()
 	{
-		$filter = FilterNode::isNotEqual(5)->not();
+		$filter = _Filter::isNotEqual(5)->not();
 		$this->assertInstanceOf(IsEqualFilter::class, $filter);
 		$this->assertFalse($filter(2));
 		$this->assertTrue($filter(5));
@@ -224,7 +224,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testIsNotEqual_Not_Not()
 	{
-		$filter = FilterNode::isNotEqual(5)->not()->not();
+		$filter = _Filter::isNotEqual(5)->not()->not();
 		$this->assertInstanceOf(IsNotEqualFilter::class, $filter);
 		$this->assertTrue($filter(2));
 		$this->assertFalse($filter(5));
@@ -237,7 +237,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testIsNotNumeric()
 	{
-		$isNotNumeric = FilterNode::isNumeric()->not();
+		$isNotNumeric = _Filter::isNumeric()->not();
 		$this->assertInstanceOf(NegatedFilter::class, $isNotNumeric);
 		$this->assertFalse($isNotNumeric(2));
 		$this->assertFalse($isNotNumeric("2"));
@@ -255,7 +255,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testIsNotNumeric_Not()
 	{
-		$isNotNumeric = FilterNode::isNumeric()->not()->not();
+		$isNotNumeric = _Filter::isNumeric()->not()->not();
 		$this->assertInstanceOf(IsNumericFilter::class, $isNotNumeric);
 		$this->assertTrue($isNotNumeric(2));
 		$this->assertTrue($isNotNumeric("2"));
@@ -273,7 +273,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testIsString()
 	{
-		$isString = FilterNode::isString();
+		$isString = _Filter::isString();
 		$this->assertInstanceOf(IsStringFilter::class, $isString);
 		$this->assertFalse($isString(2));
 		$this->assertTrue($isString("2"));
@@ -288,7 +288,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testIsArray()
 	{
-		$isArray = FilterNode::isArray();
+		$isArray = _Filter::isArray();
 		$this->assertInstanceOf(IsArrayFilter::class, $isArray);
 
 		$this->assertTrue($isArray([04]));
@@ -298,11 +298,11 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @return FilterNode
+	 * @return _Filter
 	 */
 	public function testIsEmpty()
 	{
-		$isEmpty = FilterNode::isEmpty();
+		$isEmpty = _Filter::isEmpty();
 		$this->assertInstanceOf(IsEmptyFilter::class, $isEmpty);
 
 		$this->assertFalse($isEmpty([04]));
@@ -320,7 +320,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testIsInt()
 	{
-		$isInt = FilterNode::isInt();
+		$isInt = _Filter::isInt();
 		$this->assertInstanceOf(IsIntegerFilter::class, $isInt);
 
 		$this->assertTrue($isInt(3));
@@ -336,7 +336,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testIsEven()
 	{
-		$isEven = FilterNode::isEven();
+		$isEven = _Filter::isEven();
 		$this->assertInstanceOf(IsEvenFilter::class, $isEven);
 
 		$this->assertFalse($isEven(3));
@@ -354,7 +354,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testIsOdd()
 	{
-		$isOdd = FilterNode::isOdd();
+		$isOdd = _Filter::isOdd();
 		$this->assertInstanceOf(IsOddFilter::class, $isOdd);
 
 
@@ -393,7 +393,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testAnd($isArray, $isEmpty)
 	{
-		$and = FilterNode:: and ($isArray, $isEmpty);
+		$and = _Filter:: and ($isArray, $isEmpty);
 		$this->assertInstanceOf(AndFilter::class, $and);
 
 		$this->assertFalse($and([04]));
@@ -412,7 +412,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	public function testAnd2($isInt, $isEven)
 	{
 
-		$and = FilterNode:: and ($isInt, $isEven);
+		$and = _Filter:: and ($isInt, $isEven);
 		$this->assertInstanceOf(AndFilter::class, $and);
 
 		$this->assertFalse($and([04]));
@@ -433,7 +433,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	public function testNand($isInt, $isEven)
 	{
 
-		$nand = FilterNode:: and ($isInt, $isEven)->not();
+		$nand = _Filter:: and ($isInt, $isEven)->not();
 		$this->assertInstanceOf(NegatedFilter::class, $nand);
 
 		$this->assertTrue($nand([04]));
@@ -451,7 +451,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testOr($isInt, $isEmpty)
 	{
-		$filter = FilterNode:: or ($isInt, $isEmpty);
+		$filter = _Filter:: or ($isInt, $isEmpty);
 		$this->assertInstanceOf(OrFilter::class, $filter);
 		$this->assertFalse($filter([04]));
 		$this->assertTrue($filter([]));
@@ -480,10 +480,10 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testAndOr($isInt, $isEven, $isArray, $isEmpty, $isString, $isNumeric, $isOdd)
 	{
-		$filter = FilterNode:: or (
-			FilterNode:: and ($isInt, $isEven),
-			FilterNode:: and ($isArray, $isEmpty),
-			FilterNode:: and ($isString, $isNumeric, $isOdd)
+		$filter = _Filter:: or (
+			_Filter:: and ($isInt, $isEven),
+			_Filter:: and ($isArray, $isEmpty),
+			_Filter:: and ($isString, $isNumeric, $isOdd)
 		);
 		$this->assertInstanceOf(OrFilter::class, $filter);
 		$this->assertFalse($filter([04]));
@@ -508,7 +508,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testArrayFilter($filter)
 	{
-		$arrayfilter = ArrayNode::filter($filter)->values();
+		$arrayfilter = _Array::filter($filter)->values();
 
 		$data = [[04], [], 2, "2", "", 1, "1", "14353", "1.4", "2.4", "sdasd", ""];
 		$this->assertEquals($arrayfilter($data), [[], 2, "1", "14353", "1.4"]);
@@ -545,10 +545,10 @@ class FilterTest extends PHPUnit_Framework_TestCase
 		FilterInterface $isOdd
 	)
 	{
-		$filter = FilterNode:: or (
-			FilterNode:: and ($isInt, $isEven->not()),
-			FilterNode:: and ($isArray, $isEmpty),
-			FilterNode:: and ($isString, $isNumeric, $isOdd)
+		$filter = _Filter:: or (
+			_Filter:: and ($isInt, $isEven->not()),
+			_Filter:: and ($isArray, $isEmpty),
+			_Filter:: and ($isString, $isNumeric, $isOdd)
 		)->not();
 		$this->assertInstanceOf(NegatedFilter::class, $filter);
 		$this->assertTrue($filter([04]));
@@ -585,10 +585,10 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testAndOr_Not_Not($isInt, $isEven, $isArray, $isEmpty, $isString, $isNumeric, $isOdd)
 	{
-		$filter = FilterNode:: or (
-			FilterNode:: and ($isInt, $isEven),
-			FilterNode:: and ($isArray, $isEmpty),
-			FilterNode:: and ($isString, $isNumeric, $isOdd)
+		$filter = _Filter:: or (
+			_Filter:: and ($isInt, $isEven),
+			_Filter:: and ($isArray, $isEmpty),
+			_Filter:: and ($isString, $isNumeric, $isOdd)
 		)->not()->not();
 		$this->assertInstanceOf(OrFilter::class, $filter);
 		$this->assertFalse($filter([04]));

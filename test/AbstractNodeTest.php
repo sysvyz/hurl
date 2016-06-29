@@ -1,6 +1,6 @@
 <?php
-use Hurl\Node\ArrayNode;
-use Hurl\Node\StringNode;
+use Hurl\Node\Statics\_Array;
+use Hurl\Node\Statics\_String;
 
 /**
  * Created by PhpStorm.
@@ -16,7 +16,7 @@ class AbstractNodeTest extends PHPUnit_Framework_TestCase
 	{
 		$data = [4, 78, 2, 7, 4, 34, 43, 34];
 
-		$toJson = ArrayNode::values()->toJson();
+		$toJson = _Array::values()->toJson();
 
 		$json = $toJson($data);
 
@@ -28,7 +28,7 @@ class AbstractNodeTest extends PHPUnit_Framework_TestCase
 		$data = '[4,78,2,7,4,34,43,34]';
 
 
-		$fromJson = StringNode::trim()->fromJson();
+		$fromJson = _String::trim()->fromJson();
 
 		$array = $fromJson($data);
 		$this->assertEquals($array, [4, 78, 2, 7, 4, 34, 43, 34]);
@@ -39,10 +39,29 @@ class AbstractNodeTest extends PHPUnit_Framework_TestCase
 		$data = '4,78,2,7,4,34,43,34';
 
 
-		$explode = StringNode::trim()->explode(',');
+		$explode = _String::trim()->explode(',');
 
 		$array = $explode($data);
 		$this->assertEquals($array, [4, 78, 2, 7, 4, 34, 43, 34]);
+		return $array;
+	}
+
+	public function testAsClosure()
+	{
+		$data = '4,78,2,7,4,34,43,34';
+
+
+		$explode = _String::trim()->explode(',')->asClosure();
+
+
+		$this->assertInstanceOf(Closure::class,$explode);
+		$this->assertNotInstanceOf(\Hurl\Node\Abstracts\AbstractNode::class,$explode);
+
+		$array = $explode($data);
+		$this->assertEquals($array, [4, 78, 2, 7, 4, 34, 43, 34]);
+
+
+
 		return $array;
 	}
 
@@ -54,7 +73,7 @@ class AbstractNodeTest extends PHPUnit_Framework_TestCase
 	{
 
 
-		$debug = ArrayNode::values()->debug();
+		$debug = _Array::values()->debug();
 
 
 		$expected = 'Array

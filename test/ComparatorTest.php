@@ -9,9 +9,12 @@
 namespace HurlTest;
 
 
-use Hurl\Node\Abstracts\AbstractComparatorNode;
-use Hurl\Node\ArrayNode;
-use Hurl\Node\ComparatorNode;
+use Hurl\Node\Abstracts\AbstractComparator;
+use Hurl\Node\Abstracts\Comparator\BooleanComparator;
+use Hurl\Node\Statics\_Array;
+use Hurl\Node\Statics\_Comparator;
+use Hurl\Node\Statics\_Filter;
+use Hurl\Node\Math\MathNode;
 
 class ComparatorTest extends \PHPUnit_Framework_TestCase
 {
@@ -20,7 +23,7 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 	public function testSort()
 	{
 		$data = [3, 5, 7, 2, 4];
-		$node = ArrayNode::sort(function ($a, $b) {
+		$node = _Array::sort(function ($a, $b) {
 			return $a - $b;
 		});
 		$this->assertEquals([2, 3, 4, 5, 7], $node($data));
@@ -30,15 +33,22 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 	public function testSortWithComparator()
 	{
 		$data = [3, 5, 7, 2, 4];
-		$node = ArrayNode::sort(ComparatorNode::numeric());
+		$node = _Array::sort(_Comparator::numeric());
 		$this->assertEquals([2, 3, 4, 5, 7], $node($data));
+
+	}
+	public function testSortMapMap()
+	{
+		$data = [['4354', '54', '52'],['45675', '435', '234223'],['4354', '54']];
+		$node = _Array::sort(_Comparator::boolean()->map(MathNode::sum())->map(_Filter::isEven()));
+		$this->assertEquals([['45675', '435', '234223'],['4354', '54', '52'],['4354', '54']], $node($data));
 
 	}
 
 	public function testSortStrlen()
 	{
 		$data = ["gfbfbg", "xghgf", "cbnrtgh54fg", "7rjghngf", "cbncbncvb"];
-		$node = ArrayNode::sort(ComparatorNode::stringLength());
+		$node = _Array::sort(_Comparator::stringLength());
 
 		$this->assertEquals([
 			"xghgf",
@@ -53,7 +63,7 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 	public function testSortAlphaNumeric()
 	{
 		$data = ["sgdgd", "adsfd", "fdsgdf", "rgfv", "sfgfsfd"];
-		$node = ArrayNode::sort(ComparatorNode::alphaNumeric());
+		$node = _Array::sort(_Comparator::alphaNumeric());
 
 		$this->assertEquals(
 			[
@@ -69,7 +79,7 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 	public function testSortAlphaNumericInvert()
 	{
 		$data = ["sgdgd", "adsfd", "fdsgdf", "rgfv", "sfgfsfd"];
-		$node = ArrayNode::sort(ComparatorNode::alphaNumeric()->invert());
+		$node = _Array::sort(_Comparator::alphaNumeric()->invert());
 
 		$this->assertEquals(
 			[
@@ -97,7 +107,7 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 		$d = new \stdClass();
 		$d->val = 4;
 		$data = [$c, $b, $a, $d];
-		$node = ArrayNode::sort(ComparatorNode::numeric()->map($map));
+		$node = _Array::sort(_Comparator::numeric()->map($map));
 
 		$this->assertEquals(
 			[
@@ -121,7 +131,7 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 		$d = new \stdClass();
 		$d->val = 4;
 		$data = [$c, $b, $a, $d];
-		$node = ArrayNode::sort(ComparatorNode::numeric()->map($map)->invert());
+		$node = _Array::sort(_Comparator::numeric()->map($map)->invert());
 
 		$this->assertEquals(
 			[
@@ -145,7 +155,7 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 		$d = new \stdClass();
 		$d->val = 4;
 		$data = [$c, $b, $a, $d];
-		$node = ArrayNode::sort(ComparatorNode::numeric()->invert()->map($map));
+		$node = _Array::sort(_Comparator::numeric()->invert()->map($map));
 
 		$this->assertEquals(
 			[
@@ -177,12 +187,12 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 		$d->f = 2;
 		$data = [$c, $b, $a, $d];
 		$node =
-			ArrayNode::sort
+			_Array::sort
 			(
-				ComparatorNode::numeric()
+				_Comparator::numeric()
 					->invert()
 					->map($mapf)
-					->then(ComparatorNode::numeric()
+					->then(_Comparator::numeric()
 						->invert()
 						->map($map))
 			)
@@ -217,9 +227,9 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 		$d->f = 2;
 		$data = [$c, $b, $a, $d];
 		$node =
-			ArrayNode::values()->sort(
-				ComparatorNode::numeric()->invert()->map($mapf),
-				ComparatorNode::numeric()->invert()->map($mapval)
+			_Array::values()->sort(
+				_Comparator::numeric()->invert()->map($mapf),
+				_Comparator::numeric()->invert()->map($mapval)
 			)
 				->map($mapval)
 				->implode('');
@@ -233,30 +243,30 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 	{
 		$data = [true, false, true, false, true, false, true];
 
-		$cmpNode = ComparatorNode::boolean();
-		$node = ArrayNode::values()->sort(
+		$cmpNode = _Comparator::boolean();
+		$node = _Array::values()->sort(
 			$cmpNode
 		);
 
 		$this->assertEquals(
 			[false, false, false, true, true, true, true,]
 			, $node($data));
-		$this->assertInstanceOf(\AbstractBooleanComparatorNode::class, $cmpNode);
+		$this->assertInstanceOf(BooleanComparator::class, $cmpNode);
 	}
 
 	public function testBooleanInv()
 	{
 
-		$cmpNode = ComparatorNode::boolean()->invert();
+		$cmpNode = _Comparator::boolean()->invert();
 		$data = [true, false, true, false, true, false, true];
-		$node = ArrayNode::values()->sort(
+		$node = _Array::values()->sort(
 			$cmpNode
 		);
 
 		$this->assertEquals(
 			[true, true, true, true, false, false, false,]
 			, $node($data));
-		$this->assertInstanceOf(AbstractComparatorNode::class, $cmpNode);
+		$this->assertInstanceOf(AbstractComparator::class, $cmpNode);
 	}
 
 }

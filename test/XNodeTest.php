@@ -3,8 +3,8 @@
 namespace HurlTest;
 
 
-use Hurl\Node\ArrayNode;
-use Hurl\Node\Node;
+use Hurl\Node\Statics\_Array;
+use Hurl\Node\Statics\_Node;
 use Hurl\Out\Tag;
 
 class XNodeTest extends \PHPUnit_Framework_TestCase
@@ -16,8 +16,8 @@ class XNodeTest extends \PHPUnit_Framework_TestCase
 		$data = ['abc', 'qwert', 'xyz'];
 
 
-		$fn = Node::call(function ($data) {
-			$map = ArrayNode::map(function ($value) {
+		$fn = _Node::call(function ($data) {
+			$map = _Array::map(function ($value) {
 				return Tag::init('li')->inner($value);
 			});
 			return Tag::init('ul')->inner($map($data));

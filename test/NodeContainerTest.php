@@ -9,9 +9,9 @@
 namespace HurlTest;
 
 
-use Hurl\Node\ArrayNode;
-use Hurl\Node\Node;
-use Hurl\Node\StringNode;
+use Hurl\Node\Statics\_Array;
+use Hurl\Node\Statics\_Node;
+use Hurl\Node\Statics\_String;
 use Hurl\Node\Traits\ContainerTrait;
 use Hurl\Out\Tag;
 use Hurl\Out\TagNode;
@@ -38,7 +38,7 @@ class ContainerNodeTest extends \PHPUnit_Framework_TestCase
 
 	public function testExplode()
 	{
-		$before = StringNode::explode('.');
+		$before = _String::explode('.');
 		$this->assertEquals($before('a.b')[0], 'a');
 		$this->assertEquals($before('a.b')[1], 'b');
 
@@ -46,7 +46,7 @@ class ContainerNodeTest extends \PHPUnit_Framework_TestCase
 
 	public function testImplode()
 	{
-		$before = ArrayNode::implode('-');
+		$before = _Array::implode('-');
 
 
 		$this->assertEquals($before(['a', 'b']), 'a-b');
@@ -55,8 +55,8 @@ class ContainerNodeTest extends \PHPUnit_Framework_TestCase
 
 	public function testCall()
 	{
-		$before = ArrayNode::explode('.');
-		$after = ArrayNode::implode('-');
+		$before = _Array::explode('.');
+		$after = _Array::implode('-');
 		$append = $before->call($after);
 
 
@@ -73,8 +73,8 @@ class ContainerNodeTest extends \PHPUnit_Framework_TestCase
 		$data = 'abc-acdc-acab';
 
 		$chain =
-			ArrayNode::explode('-')
-				->map(StringNode::ucfirst()->substring(0, 2))
+			_Array::explode('-')
+				->map(_String::ucfirst()->substring(0, 2))
 				->implode('');
 
 		$this->assertEquals('AbAcAc', $chain($data));
@@ -85,8 +85,8 @@ class ContainerNodeTest extends \PHPUnit_Framework_TestCase
 		$data = '5abc-ac5f-38dc-acab';
 
 		$chain =
-			ArrayNode::explode('-')
-				->map(Node::call(function ($data) {
+			_Array::explode('-')
+				->map(_Node::call(function ($data) {
 					return hexdec($data);
 				}))->sum();
 
@@ -98,7 +98,7 @@ class ContainerNodeTest extends \PHPUnit_Framework_TestCase
 		$data = 5;
 		$val1 = 7;
 		$val2 = 11;
-		$call = Node::call(function ($data) use ($val1) {
+		$call = _Node::call(function ($data) use ($val1) {
 			return $data * $val1;
 		})->call(function ($data) use ($val2) {
 			return $data * $val2;
@@ -114,7 +114,7 @@ class ContainerNodeTest extends \PHPUnit_Framework_TestCase
 
 		$li = TagNode::element('li', ['class' => 'le']);
 		$ul = TagNode::element('ul', ['class' => 'fl']);
-		$call = ArrayNode::map($li)
+		$call = _Array::map($li)
 			->implode('')
 			->then($ul);
 
