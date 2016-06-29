@@ -8,6 +8,7 @@
 
 namespace Hurl\Node\Abstracts;
 
+use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Statics\_String;
 
 abstract class AbstractStringNode extends AbstractNode
@@ -67,6 +68,15 @@ abstract class AbstractStringNode extends AbstractNode
 	public function lower_case()
 	{
 		return $this->call(_String::lower_case());
+	}
+
+	/**
+	 * @param string $delimiter
+	 * @return CollectionNodeInterface
+	 */
+	public function explode(string $delimiter)
+	{
+		return $this->call(_String::explode($delimiter));
 	}
 
 	/**

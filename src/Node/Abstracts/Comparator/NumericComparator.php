@@ -19,6 +19,13 @@ abstract class NumericComparator extends AbstractComparator
 	 */
 	public function compare($a, $b)
 	{
-		return $a - $b;
+		$cmp = $a - $b;
+		if ($cmp) {
+			if($cmp < 0){
+				return -1;
+			}
+			return 1;
+		}
+		return 0;
 	}
 }

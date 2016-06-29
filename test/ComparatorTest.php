@@ -165,6 +165,87 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 			, $node($data));
 	}
 
+	public function testSortMapInvertMap()
+	{
+		$map = function ($obj) {
+			return $obj->val;
+		};
+		$double = function ($val) {
+			return $val * 2;
+		};
+
+		$a = new \stdClass();
+		$a->val = 1;
+		$b = new \stdClass();
+		$b->val = 2;
+		$c = new \stdClass();
+		$c->val = 3;
+		$d = new \stdClass();
+		$d->val = 4;
+		$data = [$c, $b, $a, $d];
+		$node = _Array::sort(_Comparator::numeric()->map($double)->invert()->map($map));
+
+		$this->assertEquals(
+			[
+				$d, $c, $b, $a
+			]
+			, $node($data));
+	}
+
+	public function testSortInvertMapMap()
+	{
+		$map = function ($obj) {
+			return $obj->val;
+		};
+		$double = function ($val) {
+			return $val * 2;
+		};
+
+		$a = new \stdClass();
+		$a->val = 1;
+		$b = new \stdClass();
+		$b->val = 2;
+		$c = new \stdClass();
+		$c->val = 3;
+		$d = new \stdClass();
+		$d->val = 4;
+		$data = [$c, $b, $a, $d];
+		$node = _Array::sort(_Comparator::numeric()->invert()->map($map)->map($double));
+
+		$this->assertEquals(
+			[
+				$d, $c, $b, $a
+			]
+			, $node($data));
+	}
+
+	public function testSortMapMapInvert()
+	{
+		$map = function ($obj) {
+			return $obj->val;
+		};
+		$double = function ($val) {
+			return $val * 2;
+		};
+
+		$a = new \stdClass();
+		$a->val = -1.4;
+		$b = new \stdClass();
+		$b->val = -1.2;
+		$c = new \stdClass();
+		$c->val = 1.53;
+		$d = new \stdClass();
+		$d->val = 1.84;
+		$data = [$c, $b, $a, $d];
+		$node = _Array::sort(_Comparator::numeric()->map($map)->map($double)->invert());
+
+		$this->assertEquals(
+			[
+				$d, $c, $b, $a
+			]
+			, $node($data));
+	}
+
 	public function testSortInvertMap_Map_Implode()
 	{
 		$map = function ($obj) {
@@ -194,8 +275,9 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 					->invert()
 					->map($mapf)
 					->then(_Comparator::numeric()
+						->map($map)
 						->invert()
-						->map($map))
+					)
 			)
 				->map($map)
 				->implode('');
@@ -229,7 +311,7 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 		$data = [$c, $b, $a, $d];
 		$node =
 			_Array::values()->sort(
-				_Comparator::numeric()->invert()->map($mapf),
+				_Comparator::numeric()->map($mapf)->invert(),
 				_Comparator::numeric()->invert()->map($mapval)
 			)
 				->map($mapval)

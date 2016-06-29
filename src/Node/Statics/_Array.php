@@ -41,10 +41,7 @@ final class _Array
 	{
 		return new class($mapping) extends ArrayMap
 		{
-			public function __invoke(...$data)
-			{
-				return $this->apply(...$data);
-			}
+			use ArrayTrait;
 		};
 	}
 
@@ -70,10 +67,7 @@ final class _Array
 	{
 		return new class($callable, $init) extends ArrayFold
 		{
-			public function __invoke(...$data)
-			{
-				return $this->apply(...$data);
-			}
+			use ArrayTrait;
 		};
 	}
 
@@ -85,10 +79,7 @@ final class _Array
 	{
 		return new class(...$callable) extends ArraySort
 		{
-			public function __invoke(...$data)
-			{
-				return $this->apply(...$data);
-			}
+			use ArrayTrait;
 		};
 	}
 

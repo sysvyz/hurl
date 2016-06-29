@@ -45,24 +45,7 @@ abstract class AbstractNode implements NodeInterface
 	{
 		return $this->call(_Node::debug());
 	}
-
-	/**
-	 * @param string $delimiter
-	 * @return AbstractNode
-	 */
-	public function explode(string $delimiter)
-	{
-		return $this->call(_Array::explode($delimiter));
-	}
-
-	/**
-	 * @param string $glue
-	 * @return AbstractNode
-	 */
-	public function implode(string $glue)
-	{
-		return $this->call(_Array::implode($glue));
-	}
+	
 
 	/**
 	 * @return AbstractNode

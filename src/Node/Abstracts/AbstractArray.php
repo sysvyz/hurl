@@ -60,6 +60,19 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
 	}
 
 	/**
+	 * @param callable $callable
+	 * @return ArrayMap
+	 */
+	public function fold(callable $callable)
+	{
+		return new class($this, _Array::map($callable)) extends ArrayMap implements ContainerTraitInterface
+		{
+			use ContainerTrait;
+		};
+
+	}
+
+	/**
 	 * @param \callable[] ...$callable
 	 * @return ArraySort
 	 */
@@ -104,4 +117,12 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
 		};
 	}
 
+	/**
+	 * @param string $glue
+	 * @return AbstractNode
+	 */
+	public function implode(string $glue)
+	{
+		return $this->call(_Array::implode($glue));
+	}
 }
