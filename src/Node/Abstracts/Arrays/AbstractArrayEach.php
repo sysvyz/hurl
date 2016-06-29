@@ -10,10 +10,10 @@ namespace Hurl\Node\Abstracts\Arrays;
 
 
 
-use Hurl\Node\Abstracts\AbstractArrayNode;
+use Hurl\Node\Abstracts\AbstractArray;
 use Hurl\Node\Interfaces\ArrayTraitInterface;
 
-abstract class AbstractArrayEach extends AbstractArrayNode implements ArrayTraitInterface
+abstract class AbstractArrayEach extends AbstractArray implements ArrayTraitInterface
 {
 	private $do;
 

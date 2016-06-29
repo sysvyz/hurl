@@ -9,9 +9,9 @@
 namespace Hurl\Node\Abstracts\Filters;
 
 
-use Hurl\Node\Abstracts\AbstractFilterNode;
+use Hurl\Node\Abstracts\AbstractFilter;
 
-abstract class IsStringFilter extends AbstractFilterNode
+abstract class IsStringFilter extends AbstractFilter
 {
 	public function apply($value)
 	{

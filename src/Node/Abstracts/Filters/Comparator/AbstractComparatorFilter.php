@@ -9,9 +9,9 @@
 namespace Hurl\Node\Abstracts\Filters\Comparator;
 
 
-use Hurl\Node\Abstracts\AbstractFilterNode;
+use Hurl\Node\Abstracts\AbstractFilter;
 
-abstract class AbstractComparatorFilter extends AbstractFilterNode
+abstract class AbstractComparatorFilter extends AbstractFilter
 {
 	protected $value;
 
@@ -23,5 +23,6 @@ abstract class AbstractComparatorFilter extends AbstractFilterNode
 	{
 		$this->value = $value;
 	}
+	abstract public function compare($that, $other);
 
 }

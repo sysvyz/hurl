@@ -9,8 +9,8 @@
 namespace Hurl\Node\Abstracts\Filters\Logic;
 
 
-use Hurl\Node\Abstracts\AbstractFilterNode;
+use Hurl\Node\Abstracts\AbstractFilter;
 
-abstract class LogicFilterNode extends AbstractFilterNode
+abstract class LogicFilter extends AbstractFilter
 {
 }

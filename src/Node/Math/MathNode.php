@@ -10,8 +10,8 @@ namespace Hurl\Node\Math;
 
 
 use Hurl\Node\Abstracts\AbstractNode;
-use Hurl\Node\ArrayNode;
-use Hurl\Node\ComparatorNode;
+use Hurl\Node\Statics\_Array;
+use Hurl\Node\Statics\_Comparator;
 
 class MathNode
 {
@@ -58,7 +58,7 @@ class MathNode
 
 			public function __invoke(...$data)
 			{
-				$sort = ArrayNode::sort(ComparatorNode::numeric());
+				$sort = _Array::sort(_Comparator::numeric());
 				$arr = $sort($data[0]);
 				$length = count($arr);
 
@@ -77,14 +77,14 @@ class MathNode
 	 */
 	public static function sum()
 	{
-		return ArrayNode::fold(function ($a, $b) {
+		return _Array::fold(function ($a, $b) {
 			return $a + $b;
 		}, 0);
 	}
 
 	public static function product()
 	{
-		return ArrayNode::fold(function ($a, $b) {
+		return _Array::fold(function ($a, $b) {
 			return $a * $b;
 		}, 1);
 	}

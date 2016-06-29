@@ -10,15 +10,14 @@ namespace Hurl\Node\Abstracts\Arrays;
 
 
 
-use Hurl\Node\Abstracts\AbstractArrayNode;
+use Hurl\Node\Abstracts\AbstractArray;
 use Hurl\Node\Interfaces\ArrayTraitInterface;
 
-abstract class AbstractArrayFilter extends AbstractArrayNode implements ArrayTraitInterface
+abstract class AbstractArrayFilter extends AbstractArray implements ArrayTraitInterface
 {	/**
  * @var callable
  */
 	protected $callable;
-
 
 	/**
 	 *  constructor.
@@ -38,4 +37,5 @@ abstract class AbstractArrayFilter extends AbstractArrayNode implements ArrayTra
 		}
 		return array_filter($data[0]);
 	}
+
 }

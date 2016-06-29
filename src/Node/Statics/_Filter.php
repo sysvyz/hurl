@@ -6,9 +6,10 @@
  * Time: 22:34
  */
 
-namespace Hurl\Node;
+namespace Hurl\Node\Statics;
 
 
+use Hurl\Node\Abstracts\AbstractFilter;
 use Hurl\Node\Abstracts\Filters\Comparator\GreaterOrEqualFilter;
 use Hurl\Node\Abstracts\Filters\Comparator\GreaterThanFilter;
 use Hurl\Node\Abstracts\Filters\Comparator\IsEqualFilter;
@@ -30,10 +31,8 @@ use Hurl\Node\Traits\ComparatorFilterTrait;
 use Hurl\Node\Traits\FilterContainerTrait;
 use Hurl\Node\Traits\FilterTrait;
 
-require 'Type/filter.php';
 
-
-class FilterNode
+abstract class _Filter
 {
 	/**
 	 * @return IsEmptyFilter
@@ -203,5 +202,29 @@ class FilterNode
 		};
 	}
 
+	public static function init(callable $callable)
+	{
+		return new class($callable) extends AbstractFilter
+		{
+			private $callable;
+
+			/**
+			 *  constructor.
+			 * @param $callable
+			 */
+			public function __construct($callable)
+			{
+				$this->callable = $callable;
+			}
+
+
+
+			public function __invoke(... $args)
+			{
+				$f= $this->callable;
+				return $f($args[0],$args[1]);
+			}
+		};
+	}
 
 }

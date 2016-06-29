@@ -7,12 +7,12 @@
  */
 
 namespace Hurl\Node\Abstracts\Arrays;
-use Hurl\Node\Abstracts\AbstractArrayNode;
-use Hurl\Node\Abstracts\AbstractComparatorNode;
+use Hurl\Node\Abstracts\AbstractArray;
+use Hurl\Node\Abstracts\AbstractComparator;
 use Hurl\Node\Interfaces\ArrayTraitInterface;
 use Hurl\Node\Traits\ComparatorContainerTrait;
 
-abstract class AbstractArraySort extends AbstractArrayNode implements ArrayTraitInterface
+abstract class AbstractArraySort extends AbstractArray implements ArrayTraitInterface
 {
 	/**
 	 * @var callable
@@ -28,7 +28,7 @@ abstract class AbstractArraySort extends AbstractArrayNode implements ArrayTrait
 		$callable = $callables[0];
 		if (count($callables) > 1) {
 			for ($int = 1; $int < count($callables); $int++) {
-				$callable = new class($callable, $callables[$int]) extends AbstractComparatorNode
+				$callable = new class($callable, $callables[$int]) extends AbstractComparator
 				{
 					use ComparatorContainerTrait;
 				};

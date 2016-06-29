@@ -6,12 +6,12 @@
  * Time: 04:09
  */
 
-namespace Hurl\Node;
+namespace Hurl\Node\Statics;
 
 
 use Hurl\Node\Abstracts\AbstractNode;
 
-class Node
+class _Node
 {
 
 //	public static function lcfirst()

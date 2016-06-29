@@ -1,4 +1,7 @@
 <?php
+
+namespace Hurl\Node\Abstracts\Filters\Logic;
+
 /**
  * Created by PhpStorm.
  * User: mb
@@ -6,9 +9,8 @@
  * Time: 06:22
  */
 
-namespace Hurl\Node\Abstracts\Filters\Logic;
 
 
-abstract class NegatedFilter extends LogicFilterNode
+abstract class NegatedFilter extends LogicFilter
 {
 }

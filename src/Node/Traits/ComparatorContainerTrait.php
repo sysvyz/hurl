@@ -41,16 +41,15 @@ trait ComparatorContainerTrait
 	 */
 	public function compare($a, $b)
 	{
-		$cmp = $this->before->compare($a, $b);
+		$cmp = $this->getBefore()->compare($a, $b);
 		if ($cmp) {
 			return $cmp;
 		}
-		return $this->after->compare($a, $b);
+		return $this->getAfter()->compare($a, $b);
 	}
 
 	/**
-	 * @return callable
-	 * @codeCoverageIgnore
+	 * @return ComparatorInterface
 	 */
 	public function getBefore()
 	{
@@ -58,8 +57,7 @@ trait ComparatorContainerTrait
 	}
 
 	/**
-	 * @return callable
-	 * @codeCoverageIgnore
+	 * @return ComparatorInterface
 	 */
 	public function getAfter()
 	{

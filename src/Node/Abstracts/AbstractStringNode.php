@@ -8,7 +8,7 @@
 
 namespace Hurl\Node\Abstracts;
 
-use Hurl\Node\StringNode;
+use Hurl\Node\Statics\_String;
 
 abstract class AbstractStringNode extends AbstractNode
 {
@@ -18,7 +18,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function trim()
 	{
-		return $this->call(StringNode::trim());
+		return $this->call(_String::trim());
 	}
 
 	/**
@@ -26,7 +26,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function ltrim()
 	{
-		return $this->call(StringNode::ltrim());
+		return $this->call(_String::ltrim());
 	}
 
 	/**
@@ -34,7 +34,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function rtrim()
 	{
-		return $this->call(StringNode::rtrim());
+		return $this->call(_String::rtrim());
 	}
 
 	/**
@@ -42,7 +42,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function ucfirst()
 	{
-		return $this->call(StringNode::ucfirst());
+		return $this->call(_String::ucfirst());
 	}
 
 	/**
@@ -50,7 +50,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function AbstractStringNode()
 	{
-		return $this->call(StringNode::lcfirst());
+		return $this->call(_String::lcfirst());
 	}
 
 	/**
@@ -58,7 +58,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function upper_case()
 	{
-		return $this->call(StringNode::upper_case());
+		return $this->call(_String::upper_case());
 	}
 
 	/**
@@ -66,7 +66,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function lower_case()
 	{
-		return $this->call(StringNode::lower_case());
+		return $this->call(_String::lower_case());
 	}
 
 	/**
@@ -76,7 +76,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function substring($start, $length = null)
 	{
-		return $this->call(StringNode::substring($start, $length));
+		return $this->call(_String::substring($start, $length));
 	}
 
 

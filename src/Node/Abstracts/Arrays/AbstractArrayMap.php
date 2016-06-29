@@ -9,10 +9,10 @@
 namespace Hurl\Node\Abstracts\Arrays;
 
 
-use Hurl\Node\Abstracts\AbstractArrayNode;
+use Hurl\Node\Abstracts\AbstractArray;
 use Hurl\Node\Interfaces\ArrayTraitInterface;
 
-abstract class AbstractArrayMap extends AbstractArrayNode implements ArrayTraitInterface
+abstract class AbstractArrayMap extends AbstractArray implements ArrayTraitInterface
 {	protected $mapping;
 
 	public function __construct($mapping)

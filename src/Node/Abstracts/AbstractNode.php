@@ -1,10 +1,10 @@
 <?php
 namespace Hurl\Node\Abstracts;
 
-use Hurl\Node\ArrayNode;
+use Hurl\Node\Statics\_Array;
 use Hurl\Node\Interfaces\ContainerTraitInterface;
 use Hurl\Node\Interfaces\NodeInterface;
-use Hurl\Node\Node;
+use Hurl\Node\Statics\_Node;
 use Hurl\Node\Traits\ContainerTrait;
 
 /**
@@ -43,7 +43,7 @@ abstract class AbstractNode implements NodeInterface
 	 */
 	public function debug()
 	{
-		return $this->call(Node::debug());
+		return $this->call(_Node::debug());
 	}
 
 	/**
@@ -52,7 +52,7 @@ abstract class AbstractNode implements NodeInterface
 	 */
 	public function explode(string $delimiter)
 	{
-		return $this->call(ArrayNode::explode($delimiter));
+		return $this->call(_Array::explode($delimiter));
 	}
 
 	/**
@@ -61,7 +61,7 @@ abstract class AbstractNode implements NodeInterface
 	 */
 	public function implode(string $glue)
 	{
-		return $this->call(ArrayNode::implode($glue));
+		return $this->call(_Array::implode($glue));
 	}
 
 	/**
@@ -69,7 +69,7 @@ abstract class AbstractNode implements NodeInterface
 	 */
 	public function fromJson()
 	{
-		return $this->call(Node::fromJson());
+		return $this->call(_Node::fromJson());
 	}
 
 	/**
@@ -77,8 +77,17 @@ abstract class AbstractNode implements NodeInterface
 	 */
 	public function toJson()
 	{
-		return $this->call(Node::toJson());
+		return $this->call(_Node::toJson());
 	}
+
+	public function asClosure()
+	{
+		
+		return function (...$args){
+			return $this(...$args);
+		};
+	}
+
 
 
 }

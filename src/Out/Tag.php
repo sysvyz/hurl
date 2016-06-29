@@ -9,7 +9,7 @@
 namespace Hurl\Out;
 
 
-use Hurl\Node\ArrayNode;
+use Hurl\Node\Statics\_Array;
 
 class Tag
 {
@@ -37,7 +37,7 @@ class Tag
 
 	function __toString()
 	{
-		$mapimplode = ArrayNode::recursiveMerge()->map(function ($e) {
+		$mapimplode = _Array::recursiveMerge()->map(function ($e) {
 
 			return $e . '';
 		})->implode('');

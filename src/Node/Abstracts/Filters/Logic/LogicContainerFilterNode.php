@@ -11,7 +11,7 @@ namespace Hurl\Node\Abstracts\Filters\Logic;
 
 use Hurl\Node\Interfaces\FilterContainerTraitInterface;
 
-abstract class LogicContainerFilterNode extends LogicFilterNode implements FilterContainerTraitInterface
+abstract class LogicContainerFilterNode extends LogicFilter implements FilterContainerTraitInterface
 {
 	/**
 	 * @var callable[]

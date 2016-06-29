@@ -6,10 +6,9 @@
  * Time: 17:40
  */
 
-namespace Hurl\Node;
-include "Type/array.php";
+namespace Hurl\Node\Statics;
 
-use Hurl\Node\Abstracts\AbstractArrayNode;
+use Hurl\Node\Abstracts\AbstractArray;
 use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\Abstracts\AbstractStringNode;
 use Hurl\Node\Abstracts\Arrays\AbstractArrayEach;
@@ -22,7 +21,7 @@ use Hurl\Node\Abstracts\Arrays\AbstractArrayValues;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Traits\ArrayTrait;
 
-class ArrayNode
+class _Array
 {
 	/**
 	 * @param callable $mapping
@@ -65,7 +64,6 @@ class ArrayNode
 			{
 				return $this->apply(...$data);
 			}
-
 		};
 	}
 
@@ -108,15 +106,30 @@ class ArrayNode
 		};
 	}
 
-
 	/**
 	 * @param $delimiter
 	 * @return CollectionNodeInterface
 	 */
 	public static function explode($delimiter)
 	{
-		return StringNode::explode($delimiter);
+		return new class($delimiter) extends AbstractArray
+		{
+			private $delimiter;
+
+			public function __construct($delimiter)
+			{
+				$this->delimiter = $delimiter;
+			}
+
+			public function __invoke(...$data)
+			{
+				return explode($this->delimiter, $data[0]);
+
+			}
+		};
+
 	}
+
 
 	/**
 	 * @param $glue
@@ -169,7 +182,7 @@ class ArrayNode
 	 */
 	public static function recursiveMerge()
 	{
-		return new class() extends AbstractArrayNode
+		return new class() extends AbstractArray
 		{
 			private function _mergeRecursive(...$data)
 			{

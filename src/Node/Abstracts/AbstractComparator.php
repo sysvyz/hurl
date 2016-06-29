@@ -12,8 +12,9 @@ namespace Hurl\Node\Abstracts;
 use Hurl\Node\Interfaces\ComparatorInterface;
 use Hurl\Node\Interfaces\ContainerTraitInterface;
 use Hurl\Node\Traits\ComparatorContainerTrait;
+use Hurl\Node\Traits\ContainerTrait;
 
-abstract class AbstractComparatorNode extends AbstractNode implements ComparatorInterface
+abstract class AbstractComparator extends AbstractNode implements ComparatorInterface
 {
 
 	private $isInvert = 1;
@@ -22,13 +23,19 @@ abstract class AbstractComparatorNode extends AbstractNode implements Comparator
 	 */
 	private $callable = null;
 
+	public function __invoke(...$data)
+	{
+
+		return $this->compare($data[0], $data[1]);
+
+	}
 	/**
 	 * @param callable $do
 	 * @return AbstractNode
 	 */
 	public function call(callable $do)
 	{
-		return new class($this, $do) extends AbstractComparatorNode implements ContainerTraitInterface
+		return new class($this, $do) extends AbstractComparator implements ContainerTraitInterface
 		{
 			use ComparatorContainerTrait;
 
@@ -37,13 +44,13 @@ abstract class AbstractComparatorNode extends AbstractNode implements Comparator
 
 
 	/**
-	 * @return AbstractComparatorNode
+	 * @return AbstractComparator
 	 */
 
 	public function invert()
 	{
 
-		return new class($this) extends AbstractComparatorNode
+		return new class($this) extends AbstractComparator
 		{
 			private $inner;
 
@@ -78,7 +85,7 @@ abstract class AbstractComparatorNode extends AbstractNode implements Comparator
 	{
 
 
-		return new class($this, $map) extends AbstractComparatorNode
+		return new class($this, $map) extends AbstractComparator
 		{
 			private $inner;
 			/**
@@ -109,14 +116,20 @@ abstract class AbstractComparatorNode extends AbstractNode implements Comparator
 				$map = $this->map;
 				return $this->inner->compare($map($a), $map($b));
 			}
+
+			public function map(callable $map){
+				$before = $this->map;
+				$this->map = new class($before, $map) extends AbstractNode implements ContainerTraitInterface
+				{
+					use ContainerTrait;
+				};
+
+				return $this;
+			}
+
+
 		};
 
 	}
 
-	public function __invoke(...$data)
-	{
-
-		return $this->compare($data[0], $data[1]);
-
-	}
 }

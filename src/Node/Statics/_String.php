@@ -6,13 +6,13 @@
  * Time: 04:09
  */
 
-namespace Hurl\Node;
+namespace Hurl\Node\Statics;
 
 
-use Hurl\Node\Abstracts\AbstractArrayNode;
 use Hurl\Node\Abstracts\AbstractStringNode;
+use Hurl\Node\Interfaces\CollectionNodeInterface;
 
-class StringNode
+class _String
 {
 
 
@@ -121,28 +121,18 @@ class StringNode
 
 	public static function implode($glue)
 	{
-		return ArrayNode::implode($glue);
+		return _Array::implode($glue);
 	}
 
+	/**
+	 * @param $delimiter
+	 * @return CollectionNodeInterface
+	 */
 	public static function explode($delimiter)
 	{
-		return new class($delimiter) extends AbstractArrayNode
-		{
-			private $delimiter;
-
-			public function __construct($delimiter)
-			{
-				$this->delimiter = $delimiter;
-			}
-
-			public function __invoke(...$data)
-			{
-				return explode($this->delimiter, $data[0]);
-
-			}
-		};
-
+		return _Array::explode($delimiter);
 	}
+
 
 
 	/**

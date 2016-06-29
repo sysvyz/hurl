@@ -9,11 +9,11 @@
 namespace Hurl\Node\Abstracts\Filters\Number;
 
 
-use Hurl\Node\Abstracts\AbstractFilterNode;
+use Hurl\Node\Abstracts\AbstractFilter;
 use Hurl\Node\Interfaces\FilterTraitInterface;
 use Hurl\Node\Traits\FilterTrait;
 
-abstract class IsOddFilter extends AbstractFilterNode
+abstract class IsOddFilter extends AbstractFilter
 {
 	public function apply($value)
 	{
