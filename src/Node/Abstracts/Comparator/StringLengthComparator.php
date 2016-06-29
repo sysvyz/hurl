@@ -9,7 +9,6 @@
 namespace Hurl\Node\Abstracts\Comparator;
 
 
-
 use Hurl\Node\Abstracts\AbstractComparator;
 
 abstract class StringLengthComparator extends AbstractComparator

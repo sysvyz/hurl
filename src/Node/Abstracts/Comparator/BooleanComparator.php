@@ -20,6 +20,6 @@ abstract class BooleanComparator extends AbstractComparator
 	 */
 	public function compare($a, $b)
 	{
-		return ($a?1:0) - ($b?1:0);
+		return ($a ? 1 : 0) - ($b ? 1 : 0);
 	}
 }

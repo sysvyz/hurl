@@ -3,28 +3,26 @@
  * Created by PhpStorm.
  * User: mb
  * Date: 27.06.16
- * Time: 07:21
+ * Time: 07:18
  */
 
 namespace Hurl\Node\Abstracts\Arrays;
 
 
-
 use Hurl\Node\Abstracts\AbstractArray;
 use Hurl\Node\Interfaces\ArrayTraitInterface;
 
-abstract class AbstractArrayEach extends AbstractArray implements ArrayTraitInterface
+abstract class ArrayMap extends AbstractArray implements ArrayTraitInterface
 {
-	private $do;
+	protected $mapping;
 
-	public function __construct($do)
+	public function __construct($mapping)
 	{
-		$this->do = $do;
+		$this->mapping = $mapping;
 	}
 
 	public function apply(...$data)
 	{
-		array_walk($data[0], $this->do);
-		return $data;
+		return array_map($this->mapping, ...$data);
 	}
 }

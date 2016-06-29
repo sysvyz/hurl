@@ -1,10 +1,10 @@
 <?php
 use Hurl\Node\Abstracts\AbstractArray;
 use Hurl\Node\Abstracts\AbstractNode;
-use Hurl\Node\Abstracts\Arrays\AbstractArrayEach;
-use Hurl\Node\Abstracts\Arrays\AbstractArrayFilter;
-use Hurl\Node\Abstracts\Arrays\AbstractArrayMap;
-use Hurl\Node\Abstracts\Arrays\AbstractArraySort;
+use Hurl\Node\Abstracts\Arrays\ArrayEach;
+use Hurl\Node\Abstracts\Arrays\ArrayFilter;
+use Hurl\Node\Abstracts\Arrays\ArrayMap;
+use Hurl\Node\Abstracts\Arrays\ArraySort;
 use Hurl\Node\Statics\_Array;
 use Hurl\Node\Statics\_String;
 
@@ -23,7 +23,7 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 			_Array::map(function ($val) {
 				return ucfirst($val);
 			});
-		$this->assertInstanceOf(AbstractArrayMap::class, $before);
+		$this->assertInstanceOf(ArrayMap::class, $before);
 		$this->assertInstanceOf(AbstractArray::class, $before);
 		$this->assertInstanceOf(AbstractNode::class, $before);
 		$this->assertEquals($before(['a.b'])[0], 'A.b');
@@ -34,7 +34,7 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 		$before = _Array::map(function ($a, $b) {
 			return [$a => $b];
 		});
-		$this->assertInstanceOf(AbstractArrayMap::class, $before);
+		$this->assertInstanceOf(ArrayMap::class, $before);
 		$this->assertInstanceOf(AbstractArray::class, $before);
 		$this->assertInstanceOf(AbstractNode::class, $before);
 		$arr = ($before(['a', 'b'], ['c', 'd']));
@@ -48,7 +48,7 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 			_Array::values()->map(function ($val) {
 				return ucfirst($val);
 			});
-		$this->assertInstanceOf(AbstractArrayMap::class, $before);
+		$this->assertInstanceOf(ArrayMap::class, $before);
 		$this->assertInstanceOf(AbstractArray::class, $before);
 		$this->assertInstanceOf(AbstractNode::class, $before);
 		$this->assertEquals($before(['a.b'])[0], 'A.b');
@@ -59,7 +59,7 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 	{
 		$before =
 			_Array::map(_String::ucfirst());
-		$this->assertInstanceOf(AbstractArrayMap::class, $before);
+		$this->assertInstanceOf(ArrayMap::class, $before);
 		$this->assertInstanceOf(AbstractArray::class, $before);
 		$this->assertInstanceOf(AbstractNode::class, $before);
 		$this->assertEquals($before(['a.b'])[0], 'A.b');
@@ -72,7 +72,7 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 		$sort = _Array::values()->sort(function ($a, $b) {
 			return $a - $b;
 		});
-		$this->assertInstanceOf(AbstractArraySort::class, $sort);
+		$this->assertInstanceOf(ArraySort::class, $sort);
 		$this->assertInstanceOf(AbstractArray::class, $sort);
 		$this->assertInstanceOf(AbstractNode::class, $sort);
 
@@ -88,9 +88,10 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 			return $a - $b;
 		});
 
-		$this->assertInstanceOf(AbstractArraySort::class, $mergeSort);
+		$this->assertInstanceOf(ArraySort::class, $mergeSort);
 		$this->assertInstanceOf(AbstractArray::class, $mergeSort);
 		$this->assertInstanceOf(AbstractNode::class, $mergeSort);
+		$this->assertEquals($mergeSort(...[$data, $data2]), [1, 2, 3, 3, 4, 4, 4, 5, 5, 6, 7, 8, 8]);
 		$this->assertEquals($mergeSort($data, $data2), [1, 2, 3, 3, 4, 4, 4, 5, 5, 6, 7, 8, 8]);
 	}
 
@@ -102,7 +103,7 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 			return $a - $b;
 		});
 
-		$this->assertInstanceOf(AbstractArraySort::class, $mergeSort);
+		$this->assertInstanceOf(ArraySort::class, $mergeSort);
 		$this->assertInstanceOf(AbstractArray::class, $mergeSort);
 		$this->assertInstanceOf(AbstractNode::class, $mergeSort);
 		$this->assertEquals($mergeSort(...$data), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
@@ -117,7 +118,7 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 			$stack[] = $a;
 			$this->assertEquals($count++, $a);
 		});
-		$this->assertInstanceOf(AbstractArrayEach::class, $push);
+		$this->assertInstanceOf(ArrayEach::class, $push);
 		$this->assertInstanceOf(AbstractArray::class, $push);
 		$this->assertInstanceOf(AbstractNode::class, $push);
 		$push([1, 2, 3, 4, 5, 6, 7]);
@@ -131,7 +132,7 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 
 		$filter = _Array::filter();
 
-		$this->assertInstanceOf(AbstractArrayFilter::class, $filter);
+		$this->assertInstanceOf(ArrayFilter::class, $filter);
 
 		$this->assertInstanceOf(AbstractArray::class, $filter);
 		$this->assertInstanceOf(AbstractNode::class, $filter);

@@ -23,6 +23,7 @@ abstract class AbstractComparatorFilter extends AbstractFilter
 	{
 		$this->value = $value;
 	}
+
 	abstract public function compare($that, $other);
 
 }

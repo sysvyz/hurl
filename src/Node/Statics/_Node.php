@@ -11,9 +11,11 @@ namespace Hurl\Node\Statics;
 
 use Hurl\Node\Abstracts\AbstractNode;
 
-class _Node
+abstract class _Node
 {
-
+	private final function __construct()
+	{
+	}
 //	public static function lcfirst()
 //	{
 //		return StringNode::lcfirst();

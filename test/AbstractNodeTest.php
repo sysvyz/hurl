@@ -54,12 +54,11 @@ class AbstractNodeTest extends PHPUnit_Framework_TestCase
 		$explode = _String::trim()->explode(',')->asClosure();
 
 
-		$this->assertInstanceOf(Closure::class,$explode);
-		$this->assertNotInstanceOf(\Hurl\Node\Abstracts\AbstractNode::class,$explode);
+		$this->assertInstanceOf(Closure::class, $explode);
+		$this->assertNotInstanceOf(\Hurl\Node\Abstracts\AbstractNode::class, $explode);
 
 		$array = $explode($data);
 		$this->assertEquals($array, [4, 78, 2, 7, 4, 34, 43, 34]);
-
 
 
 		return $array;

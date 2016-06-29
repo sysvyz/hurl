@@ -9,14 +9,14 @@
 namespace Hurl\Node\Abstracts;
 
 
-use Hurl\Node\Abstracts\Arrays\AbstractArrayEach;
-use Hurl\Node\Abstracts\Arrays\AbstractArrayMap;
-use Hurl\Node\Abstracts\Arrays\AbstractArrayMerge;
-use Hurl\Node\Abstracts\Arrays\AbstractArraySort;
-use Hurl\Node\Statics\_Array;
+use Hurl\Node\Abstracts\Arrays\ArrayEach;
+use Hurl\Node\Abstracts\Arrays\ArrayMap;
+use Hurl\Node\Abstracts\Arrays\ArrayMerge;
+use Hurl\Node\Abstracts\Arrays\ArraySort;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Interfaces\ContainerTraitInterface;
 use Hurl\Node\Math\MathNode;
+use Hurl\Node\Statics\_Array;
 use Hurl\Node\Traits\ContainerTrait;
 
 abstract class AbstractArray extends AbstractNode implements CollectionNodeInterface
@@ -33,13 +33,14 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
 			use ContainerTrait;
 		};
 	}
+
 	/**
 	 * @param callable $do
-	 * @return AbstractArrayEach
+	 * @return ArrayEach
 	 */
 	public function each(callable $do)
 	{
-		return new class($this, _Array::each($do)) extends AbstractArrayEach implements ContainerTraitInterface
+		return new class($this, _Array::each($do)) extends ArrayEach implements ContainerTraitInterface
 		{
 			use ContainerTrait;
 		};
@@ -47,11 +48,11 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
 
 	/**
 	 * @param callable $callable
-	 * @return AbstractArrayMap
+	 * @return ArrayMap
 	 */
 	public function map(callable $callable)
 	{
-		return new class($this, _Array::map($callable)) extends AbstractArrayMap implements ContainerTraitInterface
+		return new class($this, _Array::map($callable)) extends ArrayMap implements ContainerTraitInterface
 		{
 			use ContainerTrait;
 		};
@@ -60,22 +61,22 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
 
 	/**
 	 * @param \callable[] ...$callable
-	 * @return AbstractArraySort
+	 * @return ArraySort
 	 */
 	public function sort(callable ...$callable)
 	{
-		return new class($this, _Array::sort(...$callable)) extends AbstractArraySort implements ContainerTraitInterface
+		return new class($this, _Array::sort(...$callable)) extends ArraySort implements ContainerTraitInterface
 		{
 			use ContainerTrait;
 		};
 	}
 
 	/**
-	 * @return AbstractArraySort
+	 * @return ArraySort
 	 */
 	public function merge()
 	{
-		return new class($this, _Array::merge()) extends AbstractArrayMerge implements ContainerTraitInterface
+		return new class($this, _Array::merge()) extends ArrayMerge implements ContainerTraitInterface
 		{
 			use ContainerTrait;
 		};
@@ -93,7 +94,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
 	}
 
 	/**
-	 * @return AbstractArraySort
+	 * @return ArraySort
 	 */
 	public function values()
 	{

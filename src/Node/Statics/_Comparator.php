@@ -10,13 +10,17 @@ namespace Hurl\Node\Statics;
 
 
 use Hurl\Node\Abstracts\AbstractComparator;
-use Hurl\Node\Abstracts\Comparator\StringComparator;
 use Hurl\Node\Abstracts\Comparator\BooleanComparator;
 use Hurl\Node\Abstracts\Comparator\NumericComparator;
+use Hurl\Node\Abstracts\Comparator\StringComparator;
 use Hurl\Node\Abstracts\Comparator\StringLengthComparator;
 
 abstract class _Comparator
 {
+	private final function __construct()
+	{
+	}
+
 	/**
 	 * @return AbstractComparator
 	 */

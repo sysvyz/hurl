@@ -9,9 +9,9 @@
 namespace Hurl\Node\Abstracts;
 
 
+use Hurl\Node\Abstracts\Filters\Logic\NegatedFilter;
 use Hurl\Node\Interfaces\ContainerTraitInterface;
 use Hurl\Node\Traits\ContainerTrait;
-use Hurl\Node\Abstracts\Filters\Logic\NegatedFilter;
 
 
 abstract class AbstractFilter extends AbstractNode
@@ -50,7 +50,6 @@ abstract class AbstractFilter extends AbstractNode
 
 		};
 	}
-	
-	
-	
+
+
 }

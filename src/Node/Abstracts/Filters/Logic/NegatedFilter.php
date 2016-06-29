@@ -10,7 +10,6 @@ namespace Hurl\Node\Abstracts\Filters\Logic;
  */
 
 
-
 abstract class NegatedFilter extends LogicFilter
 {
 }

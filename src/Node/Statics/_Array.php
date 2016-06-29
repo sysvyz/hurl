@@ -11,25 +11,30 @@ namespace Hurl\Node\Statics;
 use Hurl\Node\Abstracts\AbstractArray;
 use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\Abstracts\AbstractStringNode;
-use Hurl\Node\Abstracts\Arrays\AbstractArrayEach;
-use Hurl\Node\Abstracts\Arrays\AbstractArrayFilter;
-use Hurl\Node\Abstracts\Arrays\AbstractArrayFold;
-use Hurl\Node\Abstracts\Arrays\AbstractArrayMap;
-use Hurl\Node\Abstracts\Arrays\AbstractArrayMerge;
-use Hurl\Node\Abstracts\Arrays\AbstractArraySort;
-use Hurl\Node\Abstracts\Arrays\AbstractArrayValues;
+use Hurl\Node\Abstracts\Arrays\ArrayEach;
+use Hurl\Node\Abstracts\Arrays\ArrayFilter;
+use Hurl\Node\Abstracts\Arrays\ArrayFold;
+use Hurl\Node\Abstracts\Arrays\ArrayMap;
+use Hurl\Node\Abstracts\Arrays\ArrayMerge;
+use Hurl\Node\Abstracts\Arrays\ArrayRecursiveMerge;
+use Hurl\Node\Abstracts\Arrays\ArraySort;
+use Hurl\Node\Abstracts\Arrays\ArrayValues;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Traits\ArrayTrait;
 
-class _Array
+abstract class _Array
 {
+	private final function __construct()
+	{
+	}
+
 	/**
 	 * @param callable $mapping
-	 * @return AbstractArrayMap
+	 * @return ArrayMap
 	 */
 	public static function map(callable $mapping = null)
 	{
-		return new class($mapping) extends AbstractArrayMap
+		return new class($mapping) extends ArrayMap
 		{
 			public function __invoke(...$data)
 			{
@@ -54,11 +59,11 @@ class _Array
 
 	/**
 	 * @param callable $callable
-	 * @return AbstractArrayFold
+	 * @return ArrayFold
 	 */
 	public static function fold(callable $callable, $init = null)
 	{
-		return new class($callable, $init) extends AbstractArrayFold
+		return new class($callable, $init) extends ArrayFold
 		{
 			public function __invoke(...$data)
 			{
@@ -69,11 +74,11 @@ class _Array
 
 	/**
 	 * @param callable $callable
-	 * @return AbstractArraySort
+	 * @return ArraySort
 	 */
 	public static function sort(callable ...$callable)
 	{
-		return new class(...$callable) extends AbstractArraySort
+		return new class(...$callable) extends ArraySort
 		{
 			public function __invoke(...$data)
 			{
@@ -84,11 +89,11 @@ class _Array
 
 	/**
 	 * @param callable $callable
-	 * @return AbstractArrayFilter
+	 * @return ArrayFilter
 	 */
 	public static function filter(callable $callable = null)
 	{
-		return new class($callable) extends AbstractArrayFilter
+		return new class($callable) extends ArrayFilter
 		{
 			use ArrayTrait;
 		};
@@ -96,11 +101,11 @@ class _Array
 
 	/**
 	 * @param $do
-	 * @return AbstractArrayEach
+	 * @return ArrayEach
 	 */
 	public static function each(callable $do)
 	{
-		return new class($do) extends AbstractArrayEach
+		return new class($do) extends ArrayEach
 		{
 			use ArrayTrait;
 		};
@@ -154,11 +159,11 @@ class _Array
 	}
 
 	/**
-	 * @return AbstractArrayMerge
+	 * @return ArrayMerge
 	 */
 	public static function merge()
 	{
-		return new class() extends AbstractArrayMerge
+		return new class() extends ArrayMerge
 		{
 			use ArrayTrait;
 
@@ -166,11 +171,11 @@ class _Array
 	}
 
 	/**
-	 * @return AbstractArrayValues
+	 * @return ArrayValues
 	 */
 	public static function values()
 	{
-		return new class() extends AbstractArrayValues
+		return new class() extends ArrayValues
 		{
 			use ArrayTrait;
 		};
@@ -182,23 +187,10 @@ class _Array
 	 */
 	public static function recursiveMerge()
 	{
-		return new class() extends AbstractArray
+		return new class() extends ArrayRecursiveMerge
 		{
-			private function _mergeRecursive(...$data)
-			{
-				$r = array_map(function ($elem) {
-					if (is_array($elem)) {
-						return $this->_mergeRecursive(... $elem);
-					}
-					return [$elem];
-				}, $data);
-				return array_merge(...$r);
-			}
+			use ArrayTrait;
 
-			public function __invoke(...$data)
-			{
-				return $this->_mergeRecursive(...$data);
-			}
 		};
 	}
 }

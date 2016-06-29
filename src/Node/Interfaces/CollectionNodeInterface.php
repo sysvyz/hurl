@@ -8,9 +8,9 @@
 namespace Hurl\Node\Interfaces;
 
 use Hurl\Node\Abstracts\AbstractNode;
-use Hurl\Node\Abstracts\Arrays\AbstractArrayEach;
-use Hurl\Node\Abstracts\Arrays\AbstractArrayMap;
-use Hurl\Node\Abstracts\Arrays\AbstractArraySort;
+use Hurl\Node\Abstracts\Arrays\ArrayEach;
+use Hurl\Node\Abstracts\Arrays\ArrayMap;
+use Hurl\Node\Abstracts\Arrays\ArraySort;
 
 interface CollectionNodeInterface extends NodeInterface
 {
@@ -25,29 +25,29 @@ interface CollectionNodeInterface extends NodeInterface
 
 	/**
 	 * @param callable $do
-	 * @return AbstractArrayEach
+	 * @return ArrayEach
 	 */
 	public function each(callable $do);
 
 	/**
 	 * @param callable $callable
-	 * @return AbstractArrayMap
+	 * @return ArrayMap
 	 */
 	public function map(callable $callable);
 
 	/**
 	 * @param \callable[] ...$callable
-	 * @return AbstractArraySort
+	 * @return ArraySort
 	 */
 	public function sort(callable ...$callable);
 
 	/**
-	 * @return AbstractArraySort
+	 * @return ArraySort
 	 */
 	public function merge();
 
 	/**
-	 * @return AbstractArraySort
+	 * @return ArraySort
 	 */
 	public function values();
 

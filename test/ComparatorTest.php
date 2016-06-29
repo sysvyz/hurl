@@ -11,10 +11,10 @@ namespace HurlTest;
 
 use Hurl\Node\Abstracts\AbstractComparator;
 use Hurl\Node\Abstracts\Comparator\BooleanComparator;
+use Hurl\Node\Math\MathNode;
 use Hurl\Node\Statics\_Array;
 use Hurl\Node\Statics\_Comparator;
 use Hurl\Node\Statics\_Filter;
-use Hurl\Node\Math\MathNode;
 
 class ComparatorTest extends \PHPUnit_Framework_TestCase
 {
@@ -37,11 +37,12 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals([2, 3, 4, 5, 7], $node($data));
 
 	}
+
 	public function testSortMapMap()
 	{
-		$data = [['4354', '54', '52'],['45675', '435', '234223'],['4354', '54']];
+		$data = [['4354', '54', '52'], ['45675', '435', '234223'], ['4354', '54']];
 		$node = _Array::sort(_Comparator::boolean()->map(MathNode::sum())->map(_Filter::isEven()));
-		$this->assertEquals([['45675', '435', '234223'],['4354', '54', '52'],['4354', '54']], $node($data));
+		$this->assertEquals([['45675', '435', '234223'], ['4354', '54', '52'], ['4354', '54']], $node($data));
 
 	}
 

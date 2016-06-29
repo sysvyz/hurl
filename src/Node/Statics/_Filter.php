@@ -34,6 +34,10 @@ use Hurl\Node\Traits\FilterTrait;
 
 abstract class _Filter
 {
+	private final function __construct()
+	{
+	}
+
 	/**
 	 * @return IsEmptyFilter
 	 */
@@ -218,11 +222,10 @@ abstract class _Filter
 			}
 
 
-
 			public function __invoke(... $args)
 			{
-				$f= $this->callable;
-				return $f($args[0],$args[1]);
+				$f = $this->callable;
+				return $f($args[0], $args[1]);
 			}
 		};
 	}

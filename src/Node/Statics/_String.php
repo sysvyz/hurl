@@ -12,8 +12,12 @@ namespace Hurl\Node\Statics;
 use Hurl\Node\Abstracts\AbstractStringNode;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 
-class _String
+abstract class _String
 {
+
+	private final function __construct()
+	{
+	}
 
 
 	/**
@@ -132,7 +136,6 @@ class _String
 	{
 		return _Array::explode($delimiter);
 	}
-
 
 
 	/**

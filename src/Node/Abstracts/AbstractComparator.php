@@ -29,6 +29,7 @@ abstract class AbstractComparator extends AbstractNode implements ComparatorInte
 		return $this->compare($data[0], $data[1]);
 
 	}
+
 	/**
 	 * @param callable $do
 	 * @return AbstractNode
@@ -117,7 +118,8 @@ abstract class AbstractComparator extends AbstractNode implements ComparatorInte
 				return $this->inner->compare($map($a), $map($b));
 			}
 
-			public function map(callable $map){
+			public function map(callable $map)
+			{
 				$before = $this->map;
 				$this->map = new class($before, $map) extends AbstractNode implements ContainerTraitInterface
 				{

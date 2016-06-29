@@ -1,9 +1,9 @@
 <?php
 namespace Hurl\Node\Abstracts;
 
-use Hurl\Node\Statics\_Array;
 use Hurl\Node\Interfaces\ContainerTraitInterface;
 use Hurl\Node\Interfaces\NodeInterface;
+use Hurl\Node\Statics\_Array;
 use Hurl\Node\Statics\_Node;
 use Hurl\Node\Traits\ContainerTrait;
 
@@ -82,12 +82,11 @@ abstract class AbstractNode implements NodeInterface
 
 	public function asClosure()
 	{
-		
-		return function (...$args){
+
+		return function (...$args) {
 			return $this(...$args);
 		};
 	}
-
 
 
 }

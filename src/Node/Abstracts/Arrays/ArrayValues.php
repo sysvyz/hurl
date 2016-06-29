@@ -12,7 +12,7 @@ namespace Hurl\Node\Abstracts\Arrays;
 use Hurl\Node\Abstracts\AbstractArray;
 use Hurl\Node\Interfaces\ArrayTraitInterface;
 
-abstract class AbstractArrayValues extends AbstractArray implements ArrayTraitInterface
+abstract class ArrayValues extends AbstractArray implements ArrayTraitInterface
 {
 	public function apply(...$data)
 	{

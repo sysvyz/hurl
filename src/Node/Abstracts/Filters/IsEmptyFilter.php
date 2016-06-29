@@ -8,7 +8,6 @@
 
 namespace Hurl\Node\Abstracts\Filters;
 
-
 use Hurl\Node\Abstracts\AbstractFilter;
 
 abstract class IsEmptyFilter extends AbstractFilter

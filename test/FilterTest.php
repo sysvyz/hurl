@@ -16,9 +16,9 @@ use Hurl\Node\Abstracts\Filters\Number\IsEvenFilter;
 use Hurl\Node\Abstracts\Filters\Number\IsIntegerFilter;
 use Hurl\Node\Abstracts\Filters\Number\IsNumericFilter;
 use Hurl\Node\Abstracts\Filters\Number\IsOddFilter;
+use Hurl\Node\Interfaces\FilterInterface;
 use Hurl\Node\Statics\_Array;
 use Hurl\Node\Statics\_Filter;
-use Hurl\Node\Interfaces\FilterInterface;
 
 /**
  * Created by PhpStorm.
@@ -391,7 +391,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 * @param $isEmpty
 	 * @return \Hurl\Node\Abstracts\AbstractNode
 	 */
-	public function testAnd($isArray, $isEmpty)
+	public function testAnd(IsArrayFilter $isArray, IsEmptyFilter $isEmpty)
 	{
 		$and = _Filter:: and ($isArray, $isEmpty);
 		$this->assertInstanceOf(AndFilter::class, $and);
@@ -430,7 +430,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 * @param $isEven
 	 * @return \Hurl\Node\Abstracts\AbstractNode
 	 */
-	public function testNand($isInt, $isEven)
+	public function testNand(IsIntegerFilter $isInt, IsEvenFilter $isEven)
 	{
 
 		$nand = _Filter:: and ($isInt, $isEven)->not();
@@ -449,7 +449,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 * @depends testIsEmpty
 	 * @return \Hurl\Node\Abstracts\AbstractNode
 	 */
-	public function testOr($isInt, $isEmpty)
+	public function testOr(IsIntegerFilter $isInt, IsEmptyFilter $isEmpty)
 	{
 		$filter = _Filter:: or ($isInt, $isEmpty);
 		$this->assertInstanceOf(OrFilter::class, $filter);
@@ -478,7 +478,14 @@ class FilterTest extends PHPUnit_Framework_TestCase
 	 * @param $isOdd
 	 * @return \Hurl\Node\Abstracts\AbstractNode
 	 */
-	public function testAndOr($isInt, $isEven, $isArray, $isEmpty, $isString, $isNumeric, $isOdd)
+	public function testAndOr(IsIntegerFilter $isInt,
+							  IsEvenFilter $isEven,
+							  IsArrayFilter $isArray,
+							  IsEmptyFilter $isEmpty,
+							  IsStringFilter $isString,
+							  IsNumericFilter $isNumeric,
+							  IsOddFilter $isOdd
+	)
 	{
 		$filter = _Filter:: or (
 			_Filter:: and ($isInt, $isEven),

@@ -7,12 +7,13 @@
  */
 
 namespace Hurl\Node\Abstracts\Arrays;
+
 use Hurl\Node\Abstracts\AbstractArray;
 use Hurl\Node\Abstracts\AbstractComparator;
 use Hurl\Node\Interfaces\ArrayTraitInterface;
 use Hurl\Node\Traits\ComparatorContainerTrait;
 
-abstract class AbstractArraySort extends AbstractArray implements ArrayTraitInterface
+abstract class ArraySort extends AbstractArray implements ArrayTraitInterface
 {
 	/**
 	 * @var callable
