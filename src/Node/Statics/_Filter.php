@@ -54,6 +54,13 @@ final class _Filter
 		};
 	}
 
+	public static function contains($needle,$strict = null)
+	{
+		return new class($needle,$strict) extends ContainsFilter
+		{
+			use FilterTrait;
+		};
+	}
 	/**
 	 * @return IsNumericFilter
 	 */
@@ -235,12 +242,5 @@ final class _Filter
 		};
 	}
 
-	public static function contains($needle,$strict = null)
-	{
-		return new class($needle,$strict) extends ContainsFilter
-		{
-			use FilterTrait;
-		};
-	}
 
 }

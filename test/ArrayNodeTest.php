@@ -5,6 +5,7 @@ use Hurl\Node\Abstracts\Arrays\ArrayEach;
 use Hurl\Node\Abstracts\Arrays\ArrayFilter;
 use Hurl\Node\Abstracts\Arrays\ArrayMap;
 use Hurl\Node\Abstracts\Arrays\ArraySort;
+use Hurl\Node\Abstracts\Arrays\ArrayStableSort;
 use Hurl\Node\Abstracts\Filters\ContainsFilter;
 use Hurl\Node\Abstracts\Filters\IsEmptyFilter;
 use Hurl\Node\Abstracts\Filters\Logic\NegatedFilter;
@@ -229,6 +230,29 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 		$this->assertFalse($filter($d3));
 		$this->assertFalse($filter($d4));
 		$this->assertTrue($filter($d5));
+
+	}
+
+
+	public function testStableSort()
+	{
+
+		$filter = _Array::stableSort(function ($a,$b){
+			return $a['a']-$b['a'];
+		});
+
+		$this->assertInstanceOf(ArrayStableSort::class, $filter);
+
+		$data = [
+			's'=>['a'=>32,'b'=>'s1'],
+			'p'=>['a'=>34,'b'=>'p1'],
+			'l'=>['a'=>32,'b'=>'l1'],
+			'm'=>['a'=>31,'b'=>'m1'],
+			'n'=>['a'=>23,'b'=>'n1'],
+			]
+		;
+
+		print_r($filter($data));
 
 	}
 

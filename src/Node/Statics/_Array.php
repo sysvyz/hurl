@@ -18,6 +18,7 @@ use Hurl\Node\Abstracts\Arrays\ArrayMap;
 use Hurl\Node\Abstracts\Arrays\ArrayMerge;
 use Hurl\Node\Abstracts\Arrays\ArrayRecursiveMerge;
 use Hurl\Node\Abstracts\Arrays\ArraySort;
+use Hurl\Node\Abstracts\Arrays\ArrayStableSort;
 use Hurl\Node\Abstracts\Arrays\ArrayValues;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Traits\ArrayTrait;
@@ -78,6 +79,17 @@ final class _Array
 	public static function sort(callable ...$callable)
 	{
 		return new class(...$callable) extends ArraySort
+		{
+			use ArrayTrait;
+		};
+	}
+	/**
+	 * @param callable $callable
+	 * @return ArraySort
+	 */
+	public static function stableSort(callable ...$callable)
+	{
+		return new class(...$callable) extends ArrayStableSort
 		{
 			use ArrayTrait;
 		};

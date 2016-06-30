@@ -36,10 +36,9 @@ abstract class AbstractFilter extends AbstractNode
 	 */
 	public function not()
 	{
-		$do = function ($e) {
+		return new class($this, function ($e) {
 			return !$e;
-		};
-		return new class($this, $do) extends NegatedFilter implements ContainerTraitInterface
+		}) extends NegatedFilter implements ContainerTraitInterface
 		{
 			use ContainerTrait;
 
