@@ -20,76 +20,12 @@ final class _Node
 	private final function __construct()
 	{
 	}
-//	public static function lcfirst()
-//	{
-//		return StringNode::lcfirst();
-//	}
-//
-//	public static function ucfirst()
-//	{
-//		return StringNode::ucfirst();
-//	}
-//
-//	public static function upper_case()
-//	{
-//		return StringNode::upper_case();
-//	}
-//
-//	public static function lower_case()
-//	{
-//		return StringNode::lower_case();
-//	}
-//
-//	public static function trim()
-//	{
-//		return StringNode::trim();
-//	}
-//
-//	public static function ltrim()
-//	{
-//		return StringNode::ltrim();
-//	}
-//
-//	public static function rtrim()
-//	{
-//		return StringNode::rtrim();
-//	}
 
-//	public static function substring($start, $length = null)
-//	{
-//		return StringNode::substring($start, $length);
-//	}
-//
-//
-//	public static function implode($glue)
-//	{
-//		return ArrayNode::implode($glue);
-//	}
-//
-//	public static function explode($delimiter)
-//	{
-//		return ArrayNode::explode($delimiter);
-//	}
-
-//	public static function each(callable $do)
-//	{
-//		return ArrayNode::each($do);
-//	}
-//
-//	public static function filter(callable $filter = null)
-//	{
-//		return ArrayNode::filter($filter);
-//	}
-//
-//	public static function map(callable $mapping = null)
-//	{
-//		return ArrayNode::map($mapping);
-//	}
 
 	/**
 	 * @return AbstractNode
 	 */
-	public static function call(callable $callable)
+	public static function init(callable $callable)
 	{
 		return new class($callable) extends AbstractNode
 		{
@@ -154,12 +90,6 @@ final class _Node
 			}
 		};
 	}
-
-
-//	public static function fold(callable $callable, $init = null)
-//	{
-//		return ArrayNode::fold($callable, $init);
-//	}
 
 
 }

@@ -1,4 +1,5 @@
 <?php
+namespace HurlTest;
 use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\Abstracts\Filters\Comparator\GreaterOrEqualFilter;
 use Hurl\Node\Abstracts\Filters\Comparator\GreaterThanFilter;
@@ -19,6 +20,7 @@ use Hurl\Node\Abstracts\Filters\Number\IsOddFilter;
 use Hurl\Node\Interfaces\FilterInterface;
 use Hurl\Node\Statics\_Array;
 use Hurl\Node\Statics\_Filter;
+use PHPUnit_Framework_TestCase;
 
 /**
  * Created by PhpStorm.

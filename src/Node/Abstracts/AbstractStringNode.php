@@ -19,7 +19,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function trim()
 	{
-		return $this->call(_String::trim());
+		return $this->then(_String::trim());
 	}
 
 	/**
@@ -27,7 +27,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function ltrim()
 	{
-		return $this->call(_String::ltrim());
+		return $this->then(_String::ltrim());
 	}
 
 	/**
@@ -35,7 +35,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function rtrim()
 	{
-		return $this->call(_String::rtrim());
+		return $this->then(_String::rtrim());
 	}
 
 	/**
@@ -43,7 +43,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function ucfirst()
 	{
-		return $this->call(_String::ucfirst());
+		return $this->then(_String::ucfirst());
 	}
 
 	/**
@@ -51,7 +51,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function AbstractStringNode()
 	{
-		return $this->call(_String::lcfirst());
+		return $this->then(_String::lcfirst());
 	}
 
 	/**
@@ -59,7 +59,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function upper_case()
 	{
-		return $this->call(_String::upper_case());
+		return $this->then(_String::upper_case());
 	}
 
 	/**
@@ -67,7 +67,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function lower_case()
 	{
-		return $this->call(_String::lower_case());
+		return $this->then(_String::lower_case());
 	}
 
 	/**
@@ -76,7 +76,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function explode(string $delimiter)
 	{
-		return $this->call(_String::explode($delimiter));
+		return $this->then(_String::explode($delimiter));
 	}
 
 	/**
@@ -86,7 +86,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function substring($start, $length = null)
 	{
-		return $this->call(_String::substring($start, $length));
+		return $this->then(_String::substring($start, $length));
 	}
 
 

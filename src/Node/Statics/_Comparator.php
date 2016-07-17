@@ -28,9 +28,9 @@ final class _Comparator
 	/**
 	 * @return AbstractComparator
 	 */
-	public static function numeric()
+	public static function numeric($delta = 0)
 	{
-		return new class() extends NumericComparator
+		return new class($delta) extends NumericComparator
 		{
 		};
 	}

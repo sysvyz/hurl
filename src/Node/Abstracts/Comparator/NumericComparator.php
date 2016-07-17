@@ -12,6 +12,18 @@ use Hurl\Node\Abstracts\AbstractComparator;
 
 abstract class NumericComparator extends AbstractComparator
 {
+	private $delta = 0;
+
+	/**
+	 * NumericComparator constructor.
+	 * @param int $delta
+	 */
+	public function __construct($delta = 0)
+	{
+		$this->delta = $delta;
+	}
+
+
 	/**
 	 * @param $a
 	 * @param $b
@@ -20,7 +32,7 @@ abstract class NumericComparator extends AbstractComparator
 	public function compare($a, $b)
 	{
 		$cmp = $a - $b;
-		if ($cmp) {
+		if (abs($cmp)>$this->delta) {
 			if($cmp < 0){
 				return -1;
 			}

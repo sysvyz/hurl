@@ -1,6 +1,9 @@
 <?php
+namespace HurlTest;
+use Closure;
 use Hurl\Node\Statics\_Array;
 use Hurl\Node\Statics\_String;
+use PHPUnit_Framework_TestCase;
 
 /**
  * Created by PhpStorm.

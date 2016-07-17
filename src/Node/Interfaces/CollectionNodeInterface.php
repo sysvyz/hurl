@@ -21,7 +21,7 @@ interface CollectionNodeInterface extends NodeInterface
 	 * @param callable $do
 	 * @return AbstractNode
 	 */
-	public function call(callable $do);
+	public function then(callable $do);
 
 	/**
 	 * @param callable $do

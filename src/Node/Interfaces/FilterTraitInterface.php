@@ -17,7 +17,7 @@ interface FilterTraitInterface extends NodeInterface, FilterInterface
 	 * @param callable $then
 	 * @return NodeInterface
 	 */
-	public function call(callable $then);
+	public function then(callable $then);
 
 	public function apply($value);
 

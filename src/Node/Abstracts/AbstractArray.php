@@ -29,7 +29,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
 	 * @param callable $do
 	 * @return AbstractNode
 	 */
-	public function call(callable $do)
+	public function then(callable $do)
 	{
 		return new class($this, $do) extends AbstractArray implements ContainerTraitInterface
 		{
@@ -126,7 +126,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
 	 */
 	public function implode(string $glue)
 	{
-		return $this->call(_Array::implode($glue));
+		return $this->then(_Array::implode($glue));
 	}
 	/**
 	 * @return IsEmptyFilter

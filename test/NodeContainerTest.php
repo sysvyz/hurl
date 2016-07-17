@@ -57,7 +57,7 @@ class ContainerNodeTest extends \PHPUnit_Framework_TestCase
 	{
 		$before = _Array::explode('.');
 		$after = _Array::implode('-');
-		$append = $before->call($after);
+		$append = $before->then($after);
 
 
 		$this->assertEquals($append('a.b'), 'a-b');
@@ -86,7 +86,7 @@ class ContainerNodeTest extends \PHPUnit_Framework_TestCase
 
 		$chain =
 			_Array::explode('-')
-				->map(_Node::call(function ($data) {
+				->map(_Node::init(function ($data) {
 					return hexdec($data);
 				}))->sum();
 
@@ -98,9 +98,9 @@ class ContainerNodeTest extends \PHPUnit_Framework_TestCase
 		$data = 5;
 		$val1 = 7;
 		$val2 = 11;
-		$call = _Node::call(function ($data) use ($val1) {
+		$call = _Node::init(function ($data) use ($val1) {
 			return $data * $val1;
-		})->call(function ($data) use ($val2) {
+		})->then(function ($data) use ($val2) {
 			return $data * $val2;
 		});
 

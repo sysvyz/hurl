@@ -21,29 +21,21 @@ abstract class AbstractNode implements NodeInterface
 	 * @param callable $do
 	 * @return AbstractNode
 	 */
-	public function call(callable $do)
+	public function then(callable $do)
 	{
 		return new class($this, $do) extends AbstractNode implements ContainerTraitInterface
 		{
 			use ContainerTrait;
 		};
 	}
-
-	/**
-	 * @param callable $do
-	 * @return AbstractNode
-	 */
-	public function then(callable $do)
-	{
-		return $this->call($do);
-	}
+	
 
 	/**
 	 * @return AbstractNode
 	 */
 	public function debug()
 	{
-		return $this->call(_Node::debug());
+		return $this->then(_Node::debug());
 	}
 	
 
@@ -52,7 +44,7 @@ abstract class AbstractNode implements NodeInterface
 	 */
 	public function fromJson()
 	{
-		return $this->call(_Node::fromJson());
+		return $this->then(_Node::fromJson());
 	}
 
 	/**
@@ -60,7 +52,7 @@ abstract class AbstractNode implements NodeInterface
 	 */
 	public function toJson()
 	{
-		return $this->call(_Node::toJson());
+		return $this->then(_Node::toJson());
 	}
 
 	public function asClosure()

@@ -10,6 +10,8 @@ namespace Hurl\Node\Statics;
 
 
 use Hurl\Node\Abstracts\AbstractStringNode;
+use Hurl\Node\Abstracts\Strings\StringLowerCase;
+use Hurl\Node\Abstracts\Strings\StringUpperCase;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 
 final class _String
@@ -102,13 +104,8 @@ final class _String
 	 */
 	public static function upper_case()
 	{
-		return new class() extends AbstractStringNode
+		return new class() extends StringUpperCase
 		{
-			public function __invoke(...$data)
-			{
-				return strtoupper($data[0]);
-
-			}
 		};
 	}
 
@@ -117,12 +114,8 @@ final class _String
 	 */
 	public static function lower_case()
 	{
-		return new class() extends AbstractStringNode
+		return new class() extends StringLowerCase
 		{
-			public function __invoke(...$data)
-			{
-				return strtolower($data[0]);
-			}
 		};
 	}
 

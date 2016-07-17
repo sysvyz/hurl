@@ -1,4 +1,6 @@
 <?php
+namespace HurlTest;
+
 use Hurl\Node\Abstracts\AbstractArray;
 use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\Abstracts\Arrays\ArrayEach;
@@ -11,7 +13,9 @@ use Hurl\Node\Abstracts\Filters\IsEmptyFilter;
 use Hurl\Node\Abstracts\Filters\Logic\NegatedFilter;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Statics\_Array;
+use Hurl\Node\Statics\_Comparator;
 use Hurl\Node\Statics\_String;
+use PHPUnit_Framework_TestCase;
 
 /**
  * Created by PhpStorm.
@@ -161,6 +165,7 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 		$this->assertArraySubset([1, 0.5, 'a'], $filter([null, false, 1, 0.5, '', '0', 'a']));
 
 	}
+
 	public function testIsEmpty()
 	{
 
@@ -200,8 +205,8 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 
 		$d1 = [1];
 		$d2 = [];
-		$d3 = [43,23,123,12];
-		$d4 = [43,23,1,123,12];
+		$d3 = [43, 23, 123, 12];
+		$d4 = [43, 23, 1, 123, 12];
 
 		$this->assertTrue($filter($d1));
 		$this->assertFalse($filter($d2));
@@ -213,16 +218,16 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 	public function testContainsStrict()
 	{
 
-		$filter = _Array::values()->contains(1,true);
+		$filter = _Array::values()->contains(1, true);
 
 		$this->assertInstanceOf(ContainsFilter::class, $filter);
 
 		$d0 = [1];
 		$d1 = ['1'];
 		$d2 = [];
-		$d3 = [43,23,123,12];
-		$d4 = [43,23,"1",123,12];
-		$d5 = [43,23,1,123,12];
+		$d3 = [43, 23, 123, 12];
+		$d4 = [43, 23, "1", 123, 12];
+		$d5 = [43, 23, 1, 123, 12];
 
 		$this->assertTrue($filter($d0));
 		$this->assertFalse($filter($d1));
@@ -237,23 +242,55 @@ class ArrayNodeTest extends PHPUnit_Framework_TestCase
 	public function testStableSort()
 	{
 
-		$filter = _Array::stableSort(function ($a,$b){
-			return $a['a']-$b['a'];
+		$filter = _Array::stableSort(function ($a, $b) {
+			return $a['a'] - $b['a'];
 		});
 
 		$this->assertInstanceOf(ArrayStableSort::class, $filter);
 
 		$data = [
-			's'=>['a'=>32,'b'=>'s1'],
-			'p'=>['a'=>34,'b'=>'p1'],
-			'l'=>['a'=>32,'b'=>'l1'],
-			'm'=>['a'=>31,'b'=>'m1'],
-			'n'=>['a'=>23,'b'=>'n1'],
-			]
-		;
+			's' => ['a' => 32, 'b' => 's1'],
+			'p' => ['a' => 34, 'b' => 'p1'],
+			'l' => ['a' => 32, 'b' => 'l1'],
+			'm' => ['a' => 31, 'b' => 'm1'],
+			'n' => ['a' => 23, 'b' => 'm1'],
+		];
+		$this->assertEquals($filter($data), [
+			'n' => ['a' => 23, 'b' => 'm1'],
+			'm' => ['a' => 31, 'b' => 'm1'],
+			's' => ['a' => 32, 'b' => 's1'],
+			'l' => ['a' => 32, 'b' => 'l1'],
+			'p' => ['a' => 34, 'b' => 'p1'],
+		]);
+	}
 
-		print_r($filter($data));
+	public function testStableSort2()
+	{
 
+		$stableSort = _Array::stableSort(
+			_Comparator::alphaNumeric()->map(function ($elem){
+				return $elem['b'];
+			}),
+			function ($a, $b) {
+				return $a['a'] - $b['a'];
+			});
+
+		$this->assertInstanceOf(ArrayStableSort::class, $stableSort);
+
+		$data = [
+			'p' => ['a' => 34, 'b' => 'p1'],
+			's' => ['a' => 32, 'b' => 's1'],
+			'l' => ['a' => 32, 'b' => 'l1'],
+			'm' => ['a' => 31, 'b' => 'm1'],
+			'n' => ['a' => 23, 'b' => 'm1'],
+		];
+		$this->assertEquals(json_encode($stableSort($data)),json_encode( [
+			'l' => ['a' => 32, 'b' => 'l1'],
+			'n' => ['a' => 23, 'b' => 'm1'],
+			'm' => ['a' => 31, 'b' => 'm1'],
+			'p' => ['a' => 34, 'b' => 'p1'],
+			's' => ['a' => 32, 'b' => 's1'],
+		]));
 	}
 
 

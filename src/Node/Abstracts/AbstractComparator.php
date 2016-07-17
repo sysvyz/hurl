@@ -34,7 +34,7 @@ abstract class AbstractComparator extends AbstractNode implements ComparatorInte
 	 * @param callable $do
 	 * @return AbstractNode
 	 */
-	public function call(callable $do)
+	public function then(callable $do)
 	{
 		return new class($this, $do) extends AbstractComparator implements ContainerTraitInterface
 		{

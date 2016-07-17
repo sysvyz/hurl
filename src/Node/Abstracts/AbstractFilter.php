@@ -22,7 +22,7 @@ abstract class AbstractFilter extends AbstractNode
 	 * @param callable $do
 	 * @return AbstractFilter
 	 */
-	public function call(callable $do)
+	public function then(callable $do)
 	{
 		return new class($this, $do) extends AbstractFilter implements ContainerTraitInterface
 		{

@@ -16,6 +16,11 @@ interface NodeInterface
 	 * @param callable $then
 	 * @return NodeInterface
 	 */
-	public function call(callable $then);
+	public function then(callable $then);
+
+	/**
+	 * @return \Closure
+	 */
+	public function asClosure();
 
 }

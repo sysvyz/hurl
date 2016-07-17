@@ -16,7 +16,7 @@ class XNodeTest extends \PHPUnit_Framework_TestCase
 		$data = ['abc', 'qwert', 'xyz'];
 
 
-		$fn = _Node::call(function ($data) {
+		$fn = _Node::init(function ($data) {
 			$map = _Array::map(function ($value) {
 				return Tag::init('li')->inner($value);
 			});

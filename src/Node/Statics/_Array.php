@@ -12,6 +12,7 @@ use Hurl\Node\Abstracts\AbstractArray;
 use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\Abstracts\AbstractStringNode;
 use Hurl\Node\Abstracts\Arrays\ArrayEach;
+use Hurl\Node\Abstracts\Arrays\StringExplode;
 use Hurl\Node\Abstracts\Arrays\ArrayFilter;
 use Hurl\Node\Abstracts\Arrays\ArrayFold;
 use Hurl\Node\Abstracts\Arrays\ArrayMap;
@@ -20,6 +21,7 @@ use Hurl\Node\Abstracts\Arrays\ArrayRecursiveMerge;
 use Hurl\Node\Abstracts\Arrays\ArraySort;
 use Hurl\Node\Abstracts\Arrays\ArrayStableSort;
 use Hurl\Node\Abstracts\Arrays\ArrayValues;
+use Hurl\Node\Abstracts\Strings\ArrayImplode;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Traits\ArrayTrait;
 
@@ -125,21 +127,7 @@ final class _Array
 	 */
 	public static function explode($delimiter)
 	{
-		return new class($delimiter) extends AbstractArray
-		{
-			private $delimiter;
-
-			public function __construct($delimiter)
-			{
-				$this->delimiter = $delimiter;
-			}
-
-			public function __invoke(...$data)
-			{
-				return explode($this->delimiter, $data[0]);
-
-			}
-		};
+		return new class($delimiter) extends StringExplode{};
 
 	}
 
@@ -150,20 +138,7 @@ final class _Array
 	 */
 	public static function implode($glue)
 	{
-		return new class($glue) extends AbstractStringNode
-		{
-			private $glue;
-
-			public function __construct($glue)
-			{
-				$this->glue = $glue;
-			}
-
-			public function __invoke(...$data)
-			{
-				return implode($this->glue, $data[0]);
-			}
-		};
+		return new ArrayImplode($glue);
 	}
 
 	/**
