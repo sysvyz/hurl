@@ -10,8 +10,14 @@ namespace Hurl\Node\Statics;
 
 
 use Hurl\Node\Abstracts\AbstractStringNode;
+use Hurl\Node\Abstracts\Strings\StringLeftTrim;
 use Hurl\Node\Abstracts\Strings\StringLowerCase;
+use Hurl\Node\Abstracts\Strings\StringLowerCaseFirst;
+use Hurl\Node\Abstracts\Strings\StringRightTrim;
+use Hurl\Node\Abstracts\Strings\StringSubstring;
+use Hurl\Node\Abstracts\Strings\StringTrim;
 use Hurl\Node\Abstracts\Strings\StringUpperCase;
+use Hurl\Node\Abstracts\Strings\StringUpperCaseFirst;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 
 final class _String
@@ -30,12 +36,8 @@ final class _String
 	 */
 	public static function trim()
 	{
-		return new class() extends AbstractStringNode
+		return new class() extends StringTrim
 		{
-			public function __invoke(...$data)
-			{
-				return trim($data[0]);
-			}
 		};
 	}
 
@@ -44,13 +46,8 @@ final class _String
 	 */
 	public static function ltrim()
 	{
-		return new class() extends AbstractStringNode
+		return new class() extends StringLeftTrim
 		{
-			public function __invoke(...$data)
-			{
-				return ltrim($data[0]);
-
-			}
 		};
 	}
 
@@ -59,13 +56,8 @@ final class _String
 	 */
 	public static function rtrim()
 	{
-		return new class() extends AbstractStringNode
+		return new class() extends StringRightTrim
 		{
-			public function __invoke(...$data)
-			{
-				return rtrim($data[0]);
-
-			}
 		};
 	}
 
@@ -74,13 +66,8 @@ final class _String
 	 */
 	public static function ucfirst()
 	{
-		return new class() extends AbstractStringNode
+		return new class() extends StringUpperCaseFirst
 		{
-			public function __invoke(...$data)
-			{
-				return ucfirst($data[0]);
-
-			}
 		};
 	}
 
@@ -89,13 +76,8 @@ final class _String
 	 */
 	public static function lcfirst()
 	{
-		return new class() extends AbstractStringNode
+		return new class() extends StringLowerCaseFirst
 		{
-			public function __invoke(...$data)
-			{
-				return lcfirst($data[0]);
-
-			}
 		};
 	}
 
@@ -119,10 +101,6 @@ final class _String
 		};
 	}
 
-	public static function implode($glue)
-	{
-		return _Array::implode($glue);
-	}
 
 	/**
 	 * @param $delimiter
@@ -140,26 +118,8 @@ final class _String
 	 */
 	public static function substring($start, $length = null)
 	{
-		return new class($start, $length) extends AbstractStringNode
+		return new class($start, $length) extends StringSubstring
 		{
-			private $start;
-			private $length;
-
-			/**
-			 *  constructor.
-			 * @param $start
-			 * @param $length
-			 */
-			public function __construct($start, $length)
-			{
-				$this->start = $start;
-				$this->length = $length;
-			}
-
-			public function __invoke(...$data)
-			{
-				return substr($data[0], $this->start, $this->length);
-			}
 		};
 	}
 }

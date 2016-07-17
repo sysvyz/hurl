@@ -1,5 +1,6 @@
 <?php
 namespace HurlTest;
+
 use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\Abstracts\Filters\Comparator\GreaterOrEqualFilter;
 use Hurl\Node\Abstracts\Filters\Comparator\GreaterThanFilter;
