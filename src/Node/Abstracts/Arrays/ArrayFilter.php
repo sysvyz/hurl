@@ -30,8 +30,6 @@ abstract class ArrayFilter extends AbstractArray implements ArrayTraitInterface
 
 	public function apply(...$data)
 	{
-//var_dump($this->callable);die;
-
 		if ($this->callable) {
 			return array_filter($data[0], $this->callable);
 		}

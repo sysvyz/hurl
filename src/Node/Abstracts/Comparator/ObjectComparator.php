@@ -10,15 +10,15 @@ namespace Hurl\Node\Abstracts\Comparator;
 
 
 
-class ArrayComparator extends AbstractContainerComparator
+class ObjectComparator extends AbstractContainerComparator
 {
 	protected function _isset(&$x, $field)
 	{
-		return isset($x[$field]);
+		return isset($x->$field);
 	}
 
 	protected function _get(&$x, $field)
 	{
-		return $x[$field];
+		return $x->$field;
 	}
 }

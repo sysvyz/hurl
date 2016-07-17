@@ -82,7 +82,7 @@ class GenericObject implements \ArrayAccess, \IteratorAggregate
 
 	function __get($name)
 	{
-		$this->vars[$name];
+		return $this->vars[$name];
 	}
 
 	function __set($name, $value)
