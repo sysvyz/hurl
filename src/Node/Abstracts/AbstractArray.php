@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mb
- * Date: 26.06.16
- * Time: 03:01
- */
-
 namespace Hurl\Node\Abstracts;
-
 
 use Hurl\Node\Abstracts\Arrays\ArrayEach;
 use Hurl\Node\Abstracts\Arrays\ArrayMap;
@@ -128,6 +120,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
 	{
 		return $this->then(_Array::implode($glue));
 	}
+
 	/**
 	 * @return IsEmptyFilter
 	 */
@@ -140,13 +133,14 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
 		};
 
 	}
+
 	/**
 	 * @return ContainsFilter
 	 */
-	public function contains($needle,$strict = null)
+	public function contains($needle, $strict = null)
 	{
 
-		return new class($this, _Filter::contains($needle,$strict)) extends ContainsFilter implements ContainerTraitInterface
+		return new class($this, _Filter::contains($needle, $strict)) extends ContainsFilter implements ContainerTraitInterface
 		{
 			use ContainerTrait;
 		};
