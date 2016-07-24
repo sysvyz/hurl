@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mo-ba/cofi.git",
-                "reference": "a4d8d329fa57b1972da26c4065812e341ece591a"
+                "reference": "35f421460e50685f6a5a12fd2f021e004111efc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mo-ba/cofi/zipball/a4d8d329fa57b1972da26c4065812e341ece591a",
-                "reference": "a4d8d329fa57b1972da26c4065812e341ece591a",
+                "url": "https://api.github.com/repos/mo-ba/cofi/zipball/35f421460e50685f6a5a12fd2f021e004111efc3",
+                "reference": "35f421460e50685f6a5a12fd2f021e004111efc3",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,7 @@
                 "comparator",
                 "filter"
             ],
-            "time": "2016-07-24 20:05:34"
+            "time": "2016-07-24 20:15:00"
         }
     ],
     "packages-dev": [

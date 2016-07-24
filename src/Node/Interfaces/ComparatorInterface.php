@@ -11,7 +11,7 @@ namespace Hurl\Node\Interfaces;
 
 use Cofi\Comparator\Interfaces\ComparatorInterface as CofiComparatorInterface;
 
-interface ComparatorInterface extends CofiComparatorInterface
+interface ComparatorInterface extends NodeInterface, CofiComparatorInterface
 {
 	/**
 	 * @param $a
