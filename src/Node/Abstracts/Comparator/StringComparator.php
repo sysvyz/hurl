@@ -1,14 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: mb
- * Date: 29.06.16
- * Time: 21:42
- */
+<?php namespace Hurl\Node\Abstracts\Comparator;
 
-namespace Hurl\Node\Abstracts\Comparator;
-
-
+use Cofi\Comparator\ComparatorFunction;
 use Hurl\Node\Abstracts\AbstractComparator;
 
 abstract class StringComparator extends AbstractComparator
@@ -20,6 +12,7 @@ abstract class StringComparator extends AbstractComparator
 	 */
 	public function compare($a, $b)
 	{
-		return strcmp($a, $b);
+		$f = ComparatorFunction::string();
+		return $f($a, $b);
 	}
 }

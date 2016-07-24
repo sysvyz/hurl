@@ -1,7 +1,6 @@
 <?php
 namespace HurlTest;
 
-use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use Hurl\GenericObject;
 use Hurl\Node\Abstracts\Comparator\ObjectComparator;
 use Hurl\Node\Statics\_Array;
@@ -286,8 +285,8 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @expectedException        InvalidArgumentException
-	 * @expectedExceptionMessage invalid func
+	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode  1
 	 */
 	public function testComparatorFail()
 	{
@@ -306,8 +305,8 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @expectedException        \Hurl\Node\Exceptions\UndefinedPropertyException
-	 * @expectedExceptionMessage Undefined index: someKey
+	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode  4
 	 */
 	public function testComparatorFail2()
 	{
@@ -326,8 +325,8 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @expectedException        \Hurl\Node\Exceptions\UndefinedPropertyException
-	 * @expectedExceptionMessage Undefined index: someKey
+	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode  4
 	 */
 	public function testComparatorFail3()
 	{
@@ -346,8 +345,8 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @expectedException        \Hurl\Node\Exceptions\UndefinedPropertyException
-	 * @expectedExceptionMessage Undefined index: someKey
+	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode  4
 	 */
 	public function testComparatorFail4()
 	{
@@ -364,9 +363,10 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 		$sort($data);
 
 	}
+
 	/**
-	 * @expectedException        InvalidArgumentException
-	 * @expectedExceptionMessage invalid property
+	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode  5
 	 */
 	public function testComparatorFail5()
 	{
@@ -376,7 +376,7 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 		]);
 
 		$data = [
-			GenericObject::init(['score' =>['asa'], 'id' => 5]),
+			GenericObject::init(['score' => ['asa'], 'id' => 5]),
 			GenericObject::init(['score' => ['assa'], 'id' => 3]),
 		];
 		$sort = _Array::sort($cmp);

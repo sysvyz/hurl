@@ -4,9 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f52d8214ccc33d8ef916f5901fd463eb",
-    "content-hash": "bda86824cc3d0f7da7b5dac789166097",
-    "packages": [],
+    "hash": "aa2a34d82e07ad5a7c4edae8235ded76",
+    "content-hash": "1d1c4efc388ed507f153c6a68ea0753d",
+    "packages": [
+        {
+            "name": "sysvyz/cofi",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mo-ba/cofi.git",
+                "reference": "a4d8d329fa57b1972da26c4065812e341ece591a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mo-ba/cofi/zipball/a4d8d329fa57b1972da26c4065812e341ece591a",
+                "reference": "a4d8d329fa57b1972da26c4065812e341ece591a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cofi\\": "src",
+                    "CofiTest\\": "test"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "mb",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Comparators & Filters for PHP 5.4",
+            "homepage": "https://github.com/mo-ba/cofi",
+            "keywords": [
+                "comparator",
+                "filter"
+            ],
+            "time": "2016-07-24 20:05:34"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
@@ -1202,16 +1248,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.1.1",
+            "version": "v3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "5751e80d6f94b7c018f338a4a7be0b700d6f3058"
+                "reference": "322da5f0910d8aa0b25fa65ffccaba68dbddb890"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/5751e80d6f94b7c018f338a4a7be0b700d6f3058",
-                "reference": "5751e80d6f94b7c018f338a4a7be0b700d6f3058",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/322da5f0910d8aa0b25fa65ffccaba68dbddb890",
+                "reference": "322da5f0910d8aa0b25fa65ffccaba68dbddb890",
                 "shasum": ""
             },
             "require": {
@@ -1247,20 +1293,20 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2016-04-12 18:27:47"
+            "time": "2016-06-29 05:41:56"
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.1.1",
+            "version": "v3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "c5a7e7fc273c758b92b85dcb9c46149ccda89623"
+                "reference": "2884c26ce4c1d61aebf423a8b912950fe7c764de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/c5a7e7fc273c758b92b85dcb9c46149ccda89623",
-                "reference": "c5a7e7fc273c758b92b85dcb9c46149ccda89623",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/2884c26ce4c1d61aebf423a8b912950fe7c764de",
+                "reference": "2884c26ce4c1d61aebf423a8b912950fe7c764de",
                 "shasum": ""
             },
             "require": {
@@ -1296,7 +1342,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-06-14 11:18:07"
+            "time": "2016-06-29 05:41:56"
         },
         {
             "name": "webmozart/assert",
@@ -1350,7 +1396,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "sysvyz/cofi": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -5,7 +5,7 @@ use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use Hurl\Node\Abstracts\Comparator\ArrayComparator;
 use Hurl\Node\Statics\_Array;
 use Hurl\Node\Statics\_Comparator;
-
+use Cofi\Exceptions\InvalidComparatorArgumentException;
 /**
  * Created by PhpStorm.
  * User: mb
@@ -439,6 +439,7 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals($result, $sort($data));
 
 	}
+
 	public function testComparatorRecursive()
 	{
 		$cmp = ArrayComparator::init([
@@ -549,8 +550,8 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @expectedException        InvalidArgumentException
-	 * @expectedExceptionMessage invalid func
+	 * @expectedException   	\Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode 	1
 	 */
 	public function testComparatorFail()
 	{
@@ -569,8 +570,8 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @expectedException        \Hurl\Node\Exceptions\UndefinedPropertyException
-	 * @expectedExceptionMessage Undefined index: someKey
+	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode  4
 	 */
 	public function testComparatorFail2()
 	{
@@ -589,8 +590,8 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @expectedException        \Hurl\Node\Exceptions\UndefinedPropertyException
-	 * @expectedExceptionMessage Undefined index: someKey
+	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode  4
 	 */
 	public function testComparatorFail3()
 	{
@@ -609,8 +610,8 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @expectedException        \Hurl\Node\Exceptions\UndefinedPropertyException
-	 * @expectedExceptionMessage Undefined index: someKey
+	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode  4
 	 */
 	public function testComparatorFail4()
 	{
@@ -629,8 +630,8 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @expectedException        InvalidArgumentException
-	 * @expectedExceptionMessage invalid property
+	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode  5
 	 */
 	public function testComparatorFail5()
 	{

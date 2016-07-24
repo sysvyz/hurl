@@ -1,13 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: mb
- * Date: 29.06.16
- * Time: 21:42
- */
+<?php namespace Hurl\Node\Abstracts\Comparator;
 
-namespace Hurl\Node\Abstracts\Comparator;
-
+use Cofi\Comparator\ComparatorFunction;
 use Hurl\Node\Abstracts\AbstractComparator;
 
 abstract class NumericComparator extends AbstractComparator
@@ -23,7 +16,6 @@ abstract class NumericComparator extends AbstractComparator
 		$this->delta = $delta;
 	}
 
-
 	/**
 	 * @param $a
 	 * @param $b
@@ -31,13 +23,8 @@ abstract class NumericComparator extends AbstractComparator
 	 */
 	public function compare($a, $b)
 	{
-		$cmp = $a - $b;
-		if (abs($cmp)>$this->delta) {
-			if($cmp < 0){
-				return -1;
-			}
-			return 1;
-		}
-		return 0;
+		$f = ComparatorFunction::number($this->delta);
+		return $f($a, $b);
+
 	}
 }
