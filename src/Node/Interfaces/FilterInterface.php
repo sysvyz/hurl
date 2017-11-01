@@ -1,7 +1,9 @@
 <?php namespace Hurl\Node\Interfaces;
 
 
-interface FilterInterface extends NodeInterface
+use Cofi\Filter\Interfaces\FilterInterface as CofiFilterInterface;
+
+interface FilterInterface extends NodeInterface , CofiFilterInterface
 {
 
 	public function not();

@@ -2,10 +2,8 @@
 
 
 use Hurl\Node\Interfaces\NodeInterface;
-
 interface FilterContainerTraitInterface extends NodeInterface
 {
-
 	public function not();
 
 	public function __invoke(... $args);

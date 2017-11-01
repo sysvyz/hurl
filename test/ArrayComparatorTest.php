@@ -6,6 +6,7 @@ use Hurl\Node\Comparator\ArrayComparator;
 use Hurl\Node\Statics\Arrays;
 use Hurl\Node\Statics\Comparators;
 
+use Cofi\Exceptions\InvalidComparatorArgumentException;
 /**
  * Created by PhpStorm.
  * User: mb
@@ -549,16 +550,16 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage invalid func
-     */
-    public function testComparatorFail()
-    {
-        $cmp = new ArrayComparator([
-            'score' => 'asdfsfdljk',
-            'id' => 'asc',
-        ]);
+	/**
+	 * @expectedException   	\Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode 	1
+	 */
+	public function testComparatorFail()
+	{
+		$cmp = new ArrayComparator([
+			'score' => 'asdfsfdljk',
+			'id' => 'asc',
+		]);
 
         $data = [
             ['score' => 99, 'id' => 5],
@@ -569,6 +570,16 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 
     }
 
+	/**
+	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode  4
+	 */
+	public function testComparatorFail2()
+	{
+		$cmp = new ArrayComparator([
+			'someKey',
+			'id',
+		]);
     /**
      * @expectedException        \Hurl\Node\Exceptions\UndefinedPropertyException
      * @expectedExceptionMessage Undefined index: someKey
@@ -589,6 +600,16 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 
     }
 
+	/**
+	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode  4
+	 */
+	public function testComparatorFail3()
+	{
+		$cmp = new ArrayComparator([
+			'someKey',
+			'id',
+		]);
     /**
      * @expectedException        \Hurl\Node\Exceptions\UndefinedPropertyException
      * @expectedExceptionMessage Undefined index: someKey
@@ -609,6 +630,16 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 
     }
 
+	/**
+	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode  4
+	 */
+	public function testComparatorFail4()
+	{
+		$cmp = new ArrayComparator([
+			'someKey',
+			'id',
+		]);
     /**
      * @expectedException        \Hurl\Node\Exceptions\UndefinedPropertyException
      * @expectedExceptionMessage Undefined index: someKey
@@ -629,6 +660,16 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 
     }
 
+	/**
+	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
+	 * @expectedExceptionCode  5
+	 */
+	public function testComparatorFail5()
+	{
+		$cmp = new ArrayComparator([
+			'score',
+			'id',
+		]);
     /**
      * @expectedException        \InvalidArgumentException
      * @expectedExceptionMessage invalid property

@@ -1,13 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: mb
- * Date: 27.05.16
- * Time: 19:03
- */
-
-namespace Hurl;
-
+<?php namespace Hurl;
 
 use Traversable;
 

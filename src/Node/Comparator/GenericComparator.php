@@ -1,13 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: mb
- * Date: 17.07.16
- * Time: 19:04
- */
-
-namespace Hurl\Node\Comparator;
-
+<?php namespace Hurl\Node\Comparator;
 
 use Hurl\Node\Abstracts\AbstractComparator;
 
@@ -23,7 +14,6 @@ class GenericComparator extends AbstractComparator
 	{
 		$this->func = $func;
 	}
-
 
 	/**
 	 * @param $a

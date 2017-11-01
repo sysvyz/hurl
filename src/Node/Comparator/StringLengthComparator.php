@@ -1,14 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: mb
- * Date: 29.06.16
- * Time: 21:43
- */
+<?php namespace Hurl\Node\Abstracts\Comparator;
 
 namespace Hurl\Node\Comparator;
 
 
+use Cofi\Comparator\ComparatorFunction;
 use Hurl\Node\Abstracts\AbstractComparator;
 
 abstract class StringLengthComparator extends AbstractComparator
@@ -20,6 +15,7 @@ abstract class StringLengthComparator extends AbstractComparator
 	 */
 	public function compare($a, $b)
 	{
-		return strlen($a) - strlen($b);
+		$f = ComparatorFunction::stringLength();
+		return $f($a, $b);
 	}
 }
