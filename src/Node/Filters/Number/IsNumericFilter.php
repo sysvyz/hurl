@@ -13,8 +13,8 @@ use Hurl\Node\Abstracts\AbstractFilter;
 
 abstract class IsNumericFilter extends AbstractFilter
 {
-	public function apply($value)
-	{
-		return is_numeric($value);
-	}
+    public function apply($value)
+    {
+        return is_numeric($value);
+    }
 }

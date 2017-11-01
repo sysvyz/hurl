@@ -17,52 +17,52 @@ use Hurl\Node\Comparator\StringLengthComparator;
 
 final class Comparators
 {
-	/**
-	 * _Comparator constructor.
-	 * @codeCoverageIgnore
-	 */
-	private final function __construct()
-	{
-	}
+    /**
+     * _Comparator constructor.
+     * @codeCoverageIgnore
+     */
+    private final function __construct()
+    {
+    }
 
-	/**
-	 * @return AbstractComparator
-	 */
-	public static function numeric($delta = 0)
-	{
-		return new class($delta) extends NumericComparator
-		{
-		};
-	}
+    /**
+     * @return AbstractComparator
+     */
+    public static function numeric($delta = 0)
+    {
+        return new class($delta) extends NumericComparator
+        {
+        };
+    }
 
-	/**
-	 * @return StringComparator
-	 */
-	public static function alphaNumeric()
-	{
-		return new class() extends StringComparator
-		{
-		};
-	}
+    /**
+     * @return StringComparator
+     */
+    public static function alphaNumeric()
+    {
+        return new class() extends StringComparator
+        {
+        };
+    }
 
-	/**
-	 * @return AbstractComparator
-	 */
-	public static function stringLength()
-	{
-		return new class() extends StringLengthComparator
-		{
-		};
-	}
+    /**
+     * @return AbstractComparator
+     */
+    public static function stringLength()
+    {
+        return new class() extends StringLengthComparator
+        {
+        };
+    }
 
-	/**
-	 * @return AbstractComparator
-	 */
-	public static function boolean()
-	{
-		return new class() extends BooleanComparator
-		{
-		};
-	}
+    /**
+     * @return AbstractComparator
+     */
+    public static function boolean()
+    {
+        return new class() extends BooleanComparator
+        {
+        };
+    }
 
 }

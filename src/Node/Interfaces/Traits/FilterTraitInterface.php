@@ -6,15 +6,15 @@ use Hurl\Node\Interfaces\NodeInterface;
 
 interface FilterTraitInterface extends NodeInterface, FilterInterface
 {
-	public function __invoke(... $args);
+    public function __invoke(... $args);
 
-	/**
-	 * @param callable $then
-	 * @return NodeInterface
-	 */
-	public function then(callable $then);
+    /**
+     * @param callable $then
+     * @return NodeInterface
+     */
+    public function then(callable $then);
 
-	public function apply($value);
+    public function apply($value);
 
-	public function not();
+    public function not();
 }

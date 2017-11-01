@@ -13,8 +13,8 @@ use Hurl\Node\Abstracts\AbstractFilter;
 
 abstract class IsIntegerFilter extends AbstractFilter
 {
-	public function apply($value)
-	{
-		return is_int($value);
-	}
+    public function apply($value)
+    {
+        return is_int($value);
+    }
 }

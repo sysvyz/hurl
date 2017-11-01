@@ -13,17 +13,25 @@ use Hurl\Node\Abstracts\AbstractFilter;
 
 abstract class AbstractComparatorFilter extends AbstractFilter
 {
-	protected $value;
+    protected $value;
 
-	/**
-	 *  constructor.
-	 * @param $value
-	 */
-	public function __construct($value)
-	{
-		$this->value = $value;
-	}
+    /**
+     *  constructor.
+     * @param $value
+     */
+    public function __construct($value)
+    {
+        $this->value = $value;
+    }
 
-	abstract public function compare($that, $other);
+    abstract public function compare($that, $other);
 
+    /**
+     * @param $value
+     * @return bool
+     */
+    public function apply($value)
+    {
+        return $this->compare($this->value, $value);
+    }
 }

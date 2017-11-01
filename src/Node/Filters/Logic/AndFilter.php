@@ -11,13 +11,13 @@ namespace Hurl\Node\Filters\Logic;
 
 abstract class AndFilter extends LogicContainerFilterNode
 {
-	public function fold($value)
-	{
-		foreach ($this->filters as $callable) {
-			if (!$callable($value)) {
-				return false;
-			}
-		}
-		return true;
-	}
+    public function fold($value)
+    {
+        foreach ($this->filters as $callable) {
+            if (!$callable($value)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

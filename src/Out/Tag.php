@@ -126,12 +126,13 @@ class Tag
         $this->attributes = $attributes;
         return $this;
     }
+
     /**
      * @param array $attributes
      * @return Tag
      * @codeCoverageIgnore
      */
-    public function addAttributes($name,$attribute)
+    public function addAttributes($name, $attribute)
     {
         $this->attributes[$name] = $attribute;
         return $this;

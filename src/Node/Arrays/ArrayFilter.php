@@ -16,26 +16,26 @@ use Hurl\Node\Traits\ArrayTrait;
 class ArrayFilter extends AbstractArray implements ArrayTraitInterface
 {
     use ArrayTrait;
-	/**
-	 * @var callable
-	 */
-	protected $callable;
+    /**
+     * @var callable
+     */
+    protected $callable;
 
-	/**
-	 *  constructor.
-	 * @param $callable
-	 */
-	public function __construct(callable $callable = null)
-	{
-		$this->callable = $callable;
-	}
+    /**
+     *  constructor.
+     * @param $callable
+     */
+    public function __construct(callable $callable = null)
+    {
+        $this->callable = $callable;
+    }
 
-	public function apply(...$data)
-	{
-		if ($this->callable) {
-			return array_filter($data[0], $this->callable);
-		}
-		return array_filter($data[0]);
-	}
+    public function apply(...$data)
+    {
+        if ($this->callable) {
+            return array_filter($data[0], $this->callable);
+        }
+        return array_filter($data[0]);
+    }
 
 }

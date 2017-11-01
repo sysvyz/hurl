@@ -3,5 +3,5 @@
 
 interface ArrayTraitInterface
 {
-	public function apply(...$data);
+    public function apply(...$data);
 }

@@ -19,37 +19,52 @@ abstract class AbstractFilter extends AbstractNode implements FilterInterface
 {
 
 
-	/**
-	 * @param callable $do
-	 * @return AbstractFilter
-	 */
-	public function then(callable $do)
-	{
-		return new class($this, $do) extends AbstractFilter implements ContainerTraitInterface
-		{
-			use ContainerTrait;
-		};
-	}
+    /**
+     * @param $value
+     * @return bool
+     */
+    public function apply($value){
+        return $this->__invoke($value);
+    }
+    /**
+     * @param callable $do
+     * @return AbstractFilter
+     */
+    public function then(callable $do)
+    {
+        return new class($this, $do) extends AbstractFilter implements ContainerTraitInterface
+        {
+            use ContainerTrait;
+        };
+    }
 
-	/**
-	 * @param callable $callable
-	 * @return NegatedFilter
-	 */
-	public function not()
-	{
-		return new class($this, function ($e) {
-			return !$e;
-		}) extends NegatedFilter implements ContainerTraitInterface
-		{
-			use ContainerTrait;
+    /**
+     * @param callable $callable
+     * @return NegatedFilter
+     */
+    public function not()
+    {
+        return new class($this, function ($e) {
+            return !$e;
+        }) extends NegatedFilter implements ContainerTraitInterface
+        {
+            use ContainerTrait;
 
-			public function not()
-			{
-				return $this->getBefore();
-			}
+            public function not()
+            {
+                return $this->getBefore();
+            }
 
-		};
-	}
+            /**
+             * @param $value
+             * @return bool
+             */
+            public function apply($value)
+            {
+                return !$this->getBefore()->apply($value);
+            }
+        };
+    }
 
 
 }

@@ -16,16 +16,16 @@ use Hurl\Node\Traits\ArrayTrait;
 class ArrayEach extends AbstractArray implements ArrayTraitInterface
 {
     use ArrayTrait;
-	private $do;
+    private $do;
 
-	public function __construct($do)
-	{
-		$this->do = $do;
-	}
+    public function __construct($do)
+    {
+        $this->do = $do;
+    }
 
-	public function apply(...$data)
-	{
-		array_walk($data[0], $this->do);
-		return $data;
-	}
+    public function apply(...$data)
+    {
+        array_walk($data[0], $this->do);
+        return $data;
+    }
 }

@@ -9,17 +9,16 @@
 namespace Hurl\Node\Comparator;
 
 
-
 use Cofi\Comparator;
 
 class ArrayComparator extends AbstractContainerComparator
 {
-	/**
-	 * @param $fields
-	 * @return Comparator\Abstracts\AbstractContainerComparator
-	 */
-	protected function _getComparator($fields)
-	{
-		return Comparator\ArrayComparator::init($fields);
-	}
+    /**
+     * @param $fields
+     * @return Comparator\Abstracts\AbstractContainerComparator
+     */
+    protected function _getComparator($fields)
+    {
+        return Comparator\ArrayComparator::init($fields);
+    }
 }

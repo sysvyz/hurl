@@ -3,16 +3,16 @@
 
 use Cofi\Filter\Interfaces\FilterInterface as CofiFilterInterface;
 
-interface FilterInterface extends NodeInterface , CofiFilterInterface
+interface FilterInterface extends NodeInterface, CofiFilterInterface
 {
 
-	public function not();
+    public function not();
 
-	public function __invoke(... $args);
+    public function __invoke(... $args);
 
-	/**
-	 * @param callable $then
-	 * @return NodeInterface
-	 */
-	public function then(callable $then);
+    /**
+     * @param callable $then
+     * @return NodeInterface
+     */
+    public function then(callable $then);
 }

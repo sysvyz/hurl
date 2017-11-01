@@ -12,10 +12,10 @@ namespace Hurl\Node\Traits;
 trait FilterTrait
 {
 
-	abstract public function apply($value);
+    abstract public function apply($value);
 
-	public function __invoke(...$data)
-	{
-		return $this->apply($data[0]);
-	}
+    public function __invoke(...$data)
+    {
+        return $this->apply($data[0]);
+    }
 }

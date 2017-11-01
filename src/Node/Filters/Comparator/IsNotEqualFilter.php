@@ -14,17 +14,17 @@ use Hurl\Node\Traits\ComparatorFilterTrait;
 
 abstract class IsNotEqualFilter extends AbstractComparatorFilter
 {
-	public function compare($that, $other)
-	{
-		return $other != $that;
-	}
+    public function compare($that, $other)
+    {
+        return $other != $that;
+    }
 
-	public function not()
-	{
-		return new class($this->value) extends IsEqualFilter implements ComparatorFilterTraitInterface
-		{
-			use ComparatorFilterTrait;
+    public function not()
+    {
+        return new class($this->value) extends IsEqualFilter implements ComparatorFilterTraitInterface
+        {
+            use ComparatorFilterTrait;
 
-		};
-	}
+        };
+    }
 }

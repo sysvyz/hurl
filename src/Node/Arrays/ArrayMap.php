@@ -16,15 +16,15 @@ use Hurl\Node\Traits\ArrayTrait;
 class ArrayMap extends AbstractArray implements ArrayTraitInterface
 {
     use ArrayTrait;
-	protected $mapping;
+    protected $mapping;
 
-	public function __construct($mapping)
-	{
-		$this->mapping = $mapping;
-	}
+    public function __construct($mapping)
+    {
+        $this->mapping = $mapping;
+    }
 
-	public function apply(...$data)
-	{
-		return array_map($this->mapping, ...$data);
-	}
+    public function apply(...$data)
+    {
+        return array_map($this->mapping, ...$data);
+    }
 }

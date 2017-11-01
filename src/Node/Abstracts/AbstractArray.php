@@ -26,7 +26,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
      */
     public function then(callable $do)
     {
-        $_new_node  = new class($this, $do) extends AbstractArray implements ContainerTraitInterface
+        $_new_node = new class($this, $do) extends AbstractArray implements ContainerTraitInterface
         {
             use ContainerTrait;
         };
@@ -39,7 +39,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
      */
     public function each(callable $do)
     {
-        $_new_node  = new class($this, Arrays::each($do)) extends ArrayEach implements ContainerTraitInterface, CollectionNodeInterface
+        $_new_node = new class($this, Arrays::each($do)) extends ArrayEach implements ContainerTraitInterface, CollectionNodeInterface
         {
             use ContainerTrait;
         };
@@ -53,7 +53,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
      */
     public function reduce($init, callable $do)
     {
-        $_new_node  = new class($this, Arrays::reduce($init, $do)) extends ArrayReduce implements ContainerTraitInterface, CollectionNodeInterface
+        $_new_node = new class($this, Arrays::reduce($init, $do)) extends ArrayReduce implements ContainerTraitInterface, CollectionNodeInterface
         {
             use ContainerTrait;
         };
@@ -66,7 +66,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
      */
     public function map(callable $callable)
     {
-        $_new_node  = new class($this, Arrays::map($callable)) extends ArrayMap implements ContainerTraitInterface, CollectionNodeInterface
+        $_new_node = new class($this, Arrays::map($callable)) extends ArrayMap implements ContainerTraitInterface, CollectionNodeInterface
         {
             use ContainerTrait;
         };
@@ -81,7 +81,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
      */
     public function sort(callable ...$callable)
     {
-        $_new_node  = new class($this, Arrays::sort(...$callable)) extends ArraySort implements ContainerTraitInterface, CollectionNodeInterface
+        $_new_node = new class($this, Arrays::sort(...$callable)) extends ArraySort implements ContainerTraitInterface, CollectionNodeInterface
         {
             use ContainerTrait;
         };
@@ -93,7 +93,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
      */
     public function merge()
     {
-        $_new_node  = new class($this, Arrays::merge()) extends ArrayMerge implements ContainerTraitInterface, CollectionNodeInterface
+        $_new_node = new class($this, Arrays::merge()) extends ArrayMerge implements ContainerTraitInterface, CollectionNodeInterface
         {
             use ContainerTrait;
         };
@@ -106,7 +106,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
      */
     public function sum()
     {
-        $_new_node  = new class($this, Math::sum()) extends AbstractNode implements ContainerTraitInterface
+        $_new_node = new class($this, Math::sum()) extends AbstractNode implements ContainerTraitInterface
         {
             use ContainerTrait;
         };
@@ -118,7 +118,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
      */
     public function values()
     {
-        $_new_node  = new class($this, Arrays::values()) extends AbstractArray implements ContainerTraitInterface
+        $_new_node = new class($this, Arrays::values()) extends AbstractArray implements ContainerTraitInterface
         {
             use ContainerTrait;
         };
@@ -132,7 +132,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
     public function implode(string $glue)
     {
 
-        $_new_node  = new class($this, Arrays::implode($glue)) extends ArrayImplode implements ContainerTraitInterface
+        $_new_node = new class($this, Arrays::implode($glue)) extends ArrayImplode implements ContainerTraitInterface
         {
             use ContainerTrait;
         };
@@ -145,7 +145,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
     public function isEmpty()
     {
 
-        $_new_node  = new class($this, Filters::isEmpty()) extends IsEmptyFilter implements ContainerTraitInterface
+        $_new_node = new class($this, Filters::isEmpty()) extends IsEmptyFilter implements ContainerTraitInterface
         {
             use ContainerTrait;
         };
@@ -159,7 +159,7 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
     public function contains($needle, $strict = null)
     {
 
-        $_new_node  = new class($this, Filters::contains($needle, $strict)) extends ContainsFilter implements ContainerTraitInterface
+        $_new_node = new class($this, Filters::contains($needle, $strict)) extends ContainsFilter implements ContainerTraitInterface
         {
             use ContainerTrait;
         };

@@ -573,16 +573,7 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
 	 * @expectedExceptionCode  4
-	 */
-	public function testComparatorFail2()
-	{
-		$cmp = new ArrayComparator([
-			'someKey',
-			'id',
-		]);
-    /**
-     * @expectedException        \Hurl\Node\Exceptions\UndefinedPropertyException
-     * @expectedExceptionMessage Undefined index: someKey
+
      */
     public function testComparatorFail2()
     {
@@ -603,16 +594,6 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
 	 * @expectedExceptionCode  4
-	 */
-	public function testComparatorFail3()
-	{
-		$cmp = new ArrayComparator([
-			'someKey',
-			'id',
-		]);
-    /**
-     * @expectedException        \Hurl\Node\Exceptions\UndefinedPropertyException
-     * @expectedExceptionMessage Undefined index: someKey
      */
     public function testComparatorFail3()
     {
@@ -633,16 +614,6 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
 	 * @expectedExceptionCode  4
-	 */
-	public function testComparatorFail4()
-	{
-		$cmp = new ArrayComparator([
-			'someKey',
-			'id',
-		]);
-    /**
-     * @expectedException        \Hurl\Node\Exceptions\UndefinedPropertyException
-     * @expectedExceptionMessage Undefined index: someKey
      */
     public function testComparatorFail4()
     {
@@ -663,16 +634,6 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @expectedException       \Cofi\Exceptions\InvalidComparatorArgumentException
 	 * @expectedExceptionCode  5
-	 */
-	public function testComparatorFail5()
-	{
-		$cmp = new ArrayComparator([
-			'score',
-			'id',
-		]);
-    /**
-     * @expectedException        \InvalidArgumentException
-     * @expectedExceptionMessage invalid property
      */
     public function testComparatorFail5()
     {

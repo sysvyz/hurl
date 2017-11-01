@@ -13,8 +13,8 @@ use Hurl\Node\Abstracts\AbstractFilter;
 
 abstract class IsStringFilter extends AbstractFilter
 {
-	public function apply($value)
-	{
-		return is_string($value);
-	}
+    public function apply($value)
+    {
+        return is_string($value);
+    }
 }

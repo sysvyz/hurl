@@ -14,17 +14,17 @@ use Hurl\Node\Traits\ArrayTrait;
 
 class StringExplode extends AbstractArray
 {
-	private $delimiter;
+    private $delimiter;
 
-	public function __construct($delimiter)
-	{
-		$this->delimiter = $delimiter;
-	}
+    public function __construct($delimiter)
+    {
+        $this->delimiter = $delimiter;
+    }
 
-	public function __invoke(...$data)
-	{
-		return explode($this->delimiter, $data[0]);
+    public function __invoke(...$data)
+    {
+        return explode($this->delimiter, $data[0]);
 
-	}
+    }
 
 }

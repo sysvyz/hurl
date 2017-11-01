@@ -1,4 +1,5 @@
 <?php
+
 namespace Hurl\Node\Traits;
 
 /**
@@ -11,52 +12,53 @@ namespace Hurl\Node\Traits;
 
 trait ContainerTrait
 {
-	/**
-	 * @var callable
-	 */
-	private $before;
-	/**
-	 * @var callable
-	 */
-	private $after;
+    /**
+     * @var callable
+     */
+    private $before;
+    /**
+     * @var callable
+     */
+    private $after;
 
 
-	/**
-	 * ContainerNode constructor.
-	 * @param callable $before
-	 * @param callable $after
-	 */
-	public function __construct(callable $before, callable $after)
-	{
-		$this->before = $before;
-		$this->after = $after;
-	}
+    /**
+     * ContainerNode constructor.
+     * @param callable $before
+     * @param callable $after
+     */
+    public function __construct(callable $before, callable $after)
+    {
+        $this->before = $before;
+        $this->after = $after;
+    }
 
-	public function __invoke(...$args)
-	{
-		$before = $this->before;
-		$after = $this->after;
+    public function __invoke(...$args)
+    {
+        $before = $this->before;
+        $after = $this->after;
 
 
-		return $after($before(...$args));
-	}
+        return $after($before(...$args));
+    }
 
-	/**
-	 * @return callable
-	 */
-	public function getBefore()
-	{
-		return $this->before;
-	}
 
-	/**
-	 * @return callable
-	 * @codeCoverageIgnore
-	 */
-	public function getAfter()
-	{
-		return $this->after;
-	}
+    /**
+     * @return callable
+     */
+    public function getBefore()
+    {
+        return $this->before;
+    }
+
+    /**
+     * @return callable
+     * @codeCoverageIgnore
+     */
+    public function getAfter()
+    {
+        return $this->after;
+    }
 
 
 }

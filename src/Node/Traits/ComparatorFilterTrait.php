@@ -11,12 +11,12 @@ namespace Hurl\Node\Traits;
 
 trait ComparatorFilterTrait
 {
-	protected $value;
+    protected $value;
 
-	abstract public function compare($that, $other);
+    abstract public function compare($that, $other);
 
-	public function __invoke(...$data)
-	{
-		return $this->compare($this->value, $data[0]);
-	}
+    public function __invoke(...$data)
+    {
+        return $this->compare($this->value, $data[0]);
+    }
 }

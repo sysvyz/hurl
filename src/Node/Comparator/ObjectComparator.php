@@ -12,12 +12,12 @@ use Cofi\Comparator;
 
 class ObjectComparator extends AbstractContainerComparator
 {
-	/**
-	 * @param $fields
-	 * @return Comparator\Abstracts\AbstractContainerComparator
-	 */
-	protected function _getComparator($fields)
-	{
-		return Comparator\ObjectComparator::init($fields);
-	}
+    /**
+     * @param $fields
+     * @return Comparator\Abstracts\AbstractContainerComparator
+     */
+    protected function _getComparator($fields)
+    {
+        return Comparator\ObjectComparator::init($fields);
+    }
 }

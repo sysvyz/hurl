@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bda86824cc3d0f7da7b5dac789166097",
-    "packages": [],
+    "content-hash": "1d1c4efc388ed507f153c6a68ea0753d",
+    "packages": [
+        {
+            "name": "sysvyz/cofi",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mo-ba/cofi.git",
+                "reference": "633eef53e5e871eba28a0079647799261df4d764"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mo-ba/cofi/zipball/633eef53e5e871eba28a0079647799261df4d764",
+                "reference": "633eef53e5e871eba28a0079647799261df4d764",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cofi\\": "src",
+                    "CofiTest\\": "test"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "mb",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Comparators & Filters for PHP 5.4",
+            "homepage": "https://github.com/mo-ba/cofi",
+            "keywords": [
+                "comparator",
+                "filter"
+            ],
+            "time": "2016-07-28 15:09:24"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
@@ -1365,7 +1411,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "sysvyz/cofi": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

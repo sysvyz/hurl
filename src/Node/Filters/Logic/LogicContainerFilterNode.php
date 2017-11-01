@@ -13,18 +13,18 @@ use Hurl\Node\Interfaces\Traits\FilterContainerTraitInterface;
 
 abstract class LogicContainerFilterNode extends LogicFilter implements FilterContainerTraitInterface
 {
-	/**
-	 * @var callable[]
-	 */
-	protected $filters;
+    /**
+     * @var callable[]
+     */
+    protected $filters;
 
-	/**
-	 *  constructor.
-	 * @param $filters
-	 */
-	public function __construct(callable ...$filters)
-	{
-		$this->filters = $filters;
-	}
+    /**
+     *  constructor.
+     * @param $filters
+     */
+    public function __construct(callable ...$filters)
+    {
+        $this->filters = $filters;
+    }
 
 }

@@ -3,17 +3,17 @@
 interface NodeInterface
 {
 
-	public function __invoke(... $args);
+    public function __invoke(... $args);
 
-	/**
-	 * @param callable $then
-	 * @return NodeInterface
-	 */
-	public function then(callable $then);
+    /**
+     * @param callable $then
+     * @return NodeInterface
+     */
+    public function then(callable $then);
 
-	/**
-	 * @return \Closure
-	 */
-	public function asClosure();
+    /**
+     * @return \Closure
+     */
+    public function asClosure();
 
 }

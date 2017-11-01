@@ -12,4 +12,5 @@ namespace Hurl\Node\Filters\Logic;
 
 abstract class NegatedFilter extends LogicFilter
 {
+
 }

@@ -15,17 +15,17 @@ use Hurl\Node\Traits\FilterTrait;
 
 abstract class IsOddFilter extends AbstractFilter
 {
-	public function apply($value)
-	{
-		return is_numeric($value) && $value % 2 != 0;
-	}
+    public function apply($value)
+    {
+        return is_numeric($value) && $value % 2 != 0;
+    }
 
-	public function not()
-	{
-		return new class() extends IsEvenFilter implements FilterTraitInterface
-		{
-			use FilterTrait;
+    public function not()
+    {
+        return new class() extends IsEvenFilter implements FilterTraitInterface
+        {
+            use FilterTrait;
 
-		};
-	}
+        };
+    }
 }

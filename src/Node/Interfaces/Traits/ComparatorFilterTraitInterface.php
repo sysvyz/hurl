@@ -3,5 +3,5 @@
 
 interface ComparatorFilterTraitInterface
 {
-	public function compare($that, $other);
+    public function compare($that, $other);
 }

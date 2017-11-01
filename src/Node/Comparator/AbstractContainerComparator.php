@@ -16,44 +16,44 @@ use Hurl\Node\Statics\Comparators;
 
 abstract class AbstractContainerComparator extends AbstractComparator
 {
-	/**
-	 * @var \Cofi\Comparator\Abstracts\AbstractContainerComparator
-	 */
-	private $comparator;
+    /**
+     * @var \Cofi\Comparator\Abstracts\AbstractContainerComparator
+     */
+    private $comparator;
 
-	/**
-	 * AbstractContainerComparator constructor.
-	 * @param array $fields
-	 */
-	public function __construct(array $fields)
-	{
-		$this->comparator = $this->_getComparator($fields);
-	}
+    /**
+     * AbstractContainerComparator constructor.
+     * @param array $fields
+     */
+    public function __construct(array $fields)
+    {
+        $this->comparator = $this->_getComparator($fields);
+    }
 
-	/**
-	 * @param array $fields
-	 * @return static
-	 */
-	public static function init(array $fields)
-	{
-		return new static($fields);
-	}
+    /**
+     * @param array $fields
+     * @return static
+     */
+    public static function init(array $fields)
+    {
+        return new static($fields);
+    }
 
-	/**
-	 * @param $a
-	 * @param $b
-	 * @return int
-	 * @throws UndefinedPropertyException
-	 * @throws \InvalidArgumentException
-	 */
-	public function compare($a, $b)
-	{
-		return $this->comparator->compare($a, $b);
-	}
+    /**
+     * @param $a
+     * @param $b
+     * @return int
+     * @throws UndefinedPropertyException
+     * @throws \InvalidArgumentException
+     */
+    public function compare($a, $b)
+    {
+        return $this->comparator->compare($a, $b);
+    }
 
-	/**
-	 * @param $fields
-	 * @return \Cofi\Comparator\Abstracts\AbstractContainerComparator
-	 */
-	abstract protected function _getComparator($fields);
+    /**
+     * @param $fields
+     * @return \Cofi\Comparator\Abstracts\AbstractContainerComparator
+     */
+    abstract protected function _getComparator($fields);
 }

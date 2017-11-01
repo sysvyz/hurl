@@ -22,104 +22,104 @@ use Hurl\Node\Interfaces\CollectionNodeInterface;
 
 final class Strings
 {
-	/**
-	 * _String constructor.
-	 * @codeCoverageIgnore
-	 */
-	private final function __construct()
-	{
-	}
+    /**
+     * _String constructor.
+     * @codeCoverageIgnore
+     */
+    private final function __construct()
+    {
+    }
 
 
-	/**
-	 * @return AbstractStringNode
-	 */
-	public static function trim()
-	{
-		return new class() extends StringTrim
-		{
-		};
-	}
+    /**
+     * @return AbstractStringNode
+     */
+    public static function trim()
+    {
+        return new class() extends StringTrim
+        {
+        };
+    }
 
-	/**
-	 * @return AbstractStringNode
-	 */
-	public static function ltrim()
-	{
-		return new class() extends StringLeftTrim
-		{
-		};
-	}
+    /**
+     * @return AbstractStringNode
+     */
+    public static function ltrim()
+    {
+        return new class() extends StringLeftTrim
+        {
+        };
+    }
 
-	/**
-	 * @return AbstractStringNode
-	 */
-	public static function rtrim()
-	{
-		return new class() extends StringRightTrim
-		{
-		};
-	}
+    /**
+     * @return AbstractStringNode
+     */
+    public static function rtrim()
+    {
+        return new class() extends StringRightTrim
+        {
+        };
+    }
 
-	/**
-	 * @return AbstractStringNode
-	 */
-	public static function ucfirst()
-	{
-		return new class() extends StringUpperCaseFirst
-		{
-		};
-	}
+    /**
+     * @return AbstractStringNode
+     */
+    public static function ucfirst()
+    {
+        return new class() extends StringUpperCaseFirst
+        {
+        };
+    }
 
-	/**
-	 * @return AbstractStringNode
-	 */
-	public static function lcfirst()
-	{
-		return new class() extends StringLowerCaseFirst
-		{
-		};
-	}
+    /**
+     * @return AbstractStringNode
+     */
+    public static function lcfirst()
+    {
+        return new class() extends StringLowerCaseFirst
+        {
+        };
+    }
 
-	/**
-	 * @return AbstractStringNode
-	 */
-	public static function upper_case()
-	{
-		return new class() extends StringUpperCase
-		{
-		};
-	}
+    /**
+     * @return AbstractStringNode
+     */
+    public static function upper_case()
+    {
+        return new class() extends StringUpperCase
+        {
+        };
+    }
 
-	/**
-	 * @return AbstractStringNode
-	 */
-	public static function lower_case()
-	{
-		return new class() extends StringLowerCase
-		{
-		};
-	}
-
-
-	/**
-	 * @param $delimiter
-	 * @return CollectionNodeInterface
-	 */
-	public static function explode($delimiter)
-	{
-		return Arrays::explode($delimiter);
-	}
+    /**
+     * @return AbstractStringNode
+     */
+    public static function lower_case()
+    {
+        return new class() extends StringLowerCase
+        {
+        };
+    }
 
 
-	/**
-	 * @param $glue
-	 * @return AbstractStringNode
-	 */
-	public static function substring($start, $length = null)
-	{
-		return new class($start, $length) extends StringSubstring
-		{
-		};
-	}
+    /**
+     * @param $delimiter
+     * @return CollectionNodeInterface
+     */
+    public static function explode($delimiter)
+    {
+        return Arrays::explode($delimiter);
+    }
+
+
+    /**
+     * @param $glue
+     * @return AbstractStringNode
+     */
+    public static function substring($start, $length = null)
+    {
+        return new class($start, $length) extends StringSubstring
+        {
+        };
+    }
 }

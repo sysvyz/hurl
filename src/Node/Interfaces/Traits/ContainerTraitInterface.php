@@ -1,4 +1,5 @@
 <?php namespace Hurl\Node\Interfaces\Traits;
+
 use Hurl\Node\Interfaces\NodeInterface;
 
 
@@ -9,7 +10,7 @@ use Hurl\Node\Interfaces\NodeInterface;
 interface ContainerTraitInterface extends NodeInterface
 {
 
-	public function getBefore();
+    public function getBefore();
 
-	public function getAfter();
+    public function getAfter();
 }

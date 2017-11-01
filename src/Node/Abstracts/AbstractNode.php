@@ -1,4 +1,5 @@
 <?php
+
 namespace Hurl\Node\Abstracts;
 
 use Hurl\Node\Interfaces\Traits\ContainerTraitInterface;
@@ -17,51 +18,51 @@ abstract class AbstractNode implements NodeInterface
 {
 
 
-	/**
-	 * @param callable $do
-	 * @return AbstractNode
-	 */
-	public function then(callable $do)
-	{
-		return new class($this, $do) extends AbstractNode implements ContainerTraitInterface
-		{
-			use ContainerTrait;
-		};
-	}
-	
+    /**
+     * @param callable $do
+     * @return AbstractNode
+     */
+    public function then(callable $do)
+    {
+        return new class($this, $do) extends AbstractNode implements ContainerTraitInterface
+        {
+            use ContainerTrait;
+        };
+    }
 
-	/**
-	 * @return AbstractNode
-	 */
-	public function debug()
-	{
-		return $this->then(Nodes::debug());
-	}
-	
 
-	/**
-	 * @return AbstractNode
-	 */
-	public function fromJson()
-	{
-		return $this->then(Nodes::fromJson());
-	}
+    /**
+     * @return AbstractNode
+     */
+    public function debug()
+    {
+        return $this->then(Nodes::debug());
+    }
 
-	/**
-	 * @return AbstractNode
-	 */
-	public function toJson()
-	{
-		return $this->then(Nodes::toJson());
-	}
 
-	public function asClosure()
-	{
+    /**
+     * @return AbstractNode
+     */
+    public function fromJson()
+    {
+        return $this->then(Nodes::fromJson());
+    }
 
-		return function (...$args) {
-			return $this(...$args);
-		};
-	}
+    /**
+     * @return AbstractNode
+     */
+    public function toJson()
+    {
+        return $this->then(Nodes::toJson());
+    }
+
+    public function asClosure()
+    {
+
+        return function (...$args) {
+            return $this(...$args);
+        };
+    }
 
 
 }

@@ -3,19 +3,19 @@
 
 use Hurl\Node\Statics\Arrays;
 use Hurl\Node\Statics\Comparators;
-use Hurl\Node\Statics\_Node;
-use Hurl\Node\Statics\_String;
+use Hurl\Node\Statics\Nodes;
+use Hurl\Node\Statics\Strings;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$fromHex = _Node::init(function ($data) {
+$fromHex = Nodes::init(function ($data) {
 	return hexdec($data);
 });
 var_dump($fromHex('a'));
 //int(10)
 
 
-$explode = _String::explode('.');
+$explode = Strings::explode('.');
 var_dump($explode('a.b'));
 
 $chain = $explode->implode('-');
@@ -46,7 +46,7 @@ var_dump($sort([2, 5, 3, 4, 1]));
 
 $string = 'a,3,e,22,a2,3e0,cf';
 $explodeHexString = Arrays::explode(',')->map(
-	_String::trim()->then($fromHex)
+	Strings::trim()->then($fromHex)
 )->sort(Comparators::numeric());
 print_r($explodeHexString($string));
 
@@ -57,7 +57,7 @@ $explodeHexString =
 		->sort(
 			Comparators::boolean()
 				->map(
-					_String::trim()
+					Strings::trim()
 						->then($fromHex)
 						->then(function ($e) {
 							return $e % 5;
@@ -65,7 +65,7 @@ $explodeHexString =
 				)
 			,
 			Comparators::numeric()->map(
-				_String::trim()
+				Strings::trim()
 					->then($fromHex)
 			)
 		);

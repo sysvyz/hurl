@@ -13,22 +13,22 @@ use Hurl\Node\Abstracts\AbstractFilter;
 abstract class ContainsFilter extends AbstractFilter
 {
 
-	private $needle;
-	private $strict;
+    private $needle;
+    private $strict;
 
-	/**
-	 * ContainsFilter constructor.
-	 * @param $needle
-	 */
-	public function __construct($needle,$strict = null)
-	{
-		$this->needle = $needle;
-		$this->strict = $strict;
-	}
+    /**
+     * ContainsFilter constructor.
+     * @param $needle
+     */
+    public function __construct($needle, $strict = null)
+    {
+        $this->needle = $needle;
+        $this->strict = $strict;
+    }
 
 
-	public function apply($value)
-	{
-		return in_array($this->needle,$value,$this->strict);
-	}
+    public function apply($value)
+    {
+        return in_array($this->needle, $value, $this->strict);
+    }
 }

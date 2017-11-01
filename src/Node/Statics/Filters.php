@@ -35,212 +35,213 @@ use Hurl\Node\Traits\FilterTrait;
 
 final class Filters
 {
-	/**
-	 * _Filter constructor.
-	 * @codeCoverageIgnore
-	 */
-	private final function __construct()
-	{
-	}
+    /**
+     * _Filter constructor.
+     * @codeCoverageIgnore
+     */
+    private final function __construct()
+    {
+    }
 
-	/**
-	 * @return IsEmptyFilter
-	 */
-	public static function isEmpty()
-	{
-		return new class() extends IsEmptyFilter implements FilterTraitInterface
-		{
-			use FilterTrait;
-		};
-	}
+    /**
+     * @return IsEmptyFilter
+     */
+    public static function isEmpty()
+    {
+        return new class() extends IsEmptyFilter implements FilterTraitInterface
+        {
+            use FilterTrait;
+        };
+    }
 
-	public static function contains($needle,$strict = null)
-	{
-		return new class($needle,$strict) extends ContainsFilter
-		{
-			use FilterTrait;
-		};
-	}
-	/**
-	 * @return IsNumericFilter
-	 */
-	public static function isNumeric()
-	{
-		return new class() extends IsNumericFilter implements FilterTraitInterface
-		{
-			use FilterTrait;
-		};
-	}
+    public static function contains($needle, $strict = null)
+    {
+        return new class($needle, $strict) extends ContainsFilter
+        {
+            use FilterTrait;
+        };
+    }
 
-	/**
-	 * @return IsIntegerFilter
-	 */
-	public static function isInt()
-	{
-		return new class() extends IsIntegerFilter implements FilterTraitInterface
-		{
-			use FilterTrait;
-		};
-	}
+    /**
+     * @return IsNumericFilter
+     */
+    public static function isNumeric()
+    {
+        return new class() extends IsNumericFilter implements FilterTraitInterface
+        {
+            use FilterTrait;
+        };
+    }
 
-	/**
-	 * @return IsStringFilter
-	 */
-	public static function isString()
-	{
-		return new class() extends IsStringFilter implements FilterTraitInterface
-		{
-			use FilterTrait;
-		};
-	}
+    /**
+     * @return IsIntegerFilter
+     */
+    public static function isInt()
+    {
+        return new class() extends IsIntegerFilter implements FilterTraitInterface
+        {
+            use FilterTrait;
+        };
+    }
 
-	/**
-	 * @return IsArrayFilter
-	 */
-	public static function isArray()
-	{
-		return new class() extends IsArrayFilter implements FilterTraitInterface
-		{
-			use FilterTrait;
-		};
-	}
+    /**
+     * @return IsStringFilter
+     */
+    public static function isString()
+    {
+        return new class() extends IsStringFilter implements FilterTraitInterface
+        {
+            use FilterTrait;
+        };
+    }
 
-	/**
-	 * @return AndFilter
-	 */
-	public static function and (...$filters)
-	{
-		return new class(...$filters) extends AndFilter
-		{
+    /**
+     * @return IsArrayFilter
+     */
+    public static function isArray()
+    {
+        return new class() extends IsArrayFilter implements FilterTraitInterface
+        {
+            use FilterTrait;
+        };
+    }
 
-			use FilterContainerTrait;
+    /**
+     * @return AndFilter
+     */
+    public static function and (...$filters)
+    {
+        return new class(...$filters) extends AndFilter
+        {
 
-		};
-	}
+            use FilterContainerTrait;
 
-	/**
-	 * @return OrFilter
-	 */
-	public static function or (...$filters)
-	{
-		return new class(...$filters) extends OrFilter
-		{
+        };
+    }
 
-			use FilterContainerTrait;
-		};
-	}
+    /**
+     * @return OrFilter
+     */
+    public static function or (...$filters)
+    {
+        return new class(...$filters) extends OrFilter
+        {
 
-	/**
-	 * @return IsEvenFilter
-	 */
-	public static function isEven()
-	{
-		return new class() extends IsEvenFilter implements FilterTraitInterface
-		{
-			use FilterTrait;
-		};
-	}
+            use FilterContainerTrait;
+        };
+    }
 
-	/**
-	 * @return IsOddFilter
-	 */
-	public static function isOdd()
-	{
-		return new class() extends IsOddFilter implements FilterTraitInterface
-		{
-			use FilterTrait;
-		};
-	}
+    /**
+     * @return IsEvenFilter
+     */
+    public static function isEven()
+    {
+        return new class() extends IsEvenFilter implements FilterTraitInterface
+        {
+            use FilterTrait;
+        };
+    }
 
-	/**
-	 * @return GreaterThanFilter
-	 */
-	public static function isGreaterThan($value)
-	{
-		return new class($value) extends GreaterThanFilter implements ComparatorFilterTraitInterface
-		{
-			use ComparatorFilterTrait;
-		};
-	}
+    /**
+     * @return IsOddFilter
+     */
+    public static function isOdd()
+    {
+        return new class() extends IsOddFilter implements FilterTraitInterface
+        {
+            use FilterTrait;
+        };
+    }
 
-	/**
-	 * @return LessThanFilter
-	 */
-	public static function isLessThan($value)
-	{
-		return new class($value) extends LessThanFilter implements ComparatorFilterTraitInterface
-		{
-			use ComparatorFilterTrait;
-		};
-	}
+    /**
+     * @return GreaterThanFilter
+     */
+    public static function isGreaterThan($value)
+    {
+        return new class($value) extends GreaterThanFilter implements ComparatorFilterTraitInterface
+        {
+            use ComparatorFilterTrait;
+        };
+    }
 
-	/**
-	 * @return GreaterOrEqualFilter
-	 */
-	public static function isGreaterOrEqual($value)
-	{
-		return new class($value) extends GreaterOrEqualFilter implements ComparatorFilterTraitInterface
-		{
-			use ComparatorFilterTrait;
-		};
-	}
+    /**
+     * @return LessThanFilter
+     */
+    public static function isLessThan($value)
+    {
+        return new class($value) extends LessThanFilter implements ComparatorFilterTraitInterface
+        {
+            use ComparatorFilterTrait;
+        };
+    }
 
-	/**
-	 * @return LessOrEqualFilter
-	 */
-	public static function isLessOrEqual($value)
-	{
-		return new class($value) extends LessOrEqualFilter implements ComparatorFilterTraitInterface
-		{
-			use ComparatorFilterTrait;
-		};
-	}
+    /**
+     * @return GreaterOrEqualFilter
+     */
+    public static function isGreaterOrEqual($value)
+    {
+        return new class($value) extends GreaterOrEqualFilter implements ComparatorFilterTraitInterface
+        {
+            use ComparatorFilterTrait;
+        };
+    }
 
-	/**
-	 * @return IsEqualFilter
-	 */
-	public static function isEqual($value)
-	{
-		return new class($value) extends IsEqualFilter implements ComparatorFilterTraitInterface
-		{
-			use ComparatorFilterTrait;
-		};
-	}
+    /**
+     * @return LessOrEqualFilter
+     */
+    public static function isLessOrEqual($value)
+    {
+        return new class($value) extends LessOrEqualFilter implements ComparatorFilterTraitInterface
+        {
+            use ComparatorFilterTrait;
+        };
+    }
 
-	/**
-	 * @return IsNotEqualFilter
-	 */
-	public static function isNotEqual($value)
-	{
-		return new class($value) extends IsNotEqualFilter implements ComparatorFilterTraitInterface
-		{
-			use ComparatorFilterTrait;
-		};
-	}
+    /**
+     * @return IsEqualFilter
+     */
+    public static function isEqual($value)
+    {
+        return new class($value) extends IsEqualFilter implements ComparatorFilterTraitInterface
+        {
+            use ComparatorFilterTrait;
+        };
+    }
 
-	public static function init(callable $callable)
-	{
-		return new class($callable) extends AbstractFilter
-		{
-			private $callable;
+    /**
+     * @return IsNotEqualFilter
+     */
+    public static function isNotEqual($value)
+    {
+        return new class($value) extends IsNotEqualFilter implements ComparatorFilterTraitInterface
+        {
+            use ComparatorFilterTrait;
+        };
+    }
 
-			/**
-			 *  constructor.
-			 * @param $callable
-			 */
-			public function __construct($callable)
-			{
-				$this->callable = $callable;
-			}
+    public static function init(callable $callable)
+    {
+        return new class($callable) extends AbstractFilter
+        {
+            private $callable;
+
+            /**
+             *  constructor.
+             * @param $callable
+             */
+            public function __construct($callable)
+            {
+                $this->callable = $callable;
+            }
 
 
-			public function __invoke(... $args)
-			{
-				$f = $this->callable;
-				return $f($args[0], $args[1]);
-			}
-		};
-	}
+            public function __invoke(... $args)
+            {
+                $f = $this->callable;
+                return $f($args[0], $args[1]);
+            }
+        };
+    }
 
 
 }

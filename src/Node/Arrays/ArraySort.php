@@ -11,33 +11,33 @@ use Hurl\Node\Traits\ArrayTrait;
 class ArraySort extends AbstractArray implements ArrayTraitInterface
 {
     use ArrayTrait;
-	/**
-	 * @var callable
-	 */
-	private $callable;
+    /**
+     * @var callable
+     */
+    private $callable;
 
-	/**
-	 *  constructor.
-	 * @param $callable
-	 */
-	public function __construct(callable ...$callables)
-	{
-		$callable = $callables[0];
-		if (count($callables) > 1) {
-			for ($int = 1; $int < count($callables); $int++) {
-				$callable = new class($callable, $callables[$int]) extends AbstractComparator
-				{
-					use ComparatorContainerTrait;
-				};
-			}
-		}
-		$this->callable = $callable;
+    /**
+     *  constructor.
+     * @param $callable
+     */
+    public function __construct(callable ...$callables)
+    {
+        $callable = $callables[0];
+        if (count($callables) > 1) {
+            for ($int = 1; $int < count($callables); $int++) {
+                $callable = new class($callable, $callables[$int]) extends AbstractComparator
+                {
+                    use ComparatorContainerTrait;
+                };
+            }
+        }
+        $this->callable = $callable;
 
-	}
+    }
 
-	public function apply(...$data)
-	{
-		usort($data[0], $this->callable);
-		return $data[0];
-	}
+    public function apply(...$data)
+    {
+        usort($data[0], $this->callable);
+        return $data[0];
+    }
 }

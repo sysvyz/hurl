@@ -12,10 +12,19 @@ namespace Hurl\Node\Traits;
 trait FilterContainerTrait
 {
 
-	abstract public function fold($value);
+    abstract public function fold($value);
 
-	public function __invoke(...$data)
-	{
-		return $this->fold($data[0]);
-	}
+    public function __invoke(...$data)
+    {
+        return $this->fold($data[0]);
+    }
+
+    /**
+     * @param $value
+     * @return bool
+     */
+    public function apply($value)
+    {
+        return $this->fold($value);
+    }
 }

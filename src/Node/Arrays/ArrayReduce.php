@@ -16,17 +16,17 @@ use Hurl\Node\Traits\ArrayTrait;
 class ArrayReduce extends AbstractArray implements ArrayTraitInterface
 {
     use ArrayTrait;
-	private $do;
-	private $init;
+    private $do;
+    private $init;
 
-	public function __construct($init,callable $do)
-	{
-		$this->do = $do;
-		$this->init = $init;
-	}
+    public function __construct($init, callable $do)
+    {
+        $this->do = $do;
+        $this->init = $init;
+    }
 
-	public function apply(...$data)
-	{
-		return array_reduce($data[0], $this->do,$this->init);
-	}
+    public function apply(...$data)
+    {
+        return array_reduce($data[0], $this->do, $this->init);
+    }
 }

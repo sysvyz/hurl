@@ -11,10 +11,10 @@ namespace Hurl\Node\Traits;
 
 trait ArrayTrait
 {
-	abstract public function apply(...$data);
+    abstract public function apply(...$data);
 
-	public function __invoke(...$data)
-	{
-		return $this->apply(...$data);
-	}
+    public function __invoke(...$data)
+    {
+        return $this->apply(...$data);
+    }
 }

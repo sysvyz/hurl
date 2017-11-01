@@ -4,25 +4,25 @@ use Hurl\Node\Abstracts\AbstractComparator;
 
 class GenericComparator extends AbstractComparator
 {
-	private $func;
+    private $func;
 
-	/**
-	 * GenericComparator constructor.
-	 * @param $func
-	 */
-	public function __construct(callable $func)
-	{
-		$this->func = $func;
-	}
+    /**
+     * GenericComparator constructor.
+     * @param $func
+     */
+    public function __construct(callable $func)
+    {
+        $this->func = $func;
+    }
 
-	/**
-	 * @param $a
-	 * @param $b
-	 * @return int
-	 */
-	public function compare($a, $b)
-	{
-		$f = $this->func;
-		return $f($a, $b);
-	}
+    /**
+     * @param $a
+     * @param $b
+     * @return int
+     */
+    public function compare($a, $b)
+    {
+        $f = $this->func;
+        return $f($a, $b);
+    }
 }

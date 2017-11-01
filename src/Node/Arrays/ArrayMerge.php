@@ -17,8 +17,8 @@ class ArrayMerge extends AbstractArray implements ArrayTraitInterface
 {
     use ArrayTrait;
 
-	public function apply(...$data)
-	{
-		return array_merge(...$data);
-	}
+    public function apply(...$data)
+    {
+        return array_merge(...$data);
+    }
 }

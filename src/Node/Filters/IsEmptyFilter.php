@@ -13,15 +13,15 @@ use Hurl\Node\Abstracts\AbstractFilter;
 abstract class IsEmptyFilter extends AbstractFilter
 {
 
-	public function apply($value)
+    public function apply($value)
 
-	{
-		if (is_string($value)) {
-			return strlen($value) == 0;
-		}
-		if (is_array($value)) {
-			return empty($value);
-		}
-		return false;
-	}
+    {
+        if (is_string($value)) {
+            return strlen($value) == 0;
+        }
+        if (is_array($value)) {
+            return empty($value);
+        }
+        return false;
+    }
 }

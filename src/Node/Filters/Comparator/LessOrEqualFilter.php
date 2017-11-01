@@ -14,17 +14,17 @@ use Hurl\Node\Traits\ComparatorFilterTrait;
 
 abstract class LessOrEqualFilter extends AbstractComparatorFilter
 {
-	public function compare($that, $other)
-	{
-		return is_numeric($other) && $other <= $that;
-	}
+    public function compare($that, $other)
+    {
+        return is_numeric($other) && $other <= $that;
+    }
 
-	public function not()
-	{
-		return new class($this->value) extends GreaterThanFilter implements ComparatorFilterTraitInterface
-		{
-			use ComparatorFilterTrait;
+    public function not()
+    {
+        return new class($this->value) extends GreaterThanFilter implements ComparatorFilterTraitInterface
+        {
+            use ComparatorFilterTrait;
 
-		};
-	}
+        };
+    }
 }
