@@ -1,8 +1,8 @@
 <?php
 
 
-use Hurl\Node\Statics\_Array;
-use Hurl\Node\Statics\_Comparator;
+use Hurl\Node\Statics\Arrays;
+use Hurl\Node\Statics\Comparators;
 use Hurl\Node\Statics\_Node;
 use Hurl\Node\Statics\_String;
 
@@ -26,7 +26,7 @@ $map = $explode->map($fromHex)->implode('.');
 var_dump($map('a.b'));
 
 
-$sort = _Array::sort(function ($a, $b) {
+$sort = Arrays::sort(function ($a, $b) {
 	return $a - $b;
 });
 var_dump($sort([2, 5, 3, 4, 1]));
@@ -45,17 +45,17 @@ var_dump($sort([2, 5, 3, 4, 1]));
 
 
 $string = 'a,3,e,22,a2,3e0,cf';
-$explodeHexString = _Array::explode(',')->map(
+$explodeHexString = Arrays::explode(',')->map(
 	_String::trim()->then($fromHex)
-)->sort(_Comparator::numeric());
+)->sort(Comparators::numeric());
 print_r($explodeHexString($string));
 
 
 $string = 'a,3,e,22,a2,3e0,cf';
 $explodeHexString =
-	_Array::explode(',')
+	Arrays::explode(',')
 		->sort(
-			_Comparator::boolean()
+			Comparators::boolean()
 				->map(
 					_String::trim()
 						->then($fromHex)
@@ -64,7 +64,7 @@ $explodeHexString =
 						})
 				)
 			,
-			_Comparator::numeric()->map(
+			Comparators::numeric()->map(
 				_String::trim()
 					->then($fromHex)
 			)

@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: mb
- * Date: 20.06.16
- * Time: 23:13
- */
-
-namespace Hurl\Node\Interfaces;
+<?php namespace Hurl\Node\Interfaces;
 
 
 interface ComparatorInterface

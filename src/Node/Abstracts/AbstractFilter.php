@@ -9,12 +9,13 @@
 namespace Hurl\Node\Abstracts;
 
 
-use Hurl\Node\Abstracts\Filters\Logic\NegatedFilter;
-use Hurl\Node\Interfaces\ContainerTraitInterface;
+use Hurl\Node\Filters\Logic\NegatedFilter;
+use Hurl\Node\Interfaces\Traits\ContainerTraitInterface;
+use Hurl\Node\Interfaces\FilterInterface;
 use Hurl\Node\Traits\ContainerTrait;
 
 
-abstract class AbstractFilter extends AbstractNode
+abstract class AbstractFilter extends AbstractNode implements FilterInterface
 {
 
 

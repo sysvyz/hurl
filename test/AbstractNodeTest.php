@@ -1,8 +1,8 @@
 <?php
 namespace HurlTest;
 use Closure;
-use Hurl\Node\Statics\_Array;
-use Hurl\Node\Statics\_String;
+use Hurl\Node\Statics\Arrays;
+use Hurl\Node\Statics\Strings;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -19,7 +19,7 @@ class AbstractNodeTest extends PHPUnit_Framework_TestCase
 	{
 		$data = [4, 78, 2, 7, 4, 34, 43, 34];
 
-		$toJson = _Array::values()->toJson();
+		$toJson = Arrays::values()->toJson();
 
 		$json = $toJson($data);
 
@@ -31,7 +31,7 @@ class AbstractNodeTest extends PHPUnit_Framework_TestCase
 		$data = '[4,78,2,7,4,34,43,34]';
 
 
-		$fromJson = _String::trim()->fromJson();
+		$fromJson = Strings::trim()->fromJson();
 
 		$array = $fromJson($data);
 		$this->assertEquals($array, [4, 78, 2, 7, 4, 34, 43, 34]);
@@ -42,7 +42,7 @@ class AbstractNodeTest extends PHPUnit_Framework_TestCase
 		$data = '4,78,2,7,4,34,43,34';
 
 
-		$explode = _String::trim()->explode(',');
+		$explode = Strings::trim()->explode(',');
 
 		$array = $explode($data);
 		$this->assertEquals($array, [4, 78, 2, 7, 4, 34, 43, 34]);
@@ -54,7 +54,7 @@ class AbstractNodeTest extends PHPUnit_Framework_TestCase
 		$data = '4,78,2,7,4,34,43,34';
 
 
-		$explode = _String::trim()->explode(',')->asClosure();
+		$explode = Strings::trim()->explode(',')->asClosure();
 
 
 		$this->assertInstanceOf(Closure::class, $explode);
@@ -75,7 +75,7 @@ class AbstractNodeTest extends PHPUnit_Framework_TestCase
 	{
 
 
-		$debug = _Array::values()->debug();
+		$debug = Arrays::values()->debug();
 
 
 		$expected = 'Array

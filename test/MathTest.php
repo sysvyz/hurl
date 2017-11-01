@@ -9,7 +9,7 @@
 namespace HurlTest;
 
 
-use Hurl\Node\Math\MathNode;
+use Hurl\Node\Math\Math;
 
 class MathTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,7 +17,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
 	public function testSum()
 	{
 		$data = [8, 5, 7, 2, 3];
-		$node = MathNode::sum();
+		$node = Math::sum();
 		$this->assertEquals(25, $node($data));
 
 	}
@@ -25,7 +25,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
 	public function testProduct()
 	{
 		$data = [1, 2, 3, 4, 5];
-		$node = MathNode::product();
+		$node = Math::product();
 		$this->assertEquals(120, $node($data));
 
 	}
@@ -33,7 +33,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
 	public function testAverage()
 	{
 		$data = [8, 5, 7, 2, 3];
-		$node = MathNode::average();
+		$node = Math::average();
 		$this->assertEquals(5, $node($data));
 
 	}
@@ -41,7 +41,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
 	public function testMedian()
 	{
 		$data = [8, 5, 7, 2, 3];
-		$node = MathNode::median();
+		$node = Math::median();
 		$this->assertEquals(5, $node($data));
 
 	}
@@ -49,7 +49,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
 	public function testMedian2()
 	{
 		$data = [8, 5, 7, 2, 3, 6];
-		$node = MathNode::median();
+		$node = Math::median();
 		$this->assertEquals(5.5, $node($data));
 	}
 

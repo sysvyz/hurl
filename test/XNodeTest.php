@@ -3,8 +3,8 @@
 namespace HurlTest;
 
 
-use Hurl\Node\Statics\_Array;
-use Hurl\Node\Statics\_Node;
+use Hurl\Node\Statics\Arrays;
+use Hurl\Node\Statics\Nodes;
 use Hurl\Out\Tag;
 
 class XNodeTest extends \PHPUnit_Framework_TestCase
@@ -16,14 +16,14 @@ class XNodeTest extends \PHPUnit_Framework_TestCase
 		$data = ['abc', 'qwert', 'xyz'];
 
 
-		$fn = _Node::init(function ($data) {
-			$map = _Array::map(function ($value) {
+		$fn = Nodes::init(function ($data) {
+			$map = Arrays::map(function ($value) {
 				return Tag::init('li')->inner($value);
 			});
-			return Tag::init('ul')->inner($map($data));
+			return Tag::ul($map($data),['class' => 'abc']);
 		});
 
-		$this->assertEquals('<ul><li>abc</li><li>qwert</li><li>xyz</li></ul>', $fn($data) . '');
+		$this->assertEquals('<ul class="abc"><li>abc</li><li>qwert</li><li>xyz</li></ul>', $fn($data) . '');
 	}
 }
 

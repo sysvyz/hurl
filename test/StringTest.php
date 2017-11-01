@@ -3,15 +3,15 @@ namespace HurlTest;
 
 use Hurl\Node\Abstracts\AbstractArray;
 use Hurl\Node\Abstracts\AbstractStringNode;
-use Hurl\Node\Abstracts\Arrays\StringExplode;
-use Hurl\Node\Abstracts\Strings\ArrayImplode;
-use Hurl\Node\Abstracts\Strings\StringLeftTrim;
-use Hurl\Node\Abstracts\Strings\StringLowerCase;
-use Hurl\Node\Abstracts\Strings\StringLowerCaseFirst;
-use Hurl\Node\Abstracts\Strings\StringRightTrim;
-use Hurl\Node\Abstracts\Strings\StringUpperCase;
-use Hurl\Node\Abstracts\Strings\StringUpperCaseFirst;
-use Hurl\Node\Statics\_String;
+use Hurl\Node\Arrays\StringExplode;
+use Hurl\Node\Strings\ArrayImplode;
+use Hurl\Node\Strings\StringLeftTrim;
+use Hurl\Node\Strings\StringLowerCase;
+use Hurl\Node\Strings\StringLowerCaseFirst;
+use Hurl\Node\Strings\StringRightTrim;
+use Hurl\Node\Strings\StringUpperCase;
+use Hurl\Node\Strings\StringUpperCaseFirst;
+use Hurl\Node\Statics\Strings;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -26,7 +26,7 @@ class StringTest extends PHPUnit_Framework_TestCase
 
 	public function testImplode()
 	{
-		$implode = \Hurl\Node\Statics\_Array::implode('.');
+		$implode = \Hurl\Node\Statics\Arrays::implode('.');
 		$data = ['a', 'b', 'c'];
 		$this->assertInstanceOf(ArrayImplode::class, $implode);
 		$this->assertEquals('a.b.c', $implode($data));
@@ -34,7 +34,7 @@ class StringTest extends PHPUnit_Framework_TestCase
 
 	public function testExplode()
 	{
-		$explode = _String::explode('.');
+		$explode = Strings::explode('.');
 		$data = 'a.b.c';
 		$this->assertInstanceOf(StringExplode::class, $explode);
 		$this->assertInstanceOf(AbstractArray::class, $explode);
@@ -43,7 +43,7 @@ class StringTest extends PHPUnit_Framework_TestCase
 
 	public function testLowerCase()
 	{
-		$lowerCase = _String::lower_case();
+		$lowerCase = Strings::lower_case();
 		$data = 'aGasG4';
 		$this->assertInstanceOf(StringLowerCase::class, $lowerCase);
 		$this->assertInstanceOf(AbstractStringNode::class, $lowerCase);
@@ -52,7 +52,7 @@ class StringTest extends PHPUnit_Framework_TestCase
 
 	public function testUppercase()
 	{
-		$upperCase = _String::upper_case();
+		$upperCase = Strings::upper_case();
 		$data = 'agasg4';
 		$this->assertInstanceOf(StringUpperCase::class, $upperCase);
 		$this->assertInstanceOf(AbstractStringNode::class, $upperCase);
@@ -60,7 +60,7 @@ class StringTest extends PHPUnit_Framework_TestCase
 	}
 	public function testUpperCaseFirst()
 	{
-		$upperCase = _String::ucfirst();
+		$upperCase = Strings::ucfirst();
 		$data = 'agasg4';
 		$this->assertInstanceOf(StringUpperCaseFirst::class, $upperCase);
 		$this->assertInstanceOf(AbstractStringNode::class, $upperCase);
@@ -68,7 +68,7 @@ class StringTest extends PHPUnit_Framework_TestCase
 	}
 	public function testLowerCaseFirst()
 	{
-		$upperCase = _String::lcfirst();
+		$upperCase = Strings::lcfirst();
 		$data = 'AGAsg4';
 		$this->assertInstanceOf(StringLowerCaseFirst::class, $upperCase);
 		$this->assertInstanceOf(AbstractStringNode::class, $upperCase);
@@ -76,7 +76,7 @@ class StringTest extends PHPUnit_Framework_TestCase
 	}
 	public function testLeftTrim()
 	{
-		$upperCase = _String::ltrim();
+		$upperCase = Strings::ltrim();
 		$data = '          AGA sg4             ';
 		$this->assertInstanceOf(StringLeftTrim::class, $upperCase);
 		$this->assertInstanceOf(AbstractStringNode::class, $upperCase);
@@ -84,7 +84,7 @@ class StringTest extends PHPUnit_Framework_TestCase
 	}
 	public function testRightTrim()
 	{
-		$upperCase = _String::rtrim();
+		$upperCase = Strings::rtrim();
 		$data = '          AGA sg4             ';
 		$this->assertInstanceOf(StringRightTrim::class, $upperCase);
 		$this->assertInstanceOf(AbstractStringNode::class, $upperCase);

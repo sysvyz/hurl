@@ -1,12 +1,5 @@
-<?php
-namespace Hurl\Node\Interfaces;
+<?php namespace Hurl\Node\Interfaces;
 
-/**
- * Created by PhpStorm.
- * User: mb
- * Date: 27.05.16
- * Time: 03:26
- */
 interface NodeInterface
 {
 

@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mb
- * Date: 20.06.16
- * Time: 23:57
- */
 
 namespace Hurl\Node\Abstracts;
 
 
 use Hurl\Node\Interfaces\ComparatorInterface;
-use Hurl\Node\Interfaces\ContainerTraitInterface;
+use Hurl\Node\Interfaces\Traits\ContainerTraitInterface;
 use Hurl\Node\Traits\ComparatorContainerTrait;
 use Hurl\Node\Traits\ContainerTrait;
 

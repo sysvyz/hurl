@@ -1,10 +1,10 @@
 <?php
 namespace Hurl\Node\Abstracts;
 
-use Hurl\Node\Interfaces\ContainerTraitInterface;
+use Hurl\Node\Interfaces\Traits\ContainerTraitInterface;
 use Hurl\Node\Interfaces\NodeInterface;
-use Hurl\Node\Statics\_Array;
-use Hurl\Node\Statics\_Node;
+use Hurl\Node\Statics\Arrays;
+use Hurl\Node\Statics\Nodes;
 use Hurl\Node\Traits\ContainerTrait;
 
 /**
@@ -35,7 +35,7 @@ abstract class AbstractNode implements NodeInterface
 	 */
 	public function debug()
 	{
-		return $this->then(_Node::debug());
+		return $this->then(Nodes::debug());
 	}
 	
 
@@ -44,7 +44,7 @@ abstract class AbstractNode implements NodeInterface
 	 */
 	public function fromJson()
 	{
-		return $this->then(_Node::fromJson());
+		return $this->then(Nodes::fromJson());
 	}
 
 	/**
@@ -52,7 +52,7 @@ abstract class AbstractNode implements NodeInterface
 	 */
 	public function toJson()
 	{
-		return $this->then(_Node::toJson());
+		return $this->then(Nodes::toJson());
 	}
 
 	public function asClosure()

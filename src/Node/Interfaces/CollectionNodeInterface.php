@@ -1,16 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: mb
- * Date: 27.06.16
- * Time: 04:02
- */
-namespace Hurl\Node\Interfaces;
+<?php namespace Hurl\Node\Interfaces;
 
 use Hurl\Node\Abstracts\AbstractNode;
-use Hurl\Node\Abstracts\Arrays\ArrayEach;
-use Hurl\Node\Abstracts\Arrays\ArrayMap;
-use Hurl\Node\Abstracts\Arrays\ArraySort;
+use Hurl\Node\Arrays\ArrayEach;
+use Hurl\Node\Arrays\ArrayMap;
+use Hurl\Node\Arrays\ArraySort;
 
 interface CollectionNodeInterface extends NodeInterface
 {
@@ -28,6 +21,13 @@ interface CollectionNodeInterface extends NodeInterface
 	 * @return ArrayEach
 	 */
 	public function each(callable $do);
+
+    /**
+     * @param $init
+     * @param callable $do
+     * @return ArrayEach
+     */
+	public function reduce($init,callable $do);
 
 	/**
 	 * @param callable $callable

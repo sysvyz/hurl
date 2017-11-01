@@ -9,7 +9,7 @@
 namespace Hurl\Node\Abstracts;
 
 use Hurl\Node\Interfaces\CollectionNodeInterface;
-use Hurl\Node\Statics\_String;
+use Hurl\Node\Statics\Strings;
 
 abstract class AbstractStringNode extends AbstractNode
 {
@@ -19,7 +19,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function trim()
 	{
-		return $this->then(_String::trim());
+		return $this->then(Strings::trim());
 	}
 
 	/**
@@ -27,7 +27,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function ltrim()
 	{
-		return $this->then(_String::ltrim());
+		return $this->then(Strings::ltrim());
 	}
 
 	/**
@@ -35,7 +35,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function rtrim()
 	{
-		return $this->then(_String::rtrim());
+		return $this->then(Strings::rtrim());
 	}
 
 	/**
@@ -43,7 +43,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function ucfirst()
 	{
-		return $this->then(_String::ucfirst());
+		return $this->then(Strings::ucfirst());
 	}
 
 	/**
@@ -51,7 +51,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function AbstractStringNode()
 	{
-		return $this->then(_String::lcfirst());
+		return $this->then(Strings::lcfirst());
 	}
 
 	/**
@@ -59,7 +59,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function upper_case()
 	{
-		return $this->then(_String::upper_case());
+		return $this->then(Strings::upper_case());
 	}
 
 	/**
@@ -67,7 +67,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function lower_case()
 	{
-		return $this->then(_String::lower_case());
+		return $this->then(Strings::lower_case());
 	}
 
 	/**
@@ -76,7 +76,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function explode(string $delimiter)
 	{
-		return $this->then(_String::explode($delimiter));
+		return $this->then(Strings::explode($delimiter));
 	}
 
 	/**
@@ -86,7 +86,7 @@ abstract class AbstractStringNode extends AbstractNode
 	 */
 	public function substring($start, $length = null)
 	{
-		return $this->then(_String::substring($start, $length));
+		return $this->then(Strings::substring($start, $length));
 	}
 
 

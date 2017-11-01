@@ -3,9 +3,9 @@ namespace HurlTest;
 
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use Hurl\GenericObject;
-use Hurl\Node\Abstracts\Comparator\ObjectComparator;
-use Hurl\Node\Statics\_Array;
-use Hurl\Node\Statics\_Comparator;
+use Hurl\Node\Comparator\ObjectComparator;
+use Hurl\Node\Statics\Arrays;
+use Hurl\Node\Statics\Comparators;
 
 /**
  * Created by PhpStorm.
@@ -20,7 +20,7 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 	{
 		$cmp = ObjectComparator::init([
 			'score' => 'desc',
-			'first_name' => _Comparator::alphaNumeric(),
+			'first_name' => Comparators::alphaNumeric(),
 			'id',
 		]);
 
@@ -95,7 +95,7 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 
 		];
 
-		$sort = _Array::sort($cmp);
+		$sort = Arrays::sort($cmp);
 		$this->assertEquals($result, $sort($data));
 
 	}
@@ -187,7 +187,7 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 
 		];
 
-		$sort = _Array::sort($cmp);
+		$sort = Arrays::sort($cmp);
 		$this->assertEquals($result, $sort($data));
 
 	}
@@ -280,7 +280,7 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 
 		];
 
-		$sort = _Array::sort($cmp);
+		$sort = Arrays::sort($cmp);
 		$this->assertEquals($result, $sort($data));
 
 	}
@@ -300,7 +300,7 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 			GenericObject::init(['score' => 99, 'id' => 5]),
 			GenericObject::init(['score' => 56, 'id' => 3]),
 		];
-		$sort = _Array::sort($cmp);
+		$sort = Arrays::sort($cmp);
 		$sort($data);
 
 	}
@@ -320,7 +320,7 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 			GenericObject::init(['score' => 99, 'id' => 5]),
 			GenericObject::init(['score' => 56, 'id' => 3]),
 		];
-		$sort = _Array::sort($cmp);
+		$sort = Arrays::sort($cmp);
 		$sort($data);
 
 	}
@@ -340,7 +340,7 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 			GenericObject::init(['score' => 99, 'id' => 5]),
 			GenericObject::init(['score' => 56, 'id' => 3]),
 		];
-		$sort = _Array::sort($cmp);
+		$sort = Arrays::sort($cmp);
 		$sort($data);
 
 	}
@@ -360,7 +360,7 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 			GenericObject::init(['score' => 99, 'id' => 5]),
 			GenericObject::init(['score' => 56, 'id' => 3]),
 		];
-		$sort = _Array::sort($cmp);
+		$sort = Arrays::sort($cmp);
 		$sort($data);
 
 	}
@@ -379,7 +379,7 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
 			GenericObject::init(['score' =>['asa'], 'id' => 5]),
 			GenericObject::init(['score' => ['assa'], 'id' => 3]),
 		];
-		$sort = _Array::sort($cmp);
+		$sort = Arrays::sort($cmp);
 		$sort($data);
 
 	}
