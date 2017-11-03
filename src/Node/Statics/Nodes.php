@@ -11,7 +11,7 @@ namespace Hurl\Node\Statics;
 
 use Hurl\Node\Abstracts\AbstractNode;
 
-final class Nodes
+abstract class Nodes
 {
     /**
      * _Node constructor.

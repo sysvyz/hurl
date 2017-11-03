@@ -2,31 +2,12 @@
 
 use Traversable;
 
-/**
- * Class Object
- * @package Hurl
- * @codeCoverageIgnore
- */
-class Object
-{
-
-    public function getHashValue()
-    {
-        return spl_object_hash($this);
-    }
-
-    public function equals($other)
-    {
-        return $this === $other;
-    }
-}
 
 /**
  * Class GenericObject
  * @package Hurl
- * @codeCoverageIgnore
  */
-class GenericObject implements \ArrayAccess, \IteratorAggregate
+class GenericObject extends Object implements \ArrayAccess, \IteratorAggregate, \JsonSerializable
 {
     public function equals($other)
     {
@@ -38,6 +19,7 @@ class GenericObject implements \ArrayAccess, \IteratorAggregate
                 return false;
             }
         }
+        return true;
     }
 
     /**
@@ -165,5 +147,17 @@ class GenericObject implements \ArrayAccess, \IteratorAggregate
     public function getIterator()
     {
         return new \ArrayIterator($this->vars);
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    function jsonSerialize()
+    {
+        // TODO: Implement jsonSerialize() method.
     }
 }

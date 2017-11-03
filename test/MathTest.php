@@ -9,7 +9,7 @@
 namespace HurlTest;
 
 
-use Hurl\Node\Math\Math;
+use Hurl\Node\Statics\Math;
 
 class MathTest extends \PHPUnit_Framework_TestCase
 {

@@ -6,14 +6,14 @@
  * Time: 23:37
  */
 
-namespace Hurl\Node\Math;
+namespace Hurl\Node\Statics;
 
 
 use Hurl\Node\Abstracts\AbstractNode;
 use Hurl\Node\Statics\Arrays;
 use Hurl\Node\Statics\Comparators;
 
-class Math
+abstract class Math
 {
 
     /**

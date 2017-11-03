@@ -22,11 +22,14 @@ use Hurl\Node\Arrays\ArrayRecursiveMerge;
 use Hurl\Node\Arrays\ArraySort;
 use Hurl\Node\Arrays\ArrayStableSort;
 use Hurl\Node\Arrays\ArrayValues;
+use Hurl\Node\Filters\IsEmptyFilter;
+use Hurl\Node\Interfaces\Traits\ContainerTraitInterface;
 use Hurl\Node\Strings\ArrayImplode;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Traits\ArrayTrait;
+use Hurl\Node\Traits\FilterTrait;
 
-final class Arrays
+abstract class Arrays
 {
 
     /**
@@ -145,6 +148,17 @@ final class Arrays
         return new class() extends ArrayValues
         {
             use ArrayTrait;
+        };
+    }
+
+    /**
+     * @return IsEmptyFilter
+     */
+    public static function isEmpty()
+    {
+        return new class() extends IsEmptyFilter
+        {
+            use FilterTrait;
         };
     }
 

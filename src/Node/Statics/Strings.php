@@ -20,7 +20,7 @@ use Hurl\Node\Strings\StringUpperCase;
 use Hurl\Node\Strings\StringUpperCaseFirst;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 
-final class Strings
+abstract class Strings
 {
     /**
      * _String constructor.

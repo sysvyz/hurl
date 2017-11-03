@@ -11,7 +11,7 @@ use Hurl\Node\Filters\ContainsFilter;
 use Hurl\Node\Filters\IsEmptyFilter;
 use Hurl\Node\Interfaces\CollectionNodeInterface;
 use Hurl\Node\Interfaces\Traits\ContainerTraitInterface;
-use Hurl\Node\Math\Math;
+use Hurl\Node\Statics\Math;
 use Hurl\Node\Statics\Arrays;
 use Hurl\Node\Statics\Filters;
 use Hurl\Node\Strings\ArrayImplode;

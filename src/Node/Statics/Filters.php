@@ -33,7 +33,7 @@ use Hurl\Node\Traits\FilterContainerTrait;
 use Hurl\Node\Traits\FilterTrait;
 
 
-final class Filters
+abstract class Filters
 {
     /**
      * _Filter constructor.

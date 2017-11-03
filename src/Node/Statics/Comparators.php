@@ -15,7 +15,7 @@ use Hurl\Node\Comparator\NumericComparator;
 use Hurl\Node\Comparator\StringComparator;
 use Hurl\Node\Comparator\StringLengthComparator;
 
-final class Comparators
+abstract class Comparators
 {
     /**
      * _Comparator constructor.
