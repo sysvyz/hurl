@@ -279,6 +279,8 @@ class FilterTest extends PHPUnit_Framework_TestCase
 		$isString = Filters::isString();
 		$this->assertInstanceOf(IsStringFilter::class, $isString);
 		$this->assertFalse($isString(2));
+		$this->assertFalse($isString(false));
+		$this->assertFalse($isString(true));
 		$this->assertTrue($isString("2"));
 		$this->assertTrue($isString("dfsdgfd"));
 		$this->assertTrue($isString(""));
