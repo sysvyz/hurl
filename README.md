@@ -1,16 +1,16 @@
 # Hurl
 
-Hurl is a language wrapper, which allows to build complex functions and concatenate them.
+Hurl is a data transformation framework, designed to compose complex transformations.
 
 ## Installation
 
-You will need ``composer``
+You will need ``composer require sysvyz/hurl``
 
-Clone the repo.
-
-``composer install``
 
 ## Usage
+
+Hurl is designed to build algorithms as datastructures. Each algorithm is represented by a tree. A tree is represented by its root node. Trees should be stateless (and immutable) in order to reuse them.
+A `Node` represents a data transformation.
 
 ### Creating Nodes
 A Node is basically wrapper for ``function``s or  ``Closure``s if you like.

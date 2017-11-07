@@ -16,5 +16,6 @@ abstract class IsArrayFilter extends AbstractFilter
     public function apply($value)
     {
         return is_array($value);
+
     }
 }

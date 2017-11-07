@@ -158,6 +158,6 @@ class GenericObject extends Object implements \ArrayAccess, \IteratorAggregate, 
      */
     function jsonSerialize()
     {
-        // TODO: Implement jsonSerialize() method.
+        return $this->vars;
     }
 }

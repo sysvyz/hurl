@@ -27,4 +27,5 @@ class ArrayMap extends AbstractArray implements ArrayTraitInterface
     {
         return array_map($this->mapping, ...$data);
     }
+
 }

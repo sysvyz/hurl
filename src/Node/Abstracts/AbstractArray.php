@@ -3,6 +3,7 @@
 namespace Hurl\Node\Abstracts;
 
 use Hurl\Node\Arrays\ArrayEach;
+use Hurl\Node\Arrays\ArrayFilter;
 use Hurl\Node\Arrays\ArrayMap;
 use Hurl\Node\Arrays\ArrayMerge;
 use Hurl\Node\Arrays\ArrayReduce;
@@ -82,6 +83,19 @@ abstract class AbstractArray extends AbstractNode implements CollectionNodeInter
     public function sort(callable ...$callable)
     {
         $_new_node = new class($this, Arrays::sort(...$callable)) extends ArraySort implements ContainerTraitInterface, CollectionNodeInterface
+        {
+            use ContainerTrait;
+        };
+        return $_new_node;
+    }
+
+    /**
+     * @param \callable $callable
+     * @return ArrayFilter
+     */
+    public function filter(callable $callable)
+    {
+        $_new_node = new class($this, Arrays::filter($callable)) extends ArrayFilter implements ContainerTraitInterface, CollectionNodeInterface
         {
             use ContainerTrait;
         };
